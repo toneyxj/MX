@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <item android:duration="500" android:drawable="@mipmap/rsping01"/>
+    <item android:duration="500" android:drawable="@mipmap/rsping02"/>
+    <item android:duration="500" android:drawable="@mipmap/rsping03"/>
+    <item android:duration="500" android:drawable="@mipmap/rsping04"/>
+    <item android:duration="500" android:drawable="@mipmap/rsping06"/>
+    <item android:duration="500" android:drawable="@mipmap/rsping07"/>
+    <item android:duration="500" android:drawable="@mipmap/rsping08"/>
+</animation-list>

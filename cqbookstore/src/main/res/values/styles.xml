@@ -1,0 +1,66 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="book_title">
+        <item name="android:textSize">24sp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+    <style name="book_price">
+        <item name="android:textSize">@dimen/moxi_text_size_22</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+    <style name="book_author">
+        <item name="android:textSize">@dimen/moxi_text_size_20</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/author_grey</item>
+    </style>
+    <style name="title_text" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/white_to_font</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/moxi_text_size_20</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+    <style name="tep_text" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/white_to_font</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/moxi_text_size_20</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+    </style>
+    <style name="information_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/moxi_text_size_26</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:paddingLeft">40dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="information_edit">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textColorHint">@color/colorgray50</item>
+        <item name="android:textSize">@dimen/moxi_text_size_26</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@color/transparent</item>
+    </style>
+</resources>

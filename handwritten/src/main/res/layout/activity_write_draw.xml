@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/colorWihte">
+
+        <TextView
+            android:id="@+id/complete"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/white_to_font"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="完成"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/moxi_text_size_18" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_vertical"
+            android:text="新文档"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/moxi_text_size_20" />
+
+        <ImageButton
+            android:id="@+id/skin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/white_to_font"
+            android:padding="12dp"
+            android:src="@mipmap/skin" />
+
+        <ImageButton
+            android:id="@+id/add_page"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/skin"
+            android:background="@drawable/white_to_font"
+            android:padding="12dp"
+            android:src="@mipmap/add_page" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.moxi.handwritten.view.PaintBackView
+            android:id="@+id/write_back"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <FrameLayout
+            android:id="@+id/drawpath_layout_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <com.mx.mxbase.view.WriteDrawLayout
+                android:id="@+id/pencil"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/white_to_font" />
+
+            <com.mx.mxbase.view.WriteDrawLayout
+                android:id="@+id/ball_pen"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/white_to_font" />
+
+            <com.mx.mxbase.view.WriteDrawLayout
+                android:id="@+id/pen"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/white_to_font" />
+
+            <com.mx.mxbase.view.WriteDrawLayout
+                android:id="@+id/brush"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/white_to_font" />
+
+            <com.mx.mxbase.view.WriteDrawLayout
+                android:id="@+id/rubber"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/white_to_font" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="12dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/sweep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/white_to_font"
+                android:padding="16dp"
+                android:textSize="@dimen/moxi_text_size_20"
+                android:textColor="@color/colorBlack"
+                android:text="扫除" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/last_page"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_to_font"
+                android:padding="5dp"
+                android:src="@mipmap/write_left" />
+
+            <TextView
+                android:id="@+id/show_index"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:text="1/1"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/moxi_text_size_20" />
+
+            <ImageButton
+                android:id="@+id/next_page"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_to_font"
+                android:padding="5dp"
+                android:src="@mipmap/write_right" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

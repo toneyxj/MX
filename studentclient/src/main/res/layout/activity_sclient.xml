@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingRight="10dp"
+    android:paddingBottom="10dp"
+    tools:context="com.moxi.studentclient.SClientActivity">
+
+    <TextView
+        android:id="@+id/titleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="New Text"
+        android:textSize="40sp"
+        android:visibility="invisible"/>
+
+
+
+    <com.moxi.studentclient.view.TopLoginViewGroup
+        android:id="@+id/userNameTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:id="@+id/timeTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:text="00:00:00"
+        android:drawablePadding="5dp"
+        android:drawableLeft="@mipmap/ic_time"
+        android:visibility="invisible"
+        android:textSize="25sp" />
+
+    <com.moxi.studentclient.view.ConnectStateView
+        android:id="@+id/linkNameTv"
+        android:layout_width="100dp"
+        android:layout_height="105dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/userNameTv"
+        android:background="@drawable/selector_connsate_bg" />
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@+id/userNameTv"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/linkNameTv"
+        android:background="@color/colorBlack">
+
+        <TextView
+            android:id="@+id/contentTitleTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="New Text"
+            android:textColor="@color/colorWihte"
+            android:textSize="30sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/linkNameTv"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="10dp"
+        android:orientation="vertical">
+
+        <com.moxi.studentclient.view.DrawToolView
+            android:id="@+id/tool_dv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/content_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"></LinearLayout>
+</RelativeLayout>

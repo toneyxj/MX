@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TeacherApplication</string>
+    <string name="home_back_tx">首页</string>
+    <string name="back_tx">返回</string>
+    <string name="reset_teacher">重置</string>
+    <string name="home_teacher_title">课后作业</string>
+    <string name="text_student">我是学生</string>
+    <string name="text_teacher">我是老师</string>
+</resources>

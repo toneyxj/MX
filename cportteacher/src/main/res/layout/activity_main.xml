@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWihte"
+    android:orientation="vertical"
+    android:paddingLeft="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingRight="26dp"
+        android:paddingTop="5dp">
+
+        <TextView
+            android:id="@+id/back_click"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/white_to_font"
+            android:drawableLeft="@mipmap/class_icon"
+            android:drawablePadding="12dp"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp"
+            android:text="互动课堂(教师端)"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/moxi_text_size_26" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:id="@+id/click_loging"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_to_font"
+            android:orientation="horizontal"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp">
+
+            <ImageView
+                android:id="@+id/photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@mipmap/default_photo" />
+
+            <TextView
+                android:id="@+id/loging_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="16dp"
+                android:text="未登录"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/moxi_text_size_22" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/class_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:drawableTop="@mipmap/attend_class_no"
+                android:gravity="center_horizontal"
+                android:text="未上课"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/moxi_text_size_22" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/penil"
+                    style="@style/main_left_item"
+                    android:drawableTop="@drawable/item0_pencil"
+                    android:text="铅笔" />
+
+                <RadioButton
+                    android:id="@+id/rubber"
+                    style="@style/main_left_item"
+                    android:drawableTop="@drawable/item1_rubber"
+                    android:text="橡皮" />
+
+                <RadioButton
+                    android:id="@+id/screenshort"
+                    style="@style/main_left_item"
+                    android:visibility="gone"
+                    android:drawableTop="@drawable/item2_screenshort"
+                    android:text="截图" />
+
+                <RadioButton
+                    android:id="@+id/clean"
+                    style="@style/main_left_item"
+                    android:drawableTop="@drawable/item3_clean"
+                    android:text="清屏" />
+
+                <RadioButton
+                    android:id="@+id/answerfirst"
+                    style="@style/main_left_item"
+                    android:drawableTop="@drawable/item4_answerfirst"
+                    android:text="抢答" />
+
+                <RadioButton
+                    android:id="@+id/select"
+                    style="@style/main_left_item"
+                    android:drawableTop="@drawable/item5_select"
+                    android:text="抽选" />
+
+                <RadioButton
+                    android:id="@+id/vote"
+                    style="@style/main_left_item"
+                    android:drawableTop="@drawable/item6_vote"
+                    android:text="投票" />
+                <RadioButton
+                    android:id="@+id/interact"
+                    style="@style/main_left_item"
+                    android:drawableTop="@drawable/item7_interact"
+                    android:text="投影" />
+            </RadioGroup>
+
+            <ImageButton
+                android:id="@+id/white_area_add_page"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/white_to_font"
+                android:padding="12dp"
+                android:src="@mipmap/add_page" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RadioGroup
+                android:id="@+id/classify_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/white_area"
+                    style="@style/main_classfiy_style"
+                    android:text="白板区域" />
+
+                <RadioButton
+                    android:id="@+id/class_test"
+                    style="@style/main_classfiy_style"
+                    android:layout_marginLeft="16dp"
+                    android:text="课堂测评" />
+
+                <RadioButton
+                    android:id="@+id/class_record"
+                    style="@style/main_classfiy_style"
+                    android:layout_marginLeft="16dp"
+                    android:text="课堂记录" />
+
+            </RadioGroup>
+
+            <FrameLayout
+                android:id="@+id/main_classfiy_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

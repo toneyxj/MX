@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/inf"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/qimu_backgroundshape"
+        android:gravity="center"
+        android:text="1" />
+
+    <RelativeLayout
+        android:id="@+id/rl_img_page"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/qimu_backgroundshape">
+
+        <ImageView
+            android:id="@+id/img_menu_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/img_menu_pre_page" />
+    </RelativeLayout>
+
+</RelativeLayout>

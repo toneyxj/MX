@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">HaierC</string>
+    <!--<string name="system_name">MX B970S</string>-->
+    <!--<string name="system_type">电子阅读器  型号：MX B970S</string>-->
+    <!--<string name="system_production">重庆墨希科技有限公司  中国制造</string>-->
+
+    <string name="system_production">青岛海尔教育科技有限公司  中国制造</string>
+    <string name="system_type">电子阅读器  型号：Topsir H9</string>
+    <string name="system_name">Topsir H9</string>
+</resources>

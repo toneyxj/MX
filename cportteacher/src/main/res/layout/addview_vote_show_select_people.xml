@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.mx.mxbase.view.NoGridView
+        android:id="@+id/people_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@color/colorWihte"
+        android:horizontalSpacing="0dp"
+        android:listSelector="@drawable/white_to_font"
+        android:numColumns="2"
+        android:scrollbars="none"
+        android:verticalSpacing="20dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="30dp">
+
+        <Button
+            android:id="@+id/send_vote"
+            style="@style/arc_button"
+            android:layout_centerHorizontal="true"
+            android:text="发布投票" />
+
+        <Button
+            android:id="@+id/add_student"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/white_to_font"
+            android:padding="12dp"
+            android:text="添加学生"
+            android:textColor="@color/colorBlack"
+            android:layout_marginRight="20dp"
+            android:textSize="@dimen/moxi_text_size_26" />
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="160dp"
+        android:layout_height="50dp">
+        <TextView
+            android:id="@+id/item_tv"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="A."
+            android:textColor="@color/colorBlack"/>
+        <TextView
+            android:id="@+id/name_tv"
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="钱钟书"
+            android:layout_toRightOf="@id/item_tv"
+            android:background="@drawable/shape_question_bg"/>
+    </RelativeLayout>
+</RelativeLayout>

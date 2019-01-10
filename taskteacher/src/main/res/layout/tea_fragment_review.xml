@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/home_work_send"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:overScrollMode="never"></android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+        android:id="@+id/ll_review_see"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <com.moxi.taskteacher.view.ImageViewProgressArc
+            android:id="@+id/work_title"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/di_white_bian_font_line1"
+            android:padding="12dp"
+            android:scaleType="centerCrop" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/di_white_bian_font_line1"
+            android:padding="12dp">
+
+            <com.moxi.taskteacher.view.ImageViewProgressArc
+                android:id="@+id/work_answer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我的答案"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/moxi_text_size_20" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_chose_student_to_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/white_to_font"
+            android:clickable="true">
+
+            <TextView
+                android:id="@+id/tv_to_review"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:background="@drawable/moxi_shape_black_corner_35"
+                android:gravity="center"
+                android:text="批复"
+                android:textColor="@color/colorWihte"
+                android:textSize="@dimen/moxi_text_size_24" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_review_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/di_white_bian_font_line1">
+
+            <com.moxi.taskteacher.view.ImageViewProgressArc
+                android:id="@+id/image_review"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:visibility="gone" />
+
+            <com.moxi.taskteacher.view.PaintInvalidateRectView
+                android:id="@+id/pir_review"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="12dp"
+                android:text="批复："
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/moxi_text_size_20" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_review_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/white_to_font"
+            android:clickable="true">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"></ImageView>
+
+            <TextView
+                android:id="@+id/tv_review_send"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:background="@drawable/moxi_shape_black_corner_35"
+                android:gravity="center"
+                android:text="发送"
+                android:textColor="@color/colorWihte"
+                android:textSize="@dimen/moxi_text_size_24" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/no_data_try_again"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="没有数据点击重试"
+        android:textSize="@dimen/moxi_text_size_20"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/rl_one_button_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/colorWihte">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/ll_one_page_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/white_to_font"
+                android:clickable="true">
+
+                <ImageView
+                    android:id="@+id/img_one_page_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:padding="10dp"
+                    android:src="@mipmap/mx_img_page_left" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_one_page_count"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/moxi_text_size_24" />
+
+            <LinearLayout
+                android:id="@+id/ll_one_page_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/white_to_font"
+                android:clickable="true">
+
+                <ImageView
+                    android:id="@+id/img_page_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:padding="10dp"
+                    android:src="@mipmap/mx_img_page_right" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

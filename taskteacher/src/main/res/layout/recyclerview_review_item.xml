@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorBlack" />
+
+    <ImageView
+        android:id="@+id/img_item_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/icon_one" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:layout_toRightOf="@id/img_item_avatar"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_student_name"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="丽丽"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/moxi_text_size_24" />
+
+        <TextView
+            android:id="@+id/tv_test_value"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="语文朱自清春"
+            android:textColor="@color/colorGray"
+            android:textSize="@dimen/moxi_text_size_22" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_write_time"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="2016-12-24 09:11"
+        android:textColor="@color/colorGray"
+        android:textSize="@dimen/moxi_text_size_20" />
+</RelativeLayout>

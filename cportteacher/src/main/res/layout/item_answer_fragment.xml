@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/numss"
+        android:text="1."
+        android:visibility="gone"
+        android:layout_marginRight="20dp"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_toRightOf="@+id/numss"
+        android:src="@mipmap/test_inconnnn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/name"
+        android:text="小王"
+        android:layout_toRightOf="@+id/icon"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:id="@+id/right_ans"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/answer_numbers"
+            android:text="20/30"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/complete_img"
+            android:visibility="invisible"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/complete_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <com.moxi.classRoom.widget.ProgressView
+        android:id="@+id/progress_ans"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/name"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/right_ans"
+        android:layout_width="match_parent"
+        android:layout_height="15dp">
+
+    </com.moxi.classRoom.widget.ProgressView>
+
+
+
+</RelativeLayout>

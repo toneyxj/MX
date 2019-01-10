@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWihte"
+    android:orientation="vertical"
+    android:weightSum="640">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="80">
+
+        <TextView
+            android:id="@+id/tv_fragment_weed_out_progress_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="方程式闯关答题比赛"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/moxi_text_size_24" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="50"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_total_people"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="答题人数：20人" />
+
+        <TextView
+            android:id="@+id/tv_finish_people"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="已完成：2人" />
+
+        <TextView
+            android:id="@+id/tv_weed_out_people"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="已淘汰：2人" />
+
+        <Chronometer
+            android:id="@+id/tv_west_time"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:format="00:00:00"
+            android:visibility="gone"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/moxi_text_size_20" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/xu_line" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_fragment_weed_out_progress"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="510"
+        android:overScrollMode="never"></android.support.v7.widget.RecyclerView>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/xu_line" />
+</LinearLayout>

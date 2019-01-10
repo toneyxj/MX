@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/mx_base_title_layout"></include>
+
+    <View
+        android:id="@+id/line_ver"
+        android:layout_below="@+id/title"
+        android:layout_height="1px"
+        android:layout_width="match_parent"
+        android:background="#000000"
+        />
+
+    <RelativeLayout
+        android:layout_below="@+id/line_ver"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ListView
+            android:id="@+id/menu"
+            android:divider="#00000000"
+            android:dividerHeight="0dip"
+            android:listSelector="#80000000"
+            android:layout_height="match_parent"
+            android:layout_width="200dip"></ListView>
+
+        <View
+            android:id="@+id/line"
+            android:layout_toRightOf="@+id/menu"
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="#000000"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <GridView
+            android:id="@+id/info_grid"
+            android:layout_toRightOf="@+id/line"
+            android:numColumns="3"
+            android:layout_marginTop="15dip"
+            android:layout_marginLeft="15dip"
+            android:layout_marginRight="15dip"
+            android:horizontalSpacing="15dip"
+            android:verticalSpacing="15dip"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></GridView>
+
+    </RelativeLayout>
+
+</RelativeLayout>

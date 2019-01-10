@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/di_white_bian_font">
+    <include layout="@layout/dialog_title_layout" />
+    <RelativeLayout
+        android:id="@+id/main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/image_hitn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:src="@mipmap/first_answer_question" />
+        <com.moxi.CPortTeacher.view.PaintInvalidateRectView
+            android:id="@+id/rect_view"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="10dp"/>
+
+        <Button
+            android:id="@+id/start_firstanswer"
+            style="@style/arc_button"
+            android:layout_below="@+id/image_hitn"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:text="开始抢答" />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/start_firstanswer"/>
+    </RelativeLayout>
+</LinearLayout>

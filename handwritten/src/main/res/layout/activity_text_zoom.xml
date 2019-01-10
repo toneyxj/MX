@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/colorWihte">
+
+        <TextView
+            android:id="@+id/complete"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/white_to_font"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="完成"
+            android:drawableLeft="@mipmap/back"
+            android:textColor="@color/colorBlack"
+            android:drawablePadding="10dp"
+            android:textSize="@dimen/moxi_text_size_22" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_vertical"
+            android:text="新文档"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/moxi_text_size_20" />
+
+        <ImageButton
+            android:id="@+id/skin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:visibility="invisible"
+            android:background="@drawable/white_to_font"
+            android:padding="12dp"
+            android:src="@mipmap/skin" />
+
+        <ImageButton
+            android:id="@+id/add_page"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/skin"
+            android:visibility="invisible"
+            android:background="@drawable/white_to_font"
+            android:padding="12dp"
+            android:src="@mipmap/add_page" />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorBlack"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        android:layout_weight="1">
+
+
+        <com.moxi.handwritten.view.ZoomRelativeLayout
+            android:id="@+id/relative_room"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <RelativeLayout
+            android:id="@+id/add_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+        <com.moxi.handwritten.view.DrawTextZoomView
+            android:id="@+id/draw_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <com.moxi.handwritten.view.CursorView
+            android:id="@+id/cursor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorBlack"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:visibility="invisible"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/path_width"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/white_to_font"
+            android:padding="12dp"
+            android:src="@mipmap/pencil" />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/white_to_font"
+            android:padding="12dp"
+            android:src="@mipmap/pen" />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/white_to_font"
+            android:padding="12dp"
+            android:src="@mipmap/rubber" />
+        <ImageButton
+            android:id="@+id/back_style"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/white_to_font"
+            android:padding="12dp"
+            android:src="@mipmap/ball_pen" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_marginLeft="12dp">
+    </View>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:background="@drawable/white_to_font"
+            android:text="删除"/>
+
+        <ImageButton
+            android:id="@+id/reduce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:background="@drawable/white_to_font"
+            android:visibility="invisible"
+            android:padding="10dp"
+            android:src="@mipmap/write_left" />
+
+        <ImageButton
+            android:id="@+id/last_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/white_to_font"
+            android:padding="10dp"
+            android:src="@mipmap/write_left" />
+
+        <TextView
+            android:id="@+id/show_index"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:text="1/1"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/moxi_text_size_20" />
+
+        <ImageButton
+            android:id="@+id/next_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_to_font"
+            android:padding="10dp"
+            android:src="@mipmap/write_right" />
+    </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

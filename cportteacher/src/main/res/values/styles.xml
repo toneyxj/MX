@@ -1,0 +1,109 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="main_top_image">
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/white_to_font</item>
+    </style>
+
+    <style name="main_classfiy_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@drawable/classfiy_text_color</item>
+        <item name="android:textSize">@dimen/moxi_text_size_22</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:background">@drawable/classfiy_backphoto</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:button">@null</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:paddingTop">12dp</item>
+    </style>
+
+    <style name="fragment_classfiy_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@drawable/classfiy_text_color</item>
+        <item name="android:textSize">@dimen/moxi_text_size_22</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@drawable/classfiy_backphoto</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:button">@null</item>
+    </style>
+
+
+
+    <style name="main_left_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/moxi_text_size_18</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:drawablePadding">3dp</item>
+        <item name="android:button">@null</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingTop">5dp</item>
+    </style>
+
+    <style name="class_room_mian_txt">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/moxi_text_size_20</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:paddingTop">12dp</item>
+    </style>
+
+    <style name="arc_button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorWihte</item>
+        <item name="android:textSize">@dimen/moxi_text_size_22</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingRight">26dp</item>
+        <item name="android:paddingLeft">26dp</item>
+        <item name="android:background">@drawable/arc_big_button</item>
+    </style>
+
+    <style name="information_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/moxi_text_size_26</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:paddingLeft">40dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="information_edit">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textColorHint">@color/colorgray50</item>
+        <item name="android:textSize">@dimen/moxi_text_size_26</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@color/transparent</item>
+    </style>
+
+    <style name="textSise">
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="textSiseRadioButton">
+        <item name="android:textSize">25sp</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+</resources>
