@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/mx_base_title_layout"/>
+    
+    <RelativeLayout
+        android:id="@+id/system"
+        android:layout_below="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/system_rel"
+            android:background="#d2d2d2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/system_img"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
+                android:layout_marginLeft="36dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/system_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/system_img"
+                android:text="系统"
+                android:textColor="#000000"
+                android:textSize="24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/yinsi_rel"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/system_rel"
+            android:layout_width="679dp"
+            android:layout_height="65dp">
+
+            <TextView
+                android:id="@+id/dianyuan_text"
+                android:text="显示"
+                android:textColor="#000000"
+                android:textSize="24dp"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/oon_line"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"></View>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/yingsi_tv"
+            android:text="备份和重置"
+            android:textColor="#000000"
+            android:gravity="center_vertical"
+            android:textSize="24dp"
+            android:layout_below="@+id/yinsi_rel"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_alignLeft="@+id/yinsi_rel"
+            android:layout_alignStart="@+id/yinsi_rel" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/kuozhan"
+        android:layout_below="@+id/system"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/kuozhan_rel"
+            android:background="#d2d2d2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/kuozhan_img"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
+                android:layout_marginLeft="36dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/app_cnn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/kuozhan_img"
+                android:text="扩展"
+                android:textSize="24dp"
+                android:textColor="#000000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/jiaozhun"
+            android:text="电磁屏校准"
+            android:textSize="24dp"
+            android:gravity="center_vertical"
+            android:textColor="#000000"
+            android:layout_below="@+id/kuozhan2_rel"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginLeft="75dp" />
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/kuozhan2_rel"
+            android:layout_width="679dp"
+            android:layout_height="65dp"
+            android:layout_below="@+id/kuozhan_rel"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:id="@+id/app_text"
+                android:text="应用程序"
+                android:textColor="#000000"
+                android:textSize="24dp"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/oon_line"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"></View>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/about"
+        android:layout_below="@+id/kuozhan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/about_rel"
+            android:background="#d2d2d2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/about_img"
+                android:layout_marginLeft="36dp"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
+                android:src="@mipmap/other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/about_img"
+                android:text="关于"
+                android:textColor="#000000"
+                android:textSize="24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/about_img_rel"
+            android:layout_width="679dp"
+            android:layout_height="65dp"
+            android:id="@+id/relativeLayout">
+
+            <TextView
+                android:id="@+id/about_shebei"
+                android:text="设备状态"
+                android:textColor="#000000"
+                android:textSize="24dp"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                ></TextView>
+
+            <View
+                android:background="@drawable/oon_line"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:id="@+id/view"
+                android:layout_below="@+id/about_shebei"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"></View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/about_img_rel"
+            android:layout_width="679dp"
+            android:layout_height="65dp"
+            android:layout_below="@+id/about_rel"
+            android:layout_alignLeft="@+id/relativeLayout"
+            android:layout_alignStart="@+id/relativeLayout">
+
+            <TextView
+                android:id="@+id/about_text"
+                android:text="VCOM"
+                android:textSize="24dp"
+                android:textColor="#000000"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/oon_line"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"></View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/about_renzheng"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/relativeLayout"
+            android:layout_width="679dp"
+            android:layout_height="65dp">
+
+            <TextView
+                android:id="@+id/about_renzheng_info"
+                android:text="认证信息"
+                android:textColor="#000000"
+                android:textSize="24dp"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                ></TextView>
+
+            <View
+                android:background="@drawable/oon_line"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_below="@+id/about_renzheng_info"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"></View>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.moxi.studentb">
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:name=".application.HaiercApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MXSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MXStorageSettingActivity"
+            android:screenOrientation="portrait" />
+
+        <service android:name="com.moxi.last.reader.aidl.ILaseReaderService">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="com.moxi.last.reader.aidl.LAST_READER"></action>
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>

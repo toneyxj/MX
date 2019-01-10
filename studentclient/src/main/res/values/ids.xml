@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="subjectView" type="id">false</item>
+    <item name="subjectCompleteView" type="id">false</item>
+
+    <item name="tagFirst" type="id"></item>
+    <item name="tagSecond" type="id"></item>
+</resources>

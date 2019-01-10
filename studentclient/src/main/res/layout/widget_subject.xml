@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.moxi.studentclient.view.SlideLinerlayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <com.moxi.studentclient.view.NoTextView
+            android:id="@+id/page_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/textSise"
+            android:gravity="center"></com.moxi.studentclient.view.NoTextView>
+
+        <com.moxi.studentclient.view.NoTextView
+            android:id="@+id/title_tv"
+            android:layout_width="match_parent"
+            style="@style/textSise"
+            android:layout_height="wrap_content"></com.moxi.studentclient.view.NoTextView>
+
+        <com.moxi.studentclient.view.NoRadioGroup
+            android:id="@+id/radio_rg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <RadioButton
+                android:id="@+id/radio_answer_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWihte"
+                android:button="@null"
+                android:drawableLeft="@drawable/mx_selector_menu"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:minHeight="40dp"
+                android:text="A"
+                android:textColor="@color/colorBlack"
+                style="@style/textSiseRadioButton"/>
+
+            <RadioButton
+                android:id="@+id/radio_answer_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWihte"
+                android:button="@null"
+                android:drawableLeft="@drawable/mx_selector_menu"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:minHeight="40dp"
+                android:text="A"
+                android:textColor="@color/colorBlack"
+                style="@style/textSiseRadioButton" />
+
+            <RadioButton
+                android:id="@+id/radio_answer_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWihte"
+                android:button="@null"
+                android:drawableLeft="@drawable/mx_selector_menu"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:minHeight="40dp"
+                android:text="A"
+                android:textColor="@color/colorBlack"
+                style="@style/textSiseRadioButton" />
+
+            <RadioButton
+                android:id="@+id/radio_answer_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWihte"
+                android:button="@null"
+                android:drawableLeft="@drawable/mx_selector_menu"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:minHeight="40dp"
+                android:text="A"
+                android:textColor="@color/colorBlack"
+                style="@style/textSise" />
+        </com.moxi.studentclient.view.NoRadioGroup>
+
+        <com.moxi.studentclient.view.SlideLinerlayout
+            android:id="@+id/paintachace_ll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:background="@drawable/dotted_line"
+                android:orientation="vertical"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:padding="5dp">
+                <com.moxi.studentclient.view.PaintInvalidateRectView
+                    android:id="@+id/paintachace_prv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/ok_but"
+                android:layout_width="120dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/big_button"
+                android:text="保存答案"
+                android:textColor="@color/colorWithe" />
+        </com.moxi.studentclient.view.SlideLinerlayout>
+    </com.moxi.studentclient.view.SlideLinerlayout>
+
+
+</RelativeLayout>

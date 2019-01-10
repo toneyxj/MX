@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@mipmap/item51_select" android:state_selected="false"></item>
+    <item android:drawable="@mipmap/item50_select" android:state_selected="true"></item>
+
+</selector>

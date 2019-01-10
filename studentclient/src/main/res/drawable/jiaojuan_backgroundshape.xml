@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <corners
+        android:radius="60dp"></corners>
+    <!-- 大小 -->
+    <size
+        android:width="60dp"
+        android:height="60dp"/><!-- 宽度和高度 -->
+
+    <!-- 填充 -->
+    <solid
+        android:color="@color/colorBlack"/><!-- 填充的颜色 -->
+
+    <!-- 描边 -->
+    <stroke
+        android:width="5dp"
+        android:color="@color/colorgray50"
+        />
+
+</shape>

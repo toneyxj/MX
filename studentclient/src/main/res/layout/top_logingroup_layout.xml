@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:paddingLeft="10dp"
+    android:layout_height="80dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="  互动课堂（学生端）"
+        android:onClick="goBack"
+        android:clickable="true"
+        android:drawablePadding="5dp"
+        android:drawableLeft="@mipmap/class_ico"
+        android:id="@+id/top_title_tv"
+        android:textSize="@dimen/moxi_text_size_24"/>
+    <RelativeLayout
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true">
+        <TextView
+            android:id="@+id/user_state_tv"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="未登录"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:layout_alignParentRight="true"
+            android:textSize="@dimen/moxi_text_size_24"/>
+        <ImageView
+            android:id="@+id/user_ico_iv"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/user_state_tv"
+            android:background="@mipmap/user_unlogin_ico"/>
+    </RelativeLayout>
+</RelativeLayout>

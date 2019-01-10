@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/title"
+        android:background="@drawable/qimu_backgroundshape_selected"
+        android:textColor="@color/colorWihte"
+        android:minHeight="40dp"
+        android:gravity="center"
+        android:layout_weight="1" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scoreTv"
+        android:background="@drawable/qimu_backgroundshape_selected"
+        android:textColor="@color/colorWihte"
+        android:minHeight="40dp"
+        android:visibility="gone"
+        android:gravity="center" />
+
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text="交卷"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/colorWithe"
+        android:background="@drawable/jiaojuan_backgroundshape"
+        android:id="@+id/submitBut"/>
+</LinearLayout>

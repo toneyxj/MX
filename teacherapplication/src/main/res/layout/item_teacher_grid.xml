@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="200dip"
+    android:layout_height="300dip">
+
+    <RelativeLayout
+        android:id="@+id/home_rel"
+        android:background="@drawable/back_grid"
+        android:layout_width="200dip"
+        android:layout_height="300dip">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_marginTop="10dip"
+            android:layout_marginLeft="20dip"
+            android:layout_marginRight="20dip"
+            android:text="份子份子份子份子份子份子份子份子份子份子份子份子份子"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/status"
+            android:text="未分发"
+            android:layout_marginTop="200dip"
+            android:background="#797979"
+            android:textColor="#ffffff"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:paddingTop="5dip"
+            android:paddingBottom="5dip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        
+        <View
+            android:id="@+id/line_ver"
+            android:layout_marginTop="20dip"
+            android:layout_below="@+id/status"
+            android:layout_height="1px"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:background="#000000"
+            />
+
+        <RelativeLayout
+            android:id="@+id/bottom_rel"
+            android:layout_below="@+id/line_ver"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/time"
+                android:text="2016-09-20 08:00"
+                android:layout_marginBottom="5dip"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/distribute"
+                android:text="分发"
+                android:textColor="#ffffff"
+                android:background="@drawable/back_tx_distribute"
+                android:paddingLeft="20dip"
+                android:paddingRight="20dip"
+                android:paddingTop="7dip"
+                android:paddingBottom="7dip"
+                android:layout_marginBottom="5dip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

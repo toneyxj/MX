@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mx.teacher.activity.MainActivity">
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/mx_base_title_layout">
+    </include>
+
+    <View
+        android:id="@+id/line_ver"
+        android:layout_below="@+id/title"
+        android:layout_height="1px"
+        android:layout_width="match_parent"
+        android:background="#000000"
+        />
+
+    <RelativeLayout
+        android:layout_below="@+id/line_ver"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout
+            android:id="@+id/stu_rel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/stu_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/student"/>
+
+            <Button
+                android:id="@+id/stu_tv"
+                android:layout_below="@+id/stu_img"
+                android:layout_centerHorizontal="true"
+                android:text="@string/text_student"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="35dip"
+                android:paddingRight="35dip"
+                android:background="@drawable/back_but"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/tea_rel"
+            android:layout_below="@+id/stu_rel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/tea_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/teacher"/>
+
+            <Button
+                android:id="@+id/tea_tv"
+                android:text="@string/text_teacher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tea_img"
+                android:paddingLeft="35dip"
+                android:paddingRight="35dip"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/back_but"
+                />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

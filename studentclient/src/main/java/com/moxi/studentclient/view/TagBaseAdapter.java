@@ -9,7 +9,6 @@ import android.widget.Button;
 
 import com.moxi.studentclient.R;
 import com.moxi.studentclient.model.OptionModel;
-import com.mx.mxbase.interfaces.OnItemClickListener;
 
 import java.util.List;
 

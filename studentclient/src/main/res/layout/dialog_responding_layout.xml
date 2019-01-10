@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="400dp"
+    android:layout_height="450dp"
+    android:background="@color/colorWihte">
+   <include layout="@layout/top_in_dialog"/>
+
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:background="@drawable/animation_list_responding" />
+    <TextView
+        android:id="@+id/no_RobAnswer"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:gravity="center"
+        android:textSize="22sp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:text="还未发起抢答"
+        android:textColor="@color/colorBlack"
+        android:visibility="gone"/>
+    <LinearLayout
+        android:id="@+id/body_ly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <ImageView
+            android:id="@+id/result_iv"
+            android:layout_width="400dp"
+            android:layout_height="210dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:src="@mipmap/respond_fail"/>
+        <TextView
+            android:id="@+id/infor_tv"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:textSize="@dimen/moxi_text_size_22"
+            android:textColor="@color/colorBlack"
+            android:text="抢答失败,再接再厉!"/>
+    </LinearLayout>
+</LinearLayout>

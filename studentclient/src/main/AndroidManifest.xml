@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.moxi.studentclient">
+
+    <application
+        tools:replace="android:icon, android:theme,android:label"
+        android:name=".SClientApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_s_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".ManActivity">
+        </activity>
+        <activity android:name=".activity.HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.MXWriteHomeWorkActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SubjectTestActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SubjectInfoActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.WeekOutSubjectActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.PersonalInformationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".dialog.ResponderActivity"
+            android:theme="@style/AlertDialogStyle" />
+        <activity
+            android:name=".dialog.VoteActivity"
+            android:theme="@style/AlertDialogStyle" />
+
+        <service
+            android:name=".CommandService"
+            android:enabled="true"
+            android:exported="true"></service>
+        <activity
+            android:name=".activity.LogingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SubjectNowTestActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait" />
+    </application>
+
+</manifest>

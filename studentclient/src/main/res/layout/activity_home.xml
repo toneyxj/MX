@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.moxi.studentclient.activity.HomeActivity">
+
+    <com.moxi.studentclient.view.TopLoginViewGroup
+        android:id="@+id/loginGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true" />
+
+    <LinearLayout
+        android:id="@+id/ll2"
+        android:layout_width="match_parent"
+        android:layout_height="105dp"
+        android:layout_below="@id/loginGroup"
+        android:orientation="horizontal"
+        android:paddingRight="10dp">
+
+        <com.moxi.studentclient.view.ConnectStateView
+            android:id="@+id/connectstateview"
+            android:layout_width="100dp"
+            android:layout_height="105dp"
+            android:background="@drawable/selector_connsate_bg" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingLeft="10dp">
+
+            <LinearLayout
+                android:id="@+id/ly01"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/doDraw_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_topbtn_normal_bg"
+                    android:gravity="center"
+                    android:text="老师的白板"
+                    android:textSize="@dimen/moxi_text_size_24" />
+
+                <TextView
+                    android:id="@+id/doCourse_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_topbtn_normal_bg"
+                    android:gravity="center"
+                    android:text="课堂记录"
+                    android:textSize="@dimen/moxi_text_size_24" />
+            </LinearLayout>
+            <!--history_item-->
+            <RelativeLayout
+                android:id="@+id/history_rl"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_below="@id/ly01"
+                android:layout_marginTop="10dp"
+                android:visibility="gone">
+                <!--课堂参与记录隐藏-->
+                <LinearLayout
+                    android:id="@+id/right_ll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/dohistory_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="课堂参与记录"
+                        android:textSize="@dimen/moxi_text_size_20" />
+
+                    <ImageView
+                        android:id="@+id/dohistory_bottom"
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:background="@color/colorBlack"
+                        android:visibility="invisible" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="30dp"
+                    android:layout_alignParentRight="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/doanswer_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="答题记录"
+                        android:textSize="@dimen/moxi_text_size_20" />
+
+                    <ImageView
+                        android:id="@+id/doanswer_bottom"
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:background="@color/colorBlack"
+                        android:visibility="invisible" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/normalgrey" />
+            </RelativeLayout>
+            <!--bord_item-->
+            <RelativeLayout
+                android:id="@+id/bord_rl"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_below="@id/ly01"
+                android:layout_marginTop="10dp"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:id="@+id/right1_ll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="55dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/drawbord_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="手写白板"
+                        android:textSize="@dimen/moxi_text_size_20" />
+
+                    <ImageView
+                        android:id="@+id/drawbord_bottom"
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:background="@color/colorBlack"
+                        android:visibility="invisible" />
+                </LinearLayout>
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="30dp"
+                    android:layout_toRightOf="@+id/right1_ll"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/cwarebord_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="课件白板"
+                        android:textSize="@dimen/moxi_text_size_20" />
+
+                    <ImageView
+                        android:id="@+id/cwarebord_bottom"
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:background="@color/colorBlack"
+                        android:visibility="visible" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/normalgrey" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <com.moxi.studentclient.widget.CoursewareWhiteBoardView
+        android:id="@+id/coursewareWhiteBoardView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/ll2"
+        android:layout_marginLeft="105dp"></com.moxi.studentclient.widget.CoursewareWhiteBoardView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/ll2"
+        android:layout_marginBottom="65dp"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="10dp">
+
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="wrap_content">
+
+            <com.moxi.studentclient.view.DrawToolView
+                android:id="@+id/tool_dv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <!--body-->
+        <LinearLayout
+            android:id="@+id/body_ly"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="65dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/board_iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="30dp" />
+
+            <com.moxi.studentclient.view.HSlidableListView
+                android:id="@+id/history_lv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:divider="@null"
+                android:dividerHeight="0dp" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/bottom_ry"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="5dp"
+        android:padding="5dp"
+        android:visibility="gone">
+
+        <ImageButton
+            android:id="@+id/back_iv"
+            android:layout_width="40dp"
+            android:layout_height="350dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="65dp"
+            android:background="@color/colorWithe"
+            android:src="@mipmap/mx_img_page_left" />
+
+        <TextView
+            android:id="@+id/index_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@id/back_iv"
+            android:gravity="center"
+            android:text=" 1/1 "
+            android:textSize="26sp" />
+
+        <ImageButton
+            android:id="@+id/more_iv"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/index_tv"
+            android:background="@color/colorWithe"
+            android:src="@mipmap/mx_img_page_right" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

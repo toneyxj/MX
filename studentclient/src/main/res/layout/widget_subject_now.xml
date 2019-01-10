@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.moxi.studentclient.view.SlideLinerlayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/title_iv"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:maxHeight="500dp"
+            android:background="@drawable/qimu_backgroundshape"
+            android:scaleType="fitXY"></ImageView>
+
+        <com.moxi.studentclient.widget.AnwerCheckBoxView
+            android:id="@+id/anwerCheckBoxView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </com.moxi.studentclient.widget.AnwerCheckBoxView>
+
+        <LinearLayout
+            android:id="@+id/panin_ll"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/dotted_line"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <com.moxi.studentclient.view.PaintInvalidateRectView
+                android:id="@+id/paintachace_prv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <com.moxi.studentclient.view.SlideLinerlayout
+            android:id="@+id/truefalse_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="40dip"
+            android:visibility="visible">
+
+            <Button
+                android:id="@+id/true_but"
+                android:layout_width="400dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:text="√"
+                android:background="@drawable/shape_topbtn_normal_bg"
+                android:gravity="center"
+                android:textSize="40sp"
+                android:textColor="@color/colorBlack" />
+
+            <Button
+                android:id="@+id/false_but"
+                android:layout_width="400dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/shape_topbtn_normal_bg"
+                android:text="×"
+                android:textSize="40sp"
+                android:textColor="@color/colorBlack" />
+        </com.moxi.studentclient.view.SlideLinerlayout>
+    </com.moxi.studentclient.view.SlideLinerlayout>
+
+
+</RelativeLayout>
