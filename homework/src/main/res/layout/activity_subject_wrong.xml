@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/mx_base_title_layout"></include>
+
+    <RelativeLayout
+        android:id="@+id/info"
+        android:layout_below="@+id/title"
+        android:layout_width="match_parent"
+        android:background="#e0e0e0"
+        android:layout_height="50dip">
+
+        <TextView
+            android:id="@+id/title_info"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sdasdasd"/>
+
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:layout_marginTop="20dip"
+        android:layout_below="@+id/info"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        
+        <GridView
+            android:id="@+id/wrong_grid"
+            android:numColumns="4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></GridView>
+        
+    </RelativeLayout>
+</RelativeLayout>

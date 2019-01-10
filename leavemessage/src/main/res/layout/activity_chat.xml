@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWihte"
+    android:orientation="vertical"
+    android:padding="10dip"
+    tools:context="com.moxi.leavemessage.activity.MainActivity">
+
+    <TextView
+        android:id="@+id/backTitleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dip"
+        android:layout_marginTop="10dp"
+        android:drawableLeft="@mipmap/back"
+        android:drawablePadding="5dp"
+        android:text="留言版"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:gravity="right"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/brashBut"
+            android:layout_width="120dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="20dip"
+            android:background="@drawable/big_button"
+            android:text="刷新数据"
+            android:textColor="@color/colorWihte"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <com.moxi.leavemessage.view.ScrollDisabledListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:background="@drawable/moxi_shape_white_corner_35"
+        android:cacheColorHint="@color/transparent"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:listSelector="@color/colorWihte" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/keyBut"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="20dip"
+            android:background="@drawable/big_button"
+            android:text="键盘"
+            android:textColor="@color/colorWihte"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/penBut"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="20dip"
+            android:background="@drawable/big_button"
+            android:text="笔"
+            android:textColor="@color/colorWihte"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/moxi_shape_white_corner_35"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/contentEt"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@null"
+            android:gravity="top"
+            android:hint="请留言"
+            android:imeOptions="actionDone"
+            android:inputType="text" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="right"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/sendBut"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="20dip"
+            android:background="@drawable/big_button"
+            android:text="发送"
+            android:textColor="@color/colorWihte"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+
+</LinearLayout>

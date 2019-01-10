@@ -1,0 +1,44 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion '26.0.2'
+
+    defaultConfig {
+        applicationId "com.moxi.exams"
+        minSdkVersion 15
+        targetSdkVersion 24
+        versionCode 143
+        versionName "1.4.3"
+    }
+    signingConfigs {
+        release {
+            storeFile file('F:/MX/Key.jks')
+            keyAlias 'archer'
+            keyPassword '111111'
+            storePassword '111111'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.release
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:24.2.1'
+//    compile project(':mxbase')
+    compile files('libs/Volley.jar')
+    compile files('libs/http-download-manager-1.2.1.jar')
+    compile project(':handwritinglibs')
+}

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="11dp">
+
+        <TextView
+            android:id="@+id/show_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:drawableLeft="@mipmap/back"
+            android:drawablePadding="10dp"
+            android:background="@drawable/white_to_font"
+            android:text="@string/main_name"
+            android:gravity="center_vertical"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/moxi_text_size_26" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/new_marks"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/white_to_font"
+            android:gravity="center_vertical"
+            android:text="@string/new_floder"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/moxi_text_size_16" />
+
+        <TextView
+            android:id="@+id/select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/white_to_font"
+           android:padding="12dp"
+            android:gravity="center_vertical"
+            android:text="@string/select"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/moxi_text_size_16" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_line"/>
+    <FrameLayout
+        android:id="@+id/write_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <LinearLayout
+            android:id="@+id/selec_control"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="invisible"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp">
+            <TextView
+                android:id="@+id/delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:paddingTop="8dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/arc_di_black"
+                android:paddingBottom="8dp"
+                android:textSize="@dimen/moxi_text_size_16"
+                android:textColor="@color/colorWihte"
+                android:text="@string/delete"/>
+            <TextView
+                android:id="@+id/move"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:paddingTop="8dp"
+                android:background="@drawable/arc_di_black"
+                android:paddingBottom="8dp"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/moxi_text_size_16"
+                android:textColor="@color/colorWihte"
+                android:layout_marginLeft="20dp"
+                android:text="@string/move"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+            <ImageButton
+                android:id="@+id/last_page"
+                android:layout_width="wrap_content"
+                android:padding="5dp"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/write_left"
+                android:background="@drawable/white_to_font"/>
+            <TextView
+                android:id="@+id/show_index"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/moxi_text_size_20"
+                android:text="1/2"/>
+            <ImageButton
+                android:id="@+id/next_page"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:src="@mipmap/write_right"
+                android:background="@drawable/white_to_font"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>
