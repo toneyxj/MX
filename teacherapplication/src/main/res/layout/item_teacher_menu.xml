@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="200dip"
+    android:layout_height="150dip">
+
+    <TextView
+        android:id="@+id/menu_tx"
+        android:text="可分发的作业"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textColor="@color/colorBlack"
+        android:layout_width="200dip"
+        android:layout_height="150dip" />
+
+</RelativeLayout>

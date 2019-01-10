@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/title"
+        android:text=""
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/zgt"
+        android:text=""
+        android:textStyle="bold"
+        android:layout_marginLeft="15dp"
+        android:layout_below="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/sub_name"
+        android:layout_below="@+id/zgt"
+        android:layout_marginTop="15dp"
+        android:text=""
+        android:layout_marginLeft="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:background="@drawable/qimu_backgroundshape"
+        android:layout_below="@+id/sub_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/content_img"
+            android:layout_width="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_above="@+id/sure_back"
+        android:layout_marginBottom="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <GridView
+            android:id="@+id/sec_grid"
+            android:scrollbars="none"
+            android:listSelector="#00000000"
+            android:numColumns="3"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/custom_num"
+            android:hint="请选择"
+            android:editable="false"
+            android:gravity="center"
+            android:layout_toRightOf="@+id/sec_grid"
+            android:layout_centerVertical="true"
+            android:background="@drawable/qimu_backgroundshape"
+            android:layout_width="80dp"
+            android:layout_height="40dp" />
+
+        <ImageView
+            android:id="@+id/cusotm_num_img"
+            android:layout_toRightOf="@+id/custom_num"
+            android:src="@mipmap/fragment_custom_icon"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_toRightOf="@+id/cusotm_num_img"
+            android:text="评分"
+            android:textSize="28dp"
+            android:layout_marginLeft="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/sure_back"
+        android:text="确定"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:layout_alignParentBottom="true"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textColor="#ffffff"
+        android:textSize="20dp"
+        android:background="@drawable/sender_backgroundshape"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="280dp"
+        android:paddingTop="10dp"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:paddingBottom="10dp"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/item_bg">
+        <ImageView
+            android:id="@+id/icon_iv"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/teacher_ico_003"/>
+        <TextView
+            android:id="@+id/name_tv"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="#DCDCDC"
+            android:gravity="center"
+            android:textColor="@color/colorBlack"
+            android:textSize="22sp"
+            android:text="王老师"/>
+        <TextView
+            android:id="@+id/subject_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#3c3c3c"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:text="科目：数学"/>
+    </LinearLayout>
+</LinearLayout>

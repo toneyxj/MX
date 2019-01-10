@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.moxi.taskstudent.view.ImageViewProgressArc
+        android:id="@+id/give_an_offical_image"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/di_white_bian_font_line1"
+        android:padding="12dp"
+        android:scaleType="centerCrop" />
+    <Button
+        android:id="@+id/click_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/arc_big_di_black"
+        android:paddingLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:paddingRight="30dp"
+        android:paddingTop="12dp"
+        android:text="关闭"
+        android:layout_gravity="right"
+        android:textColor="@color/colorWihte"
+        android:textSize="@dimen/moxi_text_size_20"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="12dp"/>
+</LinearLayout>

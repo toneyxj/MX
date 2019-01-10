@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:background="@color/colorWihte"
+    android:layout_weight="1">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:drawablePadding="20dp"
+        android:drawableTop="@mipmap/img_new_main_wssc"
+        android:text="网上书城"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/moxi_text_size_20" />
+</RelativeLayout>

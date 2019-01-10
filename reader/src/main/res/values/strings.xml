@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Reader</string>
+    <string name="download_success_info">已下载至本地！\n请在"我的图书馆"中查找</string>
+</resources>

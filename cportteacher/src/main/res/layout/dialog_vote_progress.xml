@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/di_white_bian_font"
+    android:orientation="vertical">
+
+    <include layout="@layout/dialog_title_layout" />
+
+    <TextView
+        android:id="@+id/vote_hitn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/moxi_text_size_20" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorgray50" />
+
+    <com.mx.mxbase.view.NoListView
+        android:id="@+id/vote_progress_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:divider="@color/transparent"
+        android:dividerHeight="20dp"
+        android:layout_marginTop="20dp"
+        android:listSelector="@color/transparent" />
+
+    <Button
+        android:id="@+id/end_vote"
+        style="@style/arc_button"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="30dp"
+        android:text="结束投票" />
+</LinearLayout>

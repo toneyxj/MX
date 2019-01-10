@@ -1,0 +1,25 @@
+package com.moxi.studentclient.bean;
+
+/**
+ * Created by Administrator on 2016/11/8.
+ * 上课状态 subject
+ */
+
+public class ClassSubject {
+    private int id;
+
+    private String name;
+
+    public void setId(int id){
+        this.id = id;
+    }
+    public int getId(){
+        return this.id;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
+    public String getName(){
+        return this.name;
+    }
+}

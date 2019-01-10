@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <com.moxi.CPortTeacher.weight.BottomLineTextview
+            android:id="@+id/draw_white_board"
+            style="@style/class_room_mian_txt"
+            android:layout_marginLeft="50dp"
+            android:text="手写白板" />
+
+        <com.moxi.CPortTeacher.weight.BottomLineTextview
+            android:id="@+id/courseware_white_board"
+            style="@style/class_room_mian_txt"
+            android:layout_marginLeft="50dp"
+            android:text="课件白板" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorgray50" />
+
+    <FrameLayout
+        android:id="@+id/main_white_board_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
+</LinearLayout>

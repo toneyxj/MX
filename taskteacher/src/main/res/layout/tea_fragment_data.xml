@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.moxi.taskteacher.view.BottomLineTextview
+                android:id="@+id/blt_data_down"
+                style="@style/class_room_mian_txt"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="已下载" />
+
+            <com.moxi.taskteacher.view.BottomLineTextview
+                android:id="@+id/blt_data_all"
+                style="@style/class_room_mian_txt"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="全部资料" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorBlack" />
+
+    <FrameLayout
+        android:id="@+id/data_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="16dp" />
+
+</LinearLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="7" />
+
+        <com.moxi.CPortTeacher.weight.BottomLineTextview
+            android:id="@+id/set_question"
+            style="@style/class_room_mian_txt"
+            android:text="出题记录" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <com.moxi.CPortTeacher.weight.BottomLineTextview
+            android:id="@+id/classroom_participation"
+            style="@style/class_room_mian_txt"
+            android:visibility="gone"
+            android:text="课堂参与记录" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorgray50" />
+
+    <FrameLayout
+        android:id="@+id/class_record_main_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
+</LinearLayout>

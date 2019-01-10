@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout
+            android:layout_marginTop="50dp"
+            android:id="@+id/radio_seclect"
+            android:visibility="visible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/titleasdasd"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:weightSum="11">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:gravity="center"
+                    android:text="选项数量"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/moxi_text_size_24" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:gravity="center"
+                    android:text="选择正确答案"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/moxi_text_size_24" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_below="@+id/titleasdasd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="4"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/radio_answer_del_rel"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/classfiy_backphoto">
+
+                        <ImageView
+                            android:id="@+id/radio_answer_del_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@mipmap/mx_fragment_sugest_answer_numbers_del" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:id="@+id/radio_current_size_tx"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/classfiy_backphoto"
+                        android:gravity="center"
+                        android:text="4"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/moxi_text_size_24" />
+
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent" />
+
+                    <RelativeLayout
+                        android:id="@+id/radio_answer_add_rel"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/classfiy_backphoto">
+
+                        <ImageView
+                            android:id="@+id/radio_answer_add_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@mipmap/mx_fragment_sugest_answer_numbers_add" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+                <RadioGroup
+                    android:id="@+id/fragment_radiogroup_answer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:orientation="horizontal">
+
+                </RadioGroup>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="50dp"
+            android:id="@+id/multise_radio_seclect"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/multise_radio_seclect_lin"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:weightSum="11">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:gravity="center"
+                    android:text="选项数量"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/moxi_text_size_24" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:gravity="center"
+                    android:text="选择正确答案"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/moxi_text_size_24" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_below="@+id/multise_radio_seclect_lin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="4"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/multise_answer_del_rel"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/classfiy_backphoto">
+
+                        <ImageView
+                            android:id="@+id/multise_answer_del_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@mipmap/mx_fragment_sugest_answer_numbers_del" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:id="@+id/multise_current_size_tx"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/classfiy_backphoto"
+                        android:gravity="center"
+                        android:text="4"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/moxi_text_size_24" />
+
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent" />
+
+                    <RelativeLayout
+                        android:id="@+id/multise_answer_add_rel"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/classfiy_backphoto">
+
+                        <ImageView
+                            android:id="@+id/multise_answer_add_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@mipmap/mx_fragment_sugest_answer_numbers_add" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/fragment_multise_answer"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:orientation="horizontal">
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="58dp"
+            android:id="@+id/judge"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/judge_tx"
+                android:layout_centerHorizontal="true"
+                android:text="选择正确答案"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/moxi_text_size_24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/judge_tx"
+                android:layout_weight="6"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:id="@+id/judge_img_right"
+                    android:src="@mipmap/right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:tag="0"
+                    android:layout_marginLeft="16dp"
+                    android:paddingLeft="50dp"
+                    android:paddingRight="50dp"
+                    android:textSize="@dimen/moxi_text_size_22"
+                    style="@style/fragment_classfiy_style"
+                    android:gravity="center"
+                    android:text="C" />
+
+                <ImageView
+                    android:id="@+id/judge_img_wrong"
+                    android:src="@mipmap/wrong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="0"
+                    android:clickable="true"
+                    android:layout_marginLeft="16dp"
+                    android:paddingLeft="50dp"
+                    android:paddingRight="50dp"
+                    android:textSize="@dimen/moxi_text_size_22"
+                    style="@style/fragment_classfiy_style"
+                    android:gravity="center"
+                    android:text="D" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/send_all_thesugetion"
+                android:layout_width="140dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/moxi_shape_black_corner_35"
+                android:gravity="center"
+                android:text="全体发送"
+                android:textColor="@color/colorWihte"
+                android:textSize="@dimen/moxi_text_size_24" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/send_some_thegustion"
+                android:layout_width="140dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/moxi_shape_black_corner_35"
+                android:gravity="center"
+                android:text="选择发送"
+                android:textColor="@color/colorWihte"
+                android:textSize="@dimen/moxi_text_size_24" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

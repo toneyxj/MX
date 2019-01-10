@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.moxi.studentclient.view.SlideLinerlayout
+        android:id="@+id/score_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/subject_info_name_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="小明同学的成绩"
+            android:textColor="@color/colorBlack"
+            android:textSize="22sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@mipmap/mx_img_objective"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:text="考试得分"
+                android:textColor="@color/colorBlack"
+                android:textSize="22sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/subject_info_name_score_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="95"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="70sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="分"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/subject_info_name_time_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="用时45：00"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+    </com.moxi.studentclient.view.SlideLinerlayout>
+
+
+    <com.moxi.studentclient.view.SlideLinerlayout
+        android:id="@+id/info_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:visibility="visible">
+
+        <com.moxi.studentclient.view.NoTextView
+            android:id="@+id/title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/textSise"
+            android:maxHeight="600dp"></com.moxi.studentclient.view.NoTextView>
+
+        <com.moxi.studentclient.view.NoRadioGroup
+            android:id="@+id/radio_rg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <RadioButton
+                android:id="@+id/radio_answer_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWihte"
+                android:button="@drawable/mx_selector_menu"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:minHeight="40dp"
+                android:text="A"
+                android:paddingLeft="30dp"
+                android:textColor="@color/colorBlack"
+                style="@style/textSiseRadioButton" />
+
+            <RadioButton
+                android:id="@+id/radio_answer_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWihte"
+                android:button="@drawable/mx_selector_menu"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:minHeight="40dp"
+                android:text="B"
+                android:paddingLeft="30dp"
+                android:textColor="@color/colorBlack"
+                style="@style/textSiseRadioButton"/>
+
+            <RadioButton
+                android:id="@+id/radio_answer_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWihte"
+                android:button="@drawable/mx_selector_menu"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:minHeight="40dp"
+                android:text="C"
+                android:paddingLeft="30dp"
+                android:textColor="@color/colorBlack"
+                style="@style/textSiseRadioButton" />
+
+            <RadioButton
+                android:id="@+id/radio_answer_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWihte"
+                android:button="@drawable/mx_selector_menu"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:minHeight="40dp"
+                android:text="D"
+                android:paddingLeft="30dp"
+                android:textColor="@color/colorBlack"
+                style="@style/textSiseRadioButton" />
+        </com.moxi.studentclient.view.NoRadioGroup>
+
+        <ImageView
+            android:id="@+id/anserImage_iv"
+            android:layout_width="match_parent"
+            android:layout_height="360dp"
+            android:layout_gravity="center"
+            android:padding="30dp"
+            android:background="@drawable/dotted_line"
+            android:visibility="gone" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:src="@mipmap/item_bottom_diliver" />
+
+        <com.moxi.studentclient.view.NoTextView
+            android:id="@+id/answer_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left" />
+
+        <com.moxi.studentclient.view.NoTextView
+            android:id="@+id/analysis_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:background="@color/colorGrayish"
+            android:padding="20dp"
+            android:textColor="@color/colorBlack" />
+    </com.moxi.studentclient.view.SlideLinerlayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_prent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_e7"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:padding="@dimen/moxi_text_size_10dp"
+    android:weightSum="13">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:background="@color/colorWihte"
+        android:orientation="horizontal"
+        android:weightSum="5">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/white_to_font"
+                    android:src="@mipmap/img_mx_new_defate_icon" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_new_main_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="@dimen/moxi_text_size_10dp"
+                    android:gravity="center"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/moxi_text_size_24" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/new_main_week"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/moxi_text_size_24" />
+
+                    <TextView
+                        android:id="@+id/new_main_day"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="30dp"
+                        android:layout_toRightOf="@id/new_main_week"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/moxi_text_size_24" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/moxi_text_size_10dp"
+            android:layout_height="match_parent"
+            android:background="@color/gray_e7" />
+
+        <RelativeLayout
+            android:id="@+id/rl_advertisement"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@drawable/white_to_font">
+
+            <ImageView
+                android:id="@+id/adversing"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:scaleType="fitXY"
+                android:src="@mipmap/mx_default_advertising" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/moxi_text_size_10dp"
+        android:layout_weight="4"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:orientation="vertical"
+        android:background="#505050">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/main_book_icon"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="16dp"
+                android:id="@+id/imageView2" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:src="@mipmap/mian_my_bookstore"
+                android:layout_marginLeft="30dp"
+                android:id="@+id/imageView" />
+
+            <TextView
+                android:id="@+id/my_bookstore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@drawable/click_txt_white_to_font"
+                android:layout_gravity="bottom"
+                android:paddingTop="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:textSize="@dimen/moxi_text_size_22dp"
+                android:text="点击进入>>" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/mian_moxi_linspace" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical">
+            <TextView
+                android:id="@+id/recently_read_book"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:lines="1"
+                android:ellipsize="end"
+                android:layout_marginLeft="16dp"
+                android:textColor="@color/colorWihte"
+                android:textSize="@dimen/moxi_text_size_22dp"/>
+
+            <Button
+                android:id="@+id/continue_read"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="继续阅读"
+                android:textColor="@drawable/click_txt_white_to_font"
+                android:textSize="@dimen/moxi_text_size_22dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@drawable/arc_di_tran_bian_white"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/moxi_text_size_10dp"
+        android:background="@color/colorWihte"
+        android:layout_weight="3"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/wssc"
+            style="@style/moxi_mian_item_layout"
+            android:layout_weight="1">
+
+            <TextView
+                style="@style/moxi_mian_item_txt"
+                android:drawableTop="@mipmap/img_new_main_wssc"
+                android:text="网上书城" />
+        </RelativeLayout>
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:background="@color/gray_e7"/>
+
+        <RelativeLayout
+            android:id="@+id/sxbwl"
+            style="@style/moxi_mian_item_layout"
+            android:layout_weight="1">
+
+            <TextView
+                style="@style/moxi_mian_item_txt"
+                android:drawableTop="@mipmap/img_new_main_sxbw"
+                android:text="手写备忘录" />
+        </RelativeLayout>
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:background="@color/gray_e7"/>
+        <RelativeLayout
+            android:id="@+id/wjglq"
+            style="@style/moxi_mian_item_layout"
+            android:layout_weight="1">
+
+            <TextView
+                style="@style/moxi_mian_item_txt"
+                android:drawableTop="@mipmap/img_new_main_wjglq"
+                android:text="文件管理器" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/moxi_text_size_10dp"
+        android:background="@color/colorWihte"
+        android:layout_weight="3"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/rili"
+            style="@style/moxi_mian_item_layout"
+            android:layout_weight="1">
+
+            <TextView
+                style="@style/moxi_mian_item_txt"
+                android:drawableTop="@mipmap/img_new_main_rl"
+                android:text="日历" />
+        </RelativeLayout>
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:background="@color/gray_e7"/>
+        <RelativeLayout
+            android:id="@+id/yy"
+            style="@style/moxi_mian_item_layout"
+            android:layout_weight="1">
+
+            <TextView
+                style="@style/moxi_mian_item_txt"
+                android:drawableTop="@mipmap/img_new_main_yingyong"
+                android:text="应用" />
+        </RelativeLayout>
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:background="@color/gray_e7"/>
+        <RelativeLayout
+            android:id="@+id/zd"
+            style="@style/moxi_mian_item_layout"
+            android:layout_weight="1">
+
+            <TextView
+                style="@style/moxi_mian_item_txt"
+                android:drawableTop="@mipmap/img_new_main_zd"
+                android:text="字典" />
+        </RelativeLayout>
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:background="@color/gray_e7"/>
+        <RelativeLayout
+            android:id="@+id/sz"
+            style="@style/moxi_mian_item_layout"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/is_update_app"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:text="1"
+                android:visibility="invisible"
+                android:textColor="@color/colorWihte"
+                android:gravity="center"
+                android:layout_marginTop="65dp"
+                android:layout_marginRight="55dp"
+                android:background="@drawable/arc_di_black"
+                android:textSize="@dimen/moxi_text_size_15" />
+
+            <TextView
+                style="@style/moxi_mian_item_txt"
+                android:drawableTop="@mipmap/img_new_main_setting"
+                android:text="设置" />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

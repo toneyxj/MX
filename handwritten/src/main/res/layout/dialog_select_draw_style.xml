@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/di_white_bian_font"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="排序"
+        android:padding="12dp"
+        android:gravity="center_horizontal"
+        android:background="@color/colorBlack"
+        android:textColor="@color/colorWihte"
+        android:textSize="@dimen/moxi_text_size_18" />
+
+    <ListView
+        android:id="@+id/lists"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:listSelector="@drawable/white_to_font"
+        android:divider="@color/colorWihte"
+        android:dividerHeight="1dp"
+        />
+
+</LinearLayout>

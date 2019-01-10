@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/complete_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="New Text" />
+
+    <TextView
+        android:id="@+id/complete_time_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="New Text" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@mipmap/ic_complete" />
+
+
+    <com.moxi.studentclient.widget.SubjectNumView
+        android:id="@+id/subjectNumView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></com.moxi.studentclient.widget.SubjectNumView>
+
+    <Button
+        android:id="@+id/submitSubjectBut"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/big_button"
+        android:text="提交试卷"
+        android:textColor="@color/colorWithe" />
+</LinearLayout>

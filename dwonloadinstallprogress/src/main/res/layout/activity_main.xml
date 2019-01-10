@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="soft.com.dwonloadinstallprogress.MainActivity">
+
+    <RelativeLayout
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:background="@mipmap/back"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/tiilt"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/insicon"
+                android:src="@mipmap/update_isn"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:text="正在升级请稍后"
+                android:textSize="25sp"
+                android:layout_below="@+id/insicon"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <soft.com.dwonloadinstallprogress.ProgressView
+            android:id="@+id/progess"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/tiilt"
+            android:layout_width="270dp"
+            android:layout_height="15dp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
