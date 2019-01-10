@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/di_white_bian_font"
+    android:orientation="vertical">
+
+    <include layout="@layout/dialog_title_layout" />
+
+    <RelativeLayout
+        android:id="@+id/main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/layout_up"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/answer_number_and_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/moxi_text_size_20" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorgray50" />
+
+            <LinearLayout
+                android:id="@+id/adview_select_people"
+                android:layout_width="match_parent"
+                android:layout_height="213dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="80dp"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical" />
+        </LinearLayout>
+        <com.moxi.CPortTeacher.view.PaintInvalidateRectView
+            android:id="@+id/rect_view"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="10dp"/>
+        <Button
+            android:id="@+id/start_select"
+            style="@style/arc_button"
+            android:layout_below="@+id/layout_up"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="开始抽选" />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/start_select"/>
+    </RelativeLayout>
+</LinearLayout>

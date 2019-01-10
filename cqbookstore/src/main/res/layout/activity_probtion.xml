@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_probtion"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWihte"
+    tools:context="com.mx.cqbookstore.activity.ProbtionActivity">
+    <TextView
+        android:id="@+id/prob_tv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:lineSpacingExtra="5dp"
+        android:textSize="@dimen/moxi_text_size_24"
+        android:maxLength="900"
+        android:layout_marginBottom="45dp"/>
+    <RelativeLayout
+        android:id="@+id/page_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:padding="5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+        <ImageButton
+            android:id="@+id/back_iv"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@color/colorWihte"
+            android:src="@mipmap/mx_img_page_left" />
+
+        <TextView
+            android:id="@+id/index_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@id/back_iv"
+            android:gravity="center"
+            android:text=" 1/1 "
+            android:textSize="26sp" />
+
+        <ImageButton
+            android:id="@+id/next_iv"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/index_tv"
+            android:background="@color/colorWihte"
+            android:src="@mipmap/mx_img_page_right" />
+    </RelativeLayout>
+</RelativeLayout>

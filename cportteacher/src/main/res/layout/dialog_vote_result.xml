@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/di_white_bian_font"
+    android:orientation="vertical">
+
+    <include layout="@layout/dialog_title_layout" />
+
+    <TextView
+        android:id="@+id/vote_hitn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="当前人数：20人\t\t\t\t已投票：10人"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/moxi_text_size_20" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorgray50" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="最高票"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/moxi_text_size_20" />
+
+        <TextView
+            android:id="@+id/max_vote_student"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:text="小明\t20"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/moxi_text_size_26" />
+    </LinearLayout>
+
+    <com.mx.mxbase.view.NoGridView
+        android:id="@+id/vote_result_gridview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginLeft="60dp"
+        android:background="@color/colorWihte"
+        android:horizontalSpacing="0dp"
+        android:listSelector="@drawable/back_white"
+        android:numColumns="3"
+        android:scrollbars="none"
+        android:verticalSpacing="16dp" />
+</LinearLayout>

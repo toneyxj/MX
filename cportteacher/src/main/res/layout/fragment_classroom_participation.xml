@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.mx.mxbase.view.LinerlayoutInter xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_layout_inter"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ListView
+        android:id="@+id/record_list"
+        android:layout_width="match_parent"
+        android:listSelector="@color/transparent"
+        android:dividerHeight="0dp"
+        android:divider="@color/transparent"
+        android:layout_above="@+id/pages"
+        android:layout_height="match_parent"/>
+
+
+    <LinearLayout
+        android:id="@+id/pages"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/last_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/white_to_font"
+            android:padding="12dp"
+            android:src="@mipmap/write_left" />
+
+        <TextView
+            android:id="@+id/show_index"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:text="1/1"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/moxi_text_size_20" />
+
+        <ImageButton
+            android:id="@+id/next_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/white_to_font"
+            android:padding="12dp"
+            android:src="@mipmap/write_right" />
+    </LinearLayout>
+</RelativeLayout>
+    </com.mx.mxbase.view.LinerlayoutInter>

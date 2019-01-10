@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="11dp">
+
+        <TextView
+            android:id="@+id/show_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/back"
+            android:drawablePadding="10dp"
+            android:paddingBottom="10dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/white_to_font"
+            android:paddingTop="10dp"
+            android:text="@string/back_mian"
+            android:gravity="center_vertical"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/moxi_text_size_26" />
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/white_to_font"
+            android:paddingTop="10dp"
+            android:text="@string/practise_calligraphy"
+            android:gravity="center_vertical"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/moxi_text_size_26" />
+
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_line"/>
+
+    <LinearLayout
+        android:id="@+id/primary_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/white_to_font"
+        android:paddingTop="26dp"
+        android:paddingBottom="20dp"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/primary_pracitse"
+            android:layout_gravity="center_horizontal"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:paddingLeft="26dp"
+            android:paddingRight="26dp"
+            android:textSize="@dimen/moxi_text_size_18"
+            android:textColor="@color/colorWihte"
+            android:text="@string/primary_practise_calligraphy"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:background="@drawable/arc_di_black"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginLeft="26dp"
+        android:layout_marginRight="26dp"
+        android:background="@drawable/xu_line"/>
+    <LinearLayout
+        android:id="@+id/middle_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="26dp"
+        android:background="@drawable/white_to_font"
+        android:paddingBottom="20dp"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/middle_pracitse"
+            android:layout_gravity="center_horizontal"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:paddingLeft="26dp"
+            android:paddingRight="26dp"
+            android:textSize="@dimen/moxi_text_size_18"
+            android:textColor="@color/colorWihte"
+            android:text="@string/middle_practise_calligraphy"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:background="@drawable/arc_di_black"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginLeft="26dp"
+        android:layout_marginRight="26dp"
+        android:background="@drawable/xu_line"/>
+</LinearLayout>

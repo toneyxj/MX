@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:weightSum="910">
+
+    <RadioGroup
+        android:id="@+id/subject_seclect"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="70"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/default_check"
+            style="@style/fragment_classfiy_style"
+            android:checked="true"
+            android:text="单选题" />
+
+        <RadioButton
+            style="@style/fragment_classfiy_style"
+            android:layout_marginLeft="16dp"
+            android:checked="false"
+            android:text="多选题" />
+
+        <RadioButton
+            style="@style/fragment_classfiy_style"
+            android:layout_marginLeft="16dp"
+            android:checked="false"
+            android:text="主观题" />
+
+        <RadioButton
+            style="@style/fragment_classfiy_style"
+            android:layout_marginLeft="16dp"
+            android:checked="false"
+            android:text="判断题" />
+    </RadioGroup>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="530"
+        android:background="@drawable/mx_drawable_dashed_rect">
+
+        <com.moxi.CPortTeacher.view.PaintInvalidateRectView
+            android:id="@+id/paintInvalidateRectView"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginLeft="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:id="@+id/pencil_cir"
+                    android:background="@drawable/circular"
+                    android:layout_width="7dp"
+                    android:layout_gravity="center"
+                    android:layout_height="7dp"></View>
+
+                <ImageView
+                    android:id="@+id/pencil_img"
+                    android:layout_marginTop="5dp"
+                    android:src="@mipmap/pencil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginLeft="20dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:id="@+id/erase_cir"
+                    android:background="@drawable/circular"
+                    android:layout_width="7dp"
+                    android:layout_gravity="center"
+                    android:layout_height="7dp"></View>
+
+                <ImageView
+                    android:id="@+id/erase_img"
+                    android:layout_marginTop="5dp"
+                    android:src="@mipmap/erase"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginLeft="20dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:id="@+id/cutpicc_cir"
+                    android:background="@drawable/circular"
+                    android:layout_width="7dp"
+                    android:layout_gravity="center"
+                    android:layout_height="7dp"></View>
+
+                <ImageView
+                    android:id="@+id/cutpicc_img"
+                    android:layout_marginTop="5dp"
+                    android:src="@mipmap/cutpicc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:visibility="gone"
+        android:id="@+id/fragment_sugestion_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="230"
+        android:orientation="vertical"
+        android:overScrollMode="never"></android.support.v7.widget.RecyclerView>
+
+    <include layout="@layout/mx_include_fragment_sugetion_bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="260"/>
+</LinearLayout>

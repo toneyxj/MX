@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="60dp">
+<TextView
+    android:id="@+id/title_dialog"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorgray50"
+    android:textColor="@color/colorWihte"
+    android:textSize="@dimen/moxi_text_size_26"
+    android:gravity="center"
+    android:text="抢答"
+    />
+    <ImageButton
+        android:id="@+id/quit_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:padding="16dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:src="@mipmap/quit_icon"/>
+</RelativeLayout>

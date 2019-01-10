@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="" />
+
+    <RelativeLayout
+        android:id="@+id/ans_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:id="@+id/snaa_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/ssssx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ans_info"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/pscore"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="#000000"
+            android:gravity="center"
+            android:text=""
+            android:textColor="#ffffff"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/fenka"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/score_tx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1.0"
+                android:background="@drawable/qimu_backgroundshape_selected"
+                android:gravity="center"
+                android:text="分数统计"
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/timu_tx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1.0"
+                android:background="@drawable/qimu_backgroundshape"
+                android:gravity="center"
+                android:text="题目统计"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/noscore"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_below="@+id/fenka"
+            android:gravity="center_vertical"
+            android:text="" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_below="@+id/noscore"
+            android:background="@drawable/oon_line">
+
+        </View>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/score_rel"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ssssx"
+        android:visibility="visible">
+
+        <com.mx.mxbase.view.NoListView
+            android:id="@+id/info_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:divider="@null"
+            android:listSelector="@android:color/transparent"
+            android:overScrollMode="never"
+            android:scrollbars="none"></com.mx.mxbase.view.NoListView>
+
+        <RelativeLayout
+            android:id="@+id/booo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/pages_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="15dp"
+                android:text="1/3" />
+
+            <ImageView
+                android:id="@+id/left_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/pages_text"
+                android:src="@mipmap/write_left" />
+
+            <ImageView
+                android:id="@+id/right_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/pages_text"
+                android:src="@mipmap/write_right" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/booo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp">
+
+            <Button
+                android:visibility="gone"
+                android:id="@+id/subjective_question"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/sender_backgroundshape"
+                android:paddingBottom="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp"
+                android:text="发送成绩"
+                android:textColor="#ffffff"
+                android:textSize="20dp" />
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/timu_rel"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ssssx"
+        android:visibility="invisible">
+
+        <GridView
+            android:id="@+id/sec_grid"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:horizontalSpacing="15dip"
+            android:listSelector="#00000000"
+            android:numColumns="7"
+            android:scrollbars="none"
+            android:verticalSpacing="10dp">
+
+        </GridView>
+
+        <LinearLayout
+            android:id="@+id/ll_options"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sec_grid"
+            android:background="@drawable/qimu_backgroundshape"
+            android:orientation="vertical"
+            android:paddingBottom="20dp"
+            android:paddingLeft="35dp"
+            android:paddingRight="35dp"
+            android:paddingTop="20dp">
+
+            <TextView
+                android:id="@+id/info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textSize="24sp" />
+
+            <ListView
+                android:id="@+id/lv_option"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="#00000000"
+                android:dividerHeight="0dp"
+                android:listSelector="@android:color/transparent"
+                android:scrollbars="none"></ListView>
+        </LinearLayout>
+
+        <com.moxi.CPortTeacher.weight.AnswerSelectView
+            android:id="@+id/answerSelectView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_options"
+            android:layout_marginTop="20dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/students_info_rel"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ssssx"
+        android:visibility="gone">
+
+        <GridView
+            android:id="@+id/sec_students_grid"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:horizontalSpacing="15dip"
+            android:listSelector="#00000000"
+            android:numColumns="7"
+            android:scrollbars="none"
+            android:verticalSpacing="10dp">
+        </GridView>
+
+        <com.moxi.CPortTeacher.weight.SubjectInfoView
+            android:id="@+id/subjectInfoView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sec_students_grid">
+        </com.moxi.CPortTeacher.weight.SubjectInfoView>
+    </RelativeLayout>
+
+</RelativeLayout>

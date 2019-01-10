@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.moxi.CPortTeacher.view.SlideLinerlayout
+        android:id="@+id/info_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:visibility="visible">
+
+        <com.moxi.CPortTeacher.view.NoTextView
+            android:id="@+id/title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/textSise"
+            android:maxHeight="500dp"></com.moxi.CPortTeacher.view.NoTextView>
+
+        <com.moxi.CPortTeacher.view.NoRadioGroup
+            android:id="@+id/radio_rg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <RadioButton
+                android:id="@+id/radio_answer_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWihte"
+                android:button="@drawable/mx_selector_menu"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:minHeight="40dp"
+                android:text="A"
+                android:paddingLeft="30dp"
+                android:textColor="@color/colorBlack"
+                style="@style/textSiseRadioButton" />
+
+            <RadioButton
+                android:id="@+id/radio_answer_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWihte"
+                android:button="@drawable/mx_selector_menu"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:minHeight="40dp"
+                android:text="B"
+                android:paddingLeft="30dp"
+                android:textColor="@color/colorBlack"
+                style="@style/textSiseRadioButton"/>
+
+            <RadioButton
+                android:id="@+id/radio_answer_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWihte"
+                android:button="@drawable/mx_selector_menu"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:minHeight="40dp"
+                android:text="C"
+                android:paddingLeft="30dp"
+                android:textColor="@color/colorBlack"
+                style="@style/textSiseRadioButton" />
+
+            <RadioButton
+                android:id="@+id/radio_answer_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWihte"
+                android:button="@drawable/mx_selector_menu"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:minHeight="40dp"
+                android:text="D"
+                android:paddingLeft="30dp"
+                android:textColor="@color/colorBlack"
+                style="@style/textSiseRadioButton" />
+        </com.moxi.CPortTeacher.view.NoRadioGroup>
+
+        <ImageView
+            android:id="@+id/anserImage_iv"
+            android:layout_width="match_parent"
+            android:layout_height="360dp"
+            android:layout_gravity="center"
+            android:padding="30dp"
+            android:background="@drawable/dotted_line"
+            android:visibility="gone" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:src="@mipmap/item_bottom_diliver" />
+
+        <com.moxi.CPortTeacher.view.NoTextView
+            android:id="@+id/answer_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left" />
+
+        <com.moxi.CPortTeacher.view.NoTextView
+            android:id="@+id/analysis_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:background="@color/colorGrayish"
+            android:padding="20dp"
+            android:textColor="@color/colorBlack" />
+    </com.moxi.CPortTeacher.view.SlideLinerlayout>
+
+
+</RelativeLayout>
