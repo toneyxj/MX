@@ -23,7 +23,6 @@
 package com.morgoo.droidplugin.stub;
 
 import android.app.Activity;
-import android.content.res.Configuration;
 
 /**
  * Created by Andy Zhang(zhangyong232@gmail.com) on 2015/2/9.

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/include_test_title"
+        layout="@layout/mx_base_title_layout" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/include_test_title">
+
+        <com.mx.mxbase.view.SlideLinerlayout
+            android:id="@+id/custom_all"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:orientation="vertical"
+            android:background="@color/colorWihte">
+
+            <com.moxi.nexams.view.NoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_little_test_main"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/moxi_text_size_22" />
+
+                <TextView
+                    android:id="@+id/tv_little_test_main_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="none"
+                    android:gravity="center_vertical"
+                    android:maxLines="100"
+                    android:scrollHorizontally="false"
+                    android:textSize="@dimen/moxi_text_size_20" />
+
+                <TextView
+                    android:id="@+id/tv_little_test_main_analysis"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/moxi_text_size_20" />
+            </com.moxi.nexams.view.NoLinearLayout>
+        </com.mx.mxbase.view.SlideLinerlayout>
+
+        <com.moxi.handwritinglibs.ScrollWritePadView
+            android:id="@+id/paint_invalidate_rectview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+</LinearLayout>
