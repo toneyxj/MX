@@ -27,15 +27,10 @@ import android.content.Context;
 import android.os.IBinder;
 
 import com.morgoo.droidplugin.hook.BaseHookHandle;
-import com.morgoo.droidplugin.hook.handle.IClipboardHookHandle;
 import com.morgoo.droidplugin.hook.handle.IWindowManagerHookHandle;
 import com.morgoo.droidplugin.reflect.FieldUtils;
 import com.morgoo.helper.Log;
-import com.morgoo.helper.compat.IClipboardCompat;
 import com.morgoo.helper.compat.IWindowManagerCompat;
-
-import java.lang.reflect.Method;
-import java.util.Arrays;
 
 /**
  * Created by Andy Zhang(zhangyong232@gmail.com) on 2015/6/17.

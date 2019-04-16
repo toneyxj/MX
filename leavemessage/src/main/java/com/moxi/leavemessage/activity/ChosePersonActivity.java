@@ -1,9 +1,9 @@
 package com.moxi.leavemessage.activity;
 
 import android.app.Activity;
-import  android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.widget.FrameLayout;
 
@@ -12,7 +12,6 @@ import com.moxi.leavemessage.URL;
 import com.moxi.leavemessage.fragments.StudentsFragment;
 import com.moxi.leavemessage.fragments.TeachersFragment;
 import com.mx.mxbase.base.BaseActivity;
-
 
 import butterknife.Bind;
 

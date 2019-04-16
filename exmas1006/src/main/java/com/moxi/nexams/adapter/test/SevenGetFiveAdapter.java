@@ -10,8 +10,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.moxi.nexams.R;
-import com.moxi.nexams.cache.ACache;
-import com.moxi.nexams.model.papermodel.DetailsTestModel;
 import com.moxi.nexams.model.papermodel.OnlyChoiceModel;
 import com.moxi.nexams.utils.TitleUtils;
 import com.mx.mxbase.interfaces.OnItemClickListener;

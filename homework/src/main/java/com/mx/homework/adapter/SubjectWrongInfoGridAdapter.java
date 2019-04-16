@@ -17,14 +17,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mx.homework.R;
-import com.mx.homework.activity.WrongSubjectInfoActivity;
 import com.mx.homework.model.SubjectAnswerInfoModel;
 import com.mx.homework.model.SubjectModel;
 import com.mx.homework.model.SubjectWrongInfoModel;
-import com.mx.homework.model.SubjectWrongModel;
 import com.mx.homework.util.Base64Utils;
 import com.mx.homework.util.MxgsaTagHandler;
-import com.mx.homework.util.XZOption;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

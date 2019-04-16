@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -794,6 +795,17 @@ public class FileFragment extends baseFile implements AdapterView.OnItemClickLis
                 }
                 new AlertDialog(getActivity()).builder().setTitle("详情").setCancelable(false).setMsg(builder.toString()).
                         setNegativeButton("确定", null).show();
+                break;
+            case 6://蓝牙分享
+                //调用android分享窗口
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("*/*");
+                intent.setPackage("com.android.bluetooth");
+                intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));//path为文件的路径
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                Intent chooser = Intent.createChooser(intent, "Share file");
+                chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(chooser);
                 break;
             default:
                 break;

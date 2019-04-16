@@ -11,16 +11,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.moxi.studentclient.R;
-import com.moxi.studentclient.cache.ACache;
 import com.moxi.studentclient.config.Connector;
 import com.moxi.studentclient.model.ExamsDetailsModel;
 import com.moxi.studentclient.utils.GlideUtils;
 import com.moxi.studentclient.utils.SubjectUtils;
 import com.moxi.studentclient.view.NoRadioGroup;
-import com.moxi.studentclient.view.PaintInvalidateRectView;
 import com.mx.mxbase.utils.Log;
 
 /**

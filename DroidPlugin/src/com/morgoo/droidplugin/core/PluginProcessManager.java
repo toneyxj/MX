@@ -49,9 +49,9 @@ import com.morgoo.droidplugin.reflect.FieldUtils;
 import com.morgoo.droidplugin.reflect.MethodUtils;
 import com.morgoo.droidplugin.stub.ActivityStub;
 import com.morgoo.droidplugin.stub.ServiceStub;
+import com.morgoo.helper.Log;
 import com.morgoo.helper.compat.ActivityThreadCompat;
 import com.morgoo.helper.compat.CompatibilityInfoCompat;
-import com.morgoo.helper.Log;
 import com.morgoo.helper.compat.ProcessCompat;
 
 import java.io.IOException;

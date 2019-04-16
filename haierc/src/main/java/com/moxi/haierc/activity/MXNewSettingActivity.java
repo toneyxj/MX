@@ -1,7 +1,6 @@
 package com.moxi.haierc.activity;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
@@ -9,7 +8,6 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.os.StatFs;
@@ -149,6 +147,7 @@ public class MXNewSettingActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void readSDCard(TextView textView) {
+        if (isfinish)return;
         String[] paths = getSdPath();
         if (paths != null && paths.length >1) {
             long total = 17179869184l;
@@ -231,12 +230,12 @@ public class MXNewSettingActivity extends BaseActivity implements View.OnClickLi
         }
         //组件赋初值
         getHandler().postDelayed(new Runnable() {
-            @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void run() {
+                if (isfinish)return;
                 readSDCard(tvCunChuInfo);
             }
-        }, 5000);
+        }, 2000);
     }
 
     @Override

@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.hp.hpl.sparta.Text;
 import com.moxi.CPortTeacher.R;
 import com.moxi.CPortTeacher.model.ClassExaminationModel;
 import com.mx.mxbase.utils.Log;

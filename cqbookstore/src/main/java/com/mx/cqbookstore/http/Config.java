@@ -5,8 +5,6 @@ import android.os.Environment;
 
 import java.io.File;
 
-import dalvik.annotation.TestTarget;
-
 /**
  * Created by Administrator on 2016/12/20.
  */

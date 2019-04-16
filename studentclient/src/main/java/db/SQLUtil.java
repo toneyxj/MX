@@ -4,8 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-
-import com.moxi.studentclient.model.CourseModel;
 import com.moxi.studentclient.model.OptionModel;
 
 import java.io.File;

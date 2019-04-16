@@ -17,8 +17,6 @@ import com.moxi.studentclient.config.Connector;
 import com.moxi.studentclient.dbUtils.JsonAnalysis;
 import com.moxi.studentclient.widget.XEditText;
 import com.mx.mxbase.base.MyApplication;
-import com.mx.mxbase.constant.APPLog;
-import com.mx.mxbase.utils.Log;
 
 import org.json.JSONException;
 

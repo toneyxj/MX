@@ -23,9 +23,9 @@
 package com.morgoo.droidplugin.hook.xhook;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
 import android.text.TextUtils;
+
 import com.morgoo.droidplugin.core.PluginDirHelper;
 import com.morgoo.droidplugin.hook.BaseHookHandle;
 import com.morgoo.droidplugin.hook.Hook;

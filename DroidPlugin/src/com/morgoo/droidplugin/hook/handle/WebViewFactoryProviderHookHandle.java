@@ -22,7 +22,6 @@
 package com.morgoo.droidplugin.hook.handle;
 
 import android.content.Context;
-import android.os.Build;
 import android.webkit.WebView;
 
 import com.morgoo.droidplugin.hook.BaseHookHandle;

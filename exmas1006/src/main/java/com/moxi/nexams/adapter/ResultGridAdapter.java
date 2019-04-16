@@ -8,7 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import com.moxi.nexams.R;
 import com.moxi.nexams.cache.ACache;
 import com.moxi.nexams.model.ChoseExamsModel;

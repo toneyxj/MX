@@ -24,10 +24,7 @@ import com.moxi.CPortTeacher.view.ThesugestionSubjectiveDialog;
 import com.moxi.classRoom.information.UserInformation;
 import com.moxi.classRoom.request.ReuestKeyValues;
 import com.mx.mxbase.utils.Log;
-
 import com.mx.mxbase.utils.Toastor;
-
-import com.mx.mxbase.view.NoGridView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.json.JSONArray;

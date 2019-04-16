@@ -249,25 +249,29 @@ public class DynamicMainActivity extends BaseActivity implements View.OnClickLis
      */
     public List<BookStoreFile> getrecentlyRead() {
         List<BookStoreFile> files = new ArrayList<>();
-        ContentResolver contentResolver = getContentResolver();
-        Uri selecturi = Uri.parse("content://com.moxi.bookstore.provider.RecentlyProvider/Recently");
-        Cursor cursor = contentResolver.query(selecturi, null, null, null, null);
-        if (cursor != null && cursor.getCount() > 0) {
-            while (cursor.moveToNext()) {
-                dialogShowOrHide(false, "请稍后...");
-                try {
-                    gridViewRecentReading.setVisibility(View.VISIBLE);
-                    tvReLoad.setVisibility(View.GONE);
-                    BookStoreFile info = getModel(cursor);
-                    files.add(info);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    gridViewRecentReading.setVisibility(View.GONE);
-                    tvReLoad.setVisibility(View.VISIBLE);
+        try {
+            ContentResolver contentResolver = getContentResolver();
+            Uri selecturi = Uri.parse("content://com.moxi.bookstore.provider.RecentlyProvider/Recently");
+            Cursor cursor = contentResolver.query(selecturi, null, null, null, null);
+            if (cursor != null && cursor.getCount() > 0) {
+                while (cursor.moveToNext()) {
+                    dialogShowOrHide(false, "请稍后...");
+                    try {
+                        gridViewRecentReading.setVisibility(View.VISIBLE);
+                        tvReLoad.setVisibility(View.GONE);
+                        BookStoreFile info = getModel(cursor);
+                        files.add(info);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        gridViewRecentReading.setVisibility(View.GONE);
+                        tvReLoad.setVisibility(View.VISIBLE);
+                    }
                 }
             }
+            if (cursor != null) cursor.close();
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        if (cursor != null) cursor.close();
         return files;
     }
 

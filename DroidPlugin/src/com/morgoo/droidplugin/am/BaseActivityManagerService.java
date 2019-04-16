@@ -30,6 +30,7 @@ import android.content.pm.ServiceInfo;
 import android.os.Bundle;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
+
 import com.morgoo.droidplugin.pm.IApplicationCallback;
 import com.morgoo.droidplugin.pm.IPluginManagerImpl;
 import com.morgoo.droidplugin.pm.parser.PluginPackageParser;

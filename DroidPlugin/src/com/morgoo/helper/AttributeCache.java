@@ -23,7 +23,6 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.os.UserHandle;
 import android.util.SparseArray;
 
 import java.util.HashMap;

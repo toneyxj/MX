@@ -9,10 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.moxi.CPortTeacher.R;
-import com.moxi.CPortTeacher.model.ClassAnswerModel;
 import com.moxi.CPortTeacher.model.ClassScoreModel;
 import com.moxi.classRoom.widget.ProgressView;
-import com.mx.mxbase.utils.Log;
 
 import java.util.List;
 

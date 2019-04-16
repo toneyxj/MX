@@ -83,4 +83,16 @@
         android:text="@string/re_name"
         android:textColor="@color/colorBlack"
         android:textSize="@dimen/moxi_text_size_18" />
+    <TextView
+        android:id="@+id/bluetooth_share"
+        android:layout_width="match_parent"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="12dp"
+        android:padding="16dp"
+        android:background="@drawable/white_to_font"
+        android:text="@string/share"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/moxi_text_size_22" />
 </LinearLayout>

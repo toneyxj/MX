@@ -10,23 +10,18 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.moxi.leavemessage.R;
 import com.moxi.leavemessage.URL;
 import com.moxi.leavemessage.adapter.ChatAdapter;
-import com.moxi.leavemessage.adapter.MsgHistoryAdapter;
 import com.moxi.leavemessage.bean.ChatBean;
-import com.moxi.leavemessage.bean.MsgHistoryBean;
 import com.moxi.leavemessage.http.HttpVolleyCallback;
 import com.moxi.leavemessage.http.VolleyHttpUtil;
 import com.moxi.leavemessage.view.ScrollDisabledListView;
 import com.mx.mxbase.base.BaseActivity;
-import com.mx.mxbase.utils.StringUtils;
 
 import java.util.HashMap;
 

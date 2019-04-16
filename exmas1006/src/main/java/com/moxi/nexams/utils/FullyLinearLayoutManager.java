@@ -6,8 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.mx.mxbase.utils.DensityUtil;
-
 /**
  * Created by Archer on 2017/1/10.
  */

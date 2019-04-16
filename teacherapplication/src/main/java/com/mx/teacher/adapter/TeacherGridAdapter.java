@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.mx.teacher.R;
 import com.mx.teacher.constant.Constant;
-import com.mx.teacher.entity.TeacherEntry;
 import com.mx.teacher.entity.TeacherGridEntry;
 import com.mx.teacher.http.HttpVolleyCallback;
 import com.mx.teacher.http.VolleyHttpUtil;

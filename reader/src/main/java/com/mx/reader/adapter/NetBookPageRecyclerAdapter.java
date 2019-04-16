@@ -10,10 +10,9 @@ import android.widget.TextView;
 
 import com.mx.mxbase.interfaces.OnItemClickListener;
 import com.mx.reader.R;
+import com.mx.reader.model.BookTypesModel;
 
 import java.util.List;
-
-import com.mx.reader.model.BookTypesModel;
 
 /**
  * Created by Archer on 16/8/4.

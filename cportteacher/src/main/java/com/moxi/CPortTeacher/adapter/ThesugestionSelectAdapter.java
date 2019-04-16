@@ -9,12 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.moxi.CPortTeacher.R;
-import com.moxi.CPortTeacher.frament.ClassTests.ThesugestionResultFragment;
-import com.moxi.CPortTeacher.model.ClassSelectModel;
 import com.moxi.CPortTeacher.model.ThesugestionAnswerListModel;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by zhengdelong on 2016/11/1.

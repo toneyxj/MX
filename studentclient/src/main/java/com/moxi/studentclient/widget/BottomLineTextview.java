@@ -6,7 +6,6 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-import com.moxi.classRoom.RoomApplication;
 import com.moxi.studentclient.R;
 
 /**

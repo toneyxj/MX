@@ -38,15 +38,17 @@ public class FilePopWindow {
                 R.layout.pop_one_file_manager, null);
         // 设置按钮的点击事件
 
+        TextView bluetooth_share = (TextView) contentView.findViewById(R.id.bluetooth_share);
         TextView copy = (TextView) contentView.findViewById(R.id.copy);
         TextView delete = (TextView) contentView.findViewById(R.id.delete);
         TextView move = (TextView) contentView.findViewById(R.id.move);
         TextView setting = (TextView) contentView.findViewById(R.id.setting);
         TextView descibe = (TextView) contentView.findViewById(R.id.descibe);
         TextView rename = (TextView) contentView.findViewById(R.id.rename);
+//        TextView export_pdf = (TextView) contentView.findViewById(R.id.export_pdf);
 
         onefile = new PopupWindow(contentView,
-                MyApplication.dip2px(160), LinearLayout.LayoutParams.WRAP_CONTENT, true);
+                MyApplication.dip2px(200), LinearLayout.LayoutParams.WRAP_CONTENT, true);
 
         onefile.setTouchInterceptor(new View.OnTouchListener() {
             @Override
@@ -65,6 +67,13 @@ public class FilePopWindow {
         } else {
             setting.setVisibility(View.VISIBLE);
         }
+        if (type==0){
+            bluetooth_share.setVisibility(View.GONE);
+//            export_pdf.setVisibility(View.VISIBLE);
+        }else {
+            bluetooth_share.setVisibility(View.VISIBLE);
+//            export_pdf.setVisibility(View.GONE);
+        }
 
         copy.setTag(position);
         delete.setTag(position);
@@ -72,6 +81,8 @@ public class FilePopWindow {
         setting.setTag(position);
         descibe.setTag(position);
         rename.setTag(position);
+//        export_pdf.setTag(position);
+        bluetooth_share.setTag(position);
 
         copy.setOnClickListener(onfile);
         delete.setOnClickListener(onfile);
@@ -79,6 +90,8 @@ public class FilePopWindow {
         setting.setOnClickListener(onfile);
         descibe.setOnClickListener(onfile);
         rename.setOnClickListener(onfile);
+//        export_pdf.setOnClickListener(onfile);
+        bluetooth_share.setOnClickListener(onfile);
         // 设置好参数之后再show
         onefile.setBackgroundDrawable(new BitmapDrawable());
 
@@ -116,6 +129,9 @@ public class FilePopWindow {
                     break;
                 case R.id.rename://重命名
                     style = 3;
+                    break;
+                case R.id.bluetooth_share://蓝牙分享
+                    style = 6;
                     break;
                 default:
                     break;

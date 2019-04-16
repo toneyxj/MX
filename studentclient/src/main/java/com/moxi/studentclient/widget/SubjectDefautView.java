@@ -13,7 +13,6 @@ import com.moxi.classRoom.request.RequestCallBack;
 import com.moxi.classRoom.request.ReuestKeyValues;
 import com.moxi.studentclient.R;
 import com.moxi.studentclient.cache.ACache;
-import com.moxi.studentclient.config.ConfigData;
 import com.moxi.studentclient.config.Connector;
 import com.moxi.studentclient.model.ExamsDetailsModel;
 import com.mx.mxbase.utils.GsonTools;

@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.moxi.taskteacher.R;
 import com.moxi.taskteacher.model.StudentModel;
 import com.mx.mxbase.interfaces.OnItemClickListener;
-import com.mx.mxbase.utils.ListUtils;
 
 import java.util.ArrayList;
 import java.util.List;

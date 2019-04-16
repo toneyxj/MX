@@ -3,21 +3,15 @@ package com.moxi.CPortTeacher.view;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.moxi.CPortTeacher.R;
 import com.moxi.CPortTeacher.adapter.ClassRoomSelectAdapter;
 import com.moxi.CPortTeacher.model.ClassSelectModel;
-import com.moxi.CPortTeacher.model.ThesugestionAnswerListModel;
-import com.moxi.CPortTeacher.model.ThesugestionAnswerModel;
 
 import java.util.List;
 

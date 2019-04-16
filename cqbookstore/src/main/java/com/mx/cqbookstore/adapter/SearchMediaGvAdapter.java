@@ -10,7 +10,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
 import com.mx.cqbookstore.R;
 import com.mx.cqbookstore.http.bean.EbookResouce;
 import com.mx.cqbookstore.http.imageloader.GlideUtils;

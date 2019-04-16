@@ -1,7 +1,6 @@
 package com.mx.teacher.activity;
 
 import android.app.Activity;
-import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,8 +10,6 @@ import android.widget.TextView;
 
 import com.mx.teacher.R;
 import com.mx.teacher.constant.TestConstant;
-
-import java.util.HashMap;
 
 public class MainActivity extends Activity {
 

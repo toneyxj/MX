@@ -6,12 +6,9 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
 
-import com.mx.mxbase.utils.FileUtils;
 import com.mx.mxbase.utils.Log;
 import com.mx.mxbase.utils.SharePreferceUtil;
 import com.mx.mxbase.utils.Toastor;
-
-import java.io.File;
 
 /**
  * Created by Archer on 16/9/5.

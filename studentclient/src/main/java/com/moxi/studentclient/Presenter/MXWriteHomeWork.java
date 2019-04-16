@@ -1,12 +1,8 @@
 package com.moxi.studentclient.Presenter;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.widget.Toast;
 
 import com.moxi.studentclient.cache.ACache;
-import com.moxi.studentclient.model.OptionModel;
 import com.mx.mxbase.constant.Constant;
 
 import db.SQLBookUtil;

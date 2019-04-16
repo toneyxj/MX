@@ -14,9 +14,7 @@ import android.widget.RadioButton;
 
 import com.moxi.taskteacher.activity.TaskBaseActivity;
 import com.moxi.taskteacher.fragment.DataFragment;
-import com.moxi.taskteacher.fragment.DataIndexFragment;
 import com.moxi.taskteacher.fragment.HomeWorkFragment;
-import com.moxi.taskteacher.fragment.ResFragment;
 import com.moxi.taskteacher.utils.GetTeacherUserId;
 import com.moxi.taskteacher.utils.TaskStudentBoardcast;
 import com.mx.mxbase.utils.Toastor;
