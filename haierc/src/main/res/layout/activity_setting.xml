@@ -64,12 +64,42 @@
                 android:background="@drawable/oon_line"></View>
 
         </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/fenxingmoshi"
+            android:layout_width="679dp"
+            android:layout_height="65dp"
+            android:layout_below="@+id/yinsi_rel"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="飞行模式"
+                android:textColor="#000000"
+                android:textSize="24dp" />
+            <CheckBox
+                android:id="@+id/check_fenxing"
+                android:layout_width="45dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_height="45dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/oon_line">
+
+            </View>
+
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/bluetooth_rel"
             android:layout_width="679dp"
             android:layout_height="65dp"
-            android:layout_below="@+id/yinsi_rel"
+            android:layout_below="@+id/fenxingmoshi"
             android:layout_centerHorizontal="true">
 
             <TextView
@@ -114,7 +144,7 @@
 
         <TextView
             android:id="@+id/yingsi_tv"
-            android:layout_width="match_parent"
+            android:layout_width="679dp"
             android:layout_height="65dp"
             android:layout_alignLeft="@+id/yinsi_rel"
             android:layout_alignStart="@+id/yinsi_rel"
@@ -126,7 +156,7 @@
 
         <View
             android:id="@+id/line_cunchu"
-            android:layout_width="match_parent"
+            android:layout_width="679dp"
             android:layout_height="10dp"
             android:layout_alignLeft="@+id/yinsi_rel"
             android:layout_alignStart="@+id/yinsi_rel"
@@ -135,7 +165,7 @@
 
         <TextView
             android:id="@+id/cunchu"
-            android:layout_width="match_parent"
+            android:layout_width="679dp"
             android:layout_height="65dp"
             android:layout_alignLeft="@+id/yinsi_rel"
             android:layout_alignStart="@+id/yinsi_rel"
@@ -147,7 +177,7 @@
 
         <View
             android:id="@+id/line_lock_device"
-            android:layout_width="match_parent"
+            android:layout_width="679dp"
             android:layout_height="10dp"
             android:layout_alignLeft="@+id/yinsi_rel"
             android:layout_alignStart="@+id/yinsi_rel"
@@ -156,7 +186,7 @@
 
         <TextView
             android:id="@+id/tv_state_lock_device"
-            android:layout_width="match_parent"
+            android:layout_width="679dp"
             android:layout_height="65dp"
             android:layout_alignLeft="@+id/yinsi_rel"
             android:layout_alignStart="@+id/yinsi_rel"
@@ -168,7 +198,7 @@
 
         <View
             android:id="@+id/line_control"
-            android:layout_width="match_parent"
+            android:layout_width="679dp"
             android:layout_height="10dp"
             android:layout_alignLeft="@+id/yinsi_rel"
             android:layout_alignStart="@+id/yinsi_rel"
@@ -178,7 +208,7 @@
 
         <TextView
             android:id="@+id/tv_control"
-            android:layout_width="match_parent"
+            android:layout_width="679dp"
             android:layout_height="65dp"
             android:visibility="gone"
             android:layout_alignLeft="@+id/yinsi_rel"
@@ -190,7 +220,7 @@
             android:textSize="24dp" />
         <View
             android:id="@+id/line_complaint"
-            android:layout_width="match_parent"
+            android:layout_width="679dp"
             android:layout_height="10dp"
             android:layout_alignLeft="@+id/yinsi_rel"
             android:layout_alignStart="@+id/yinsi_rel"
@@ -199,7 +229,7 @@
 
         <TextView
             android:id="@+id/complaint_control"
-            android:layout_width="match_parent"
+            android:layout_width="679dp"
             android:layout_height="65dp"
             android:layout_alignLeft="@+id/yinsi_rel"
             android:layout_alignStart="@+id/yinsi_rel"

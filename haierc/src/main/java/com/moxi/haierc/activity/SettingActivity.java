@@ -10,6 +10,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -21,6 +23,7 @@ import com.moxi.haierc.model.LockPassWord;
 import com.moxi.haierc.model.UserInfoModel;
 import com.moxi.haierc.view.PassWordEditText;
 import com.moxi.haierc.view.PassWordKeyboard;
+import com.mx.mxbase.constant.APPLog;
 import com.mx.mxbase.constant.Constant;
 import com.mx.mxbase.utils.AndroidUtil;
 import com.mx.mxbase.utils.DensityUtil;
@@ -74,6 +77,7 @@ public class SettingActivity extends Activity implements View.OnClickListener {
 
     //电源管理
     RelativeLayout yinsi_rel;
+    CheckBox check_fenxing;
     //连续点击5次
     RelativeLayout kuozhan_rel;
     //隐私
@@ -112,6 +116,7 @@ public class SettingActivity extends Activity implements View.OnClickListener {
     }
 
     private void initView() {
+        check_fenxing = (CheckBox) findViewById(R.id.check_fenxing);
         kuozhan_rel = (RelativeLayout) findViewById(R.id.kuozhan_rel);
         tv_base_back = (TextView) findViewById(R.id.tv_base_back);
         tv_base_back.setText("其他");
@@ -143,7 +148,7 @@ public class SettingActivity extends Activity implements View.OnClickListener {
         tvLockScreen.setOnClickListener(this);
 
 
-        if(Constant.isMoXi){
+        if (Constant.isMoXi) {
             rlChangeVersion.setVisibility(View.GONE);
         }
         String versionStr = share.getString("flag_version_stu").equals("") ? "标准版" : share.getString("flag_version_stu");
@@ -166,6 +171,19 @@ public class SettingActivity extends Activity implements View.OnClickListener {
         rlBlueTooth.setOnClickListener(this);
         tvDeviceLock.setOnClickListener(this);
         complaint_control.setOnClickListener(this);
+
+        String value = Settings.System.getString(getContentResolver(), Settings.System.AIRPLANE_MODE_ON);
+        check_fenxing.setChecked(value.equals("1"));
+
+        check_fenxing.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                APPLog.e("isChecked",isChecked);
+                Settings.System.putString(getContentResolver(), Settings.System.AIRPLANE_MODE_ON, isChecked?"1":"0");
+                Intent intent = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+                sendBroadcast(intent);
+            }
+        });
     }
 
     @Override
@@ -257,12 +275,13 @@ public class SettingActivity extends Activity implements View.OnClickListener {
                 startActivity(deviceInfo);
                 break;
             case R.id.complaint_control://投诉建议
-                try{
+                try {
                     Intent in = new Intent();
                     in.setComponent(new ComponentName("com.onyx", "com.onyx.content.browser.activity.FeedbackActivity"));
 //                in.putExtra("default_feedback_email", "反馈者邮箱xxx@mail.com"); // 可选
                     startActivity(in);
-                }catch (Exception e){}
+                } catch (Exception e) {
+                }
                 break;
             case R.id.ll_base_back://返回
                 SettingActivity.this.finish();
@@ -288,7 +307,7 @@ public class SettingActivity extends Activity implements View.OnClickListener {
                     ComponentName cnSetting = new ComponentName("com.android.settings", "com.android.settings.ChooseLockGeneric");
                     setting.setComponent(cnSetting);
                     startActivity(setting);
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 break;
