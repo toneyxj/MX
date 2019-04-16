@@ -44,6 +44,10 @@ public interface SettingInterface {
      */
     public void startMuen();
     /**
+     * 分享笔记
+     */
+    public void shareBiJi();
+    /**
      * 结束阅读退出
      */
     public void endReader();

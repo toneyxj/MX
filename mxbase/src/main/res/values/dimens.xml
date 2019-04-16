@@ -14,6 +14,9 @@
     <dimen name="moxi_text_size_22">22sp</dimen>
     <dimen name="moxi_text_size_26">26sp</dimen>
     <dimen name="moxi_text_size_28">28sp</dimen>
+    <dimen name="height_65dp">65dp</dimen>
+
+
 
     <dimen name="moxi_text_size_14dp">14dp</dimen>
     <dimen name="moxi_text_size_15dp">15dp</dimen>

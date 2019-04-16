@@ -61,7 +61,7 @@ public class FileUtils {
     }
 
     //写数据
-    public void writeFile(String fileName, String writestr) throws IOException {
+    public boolean writeFile(String fileName, String writestr) throws IOException {
         createFiles(fileName);
         try {
             File file = new File(fileName);
@@ -72,8 +72,10 @@ public class FileUtils {
             fout.write(bytes);
 
             fout.close();
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
     }
     /**

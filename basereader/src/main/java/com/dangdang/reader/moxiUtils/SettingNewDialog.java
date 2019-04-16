@@ -121,7 +121,6 @@ public class SettingNewDialog extends Dialog implements View.OnClickListener, Li
         mFontHandle = FontListHandle.getHandle(context);
         this.mulu = mulu;
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -151,7 +150,6 @@ public class SettingNewDialog extends Dialog implements View.OnClickListener, Li
         font_layout = (LinearLayout) findViewById(R.id.font_layout);
         page_layout = (LinearLayout) findViewById(R.id.page_layout);
         progress_layout = (LinearLayout) findViewById(R.id.progress_layout);
-
         (findViewById(R.id.progress_show_layout)).setOnClickListener(this);
 
         progress_view = (DDProgressView) findViewById(R.id.progress_view);
@@ -159,18 +157,22 @@ public class SettingNewDialog extends Dialog implements View.OnClickListener, Li
         chapter_last = (TextView) findViewById(R.id.chapter_last);
         progress_hitn = (TextView) findViewById(R.id.progress_hitn);
 
-        chapter_next.setOnClickListener(this);
-        chapter_last.setOnClickListener(this);
+        page_index.setOnClickListener(this);
 
         main_setting_layout.setOnClickListener(this);
         show_title.setOnClickListener(this);
         onclick_dismiss.setOnClickListener(this);
 
         show_directory.setOnClickListener(this);
+        chapter_next.setOnClickListener(this);
+        chapter_last.setOnClickListener(this);
+
         show_font.setOnClickListener(this);
         show_page.setOnClickListener(this);
         show_progress.setOnClickListener(this);
         show_setting.setOnClickListener(this);
+
+
 
         title_name.setText(mulu);
         initfontSize();
@@ -181,6 +183,7 @@ public class SettingNewDialog extends Dialog implements View.OnClickListener, Li
 
         ReadConfig readConfig = ReadConfig.getConfig();
         sourcePosition = readConfig.getProgress();
+
     }
     private DDProgressView.ProgressListener progressListener=new DDProgressView.ProgressListener() {
         @Override
@@ -194,6 +197,7 @@ public class SettingNewDialog extends Dialog implements View.OnClickListener, Li
             }
         }
     };
+
     public void initSetProgress(int totalPage, int currentPage) {
         if (totalPage > 0) {
             this.totalPage = totalPage - 1;
@@ -212,6 +216,7 @@ public class SettingNewDialog extends Dialog implements View.OnClickListener, Li
         read_page_txt.setText(setTitleProgress(1));
         read_tiaozhaung_txt.setText(setTitleProgress(2));
     }
+
     private long Ctime=0;
     @Override
     public void onClick(View v) {
@@ -221,7 +226,12 @@ public class SettingNewDialog extends Dialog implements View.OnClickListener, Li
         }
         Ctime=tt;
         int i = v.getId();
-        if (i == R.id.show_directory) {//点击查看目录 showDirMarkNote(DirectoryMarkNoteActivity.MARK);
+        if (i == R.id.page_index) {//点击查看目录 showDirMarkNote(DirectoryMarkNoteActivity.MARK);
+            if (anInterface != null) {
+                anInterface.shareBiJi();
+                this.dismiss();
+            }
+        } else if (i == R.id.show_directory) {//点击查看目录 showDirMarkNote(DirectoryMarkNoteActivity.MARK);
             if (anInterface != null) {
                 anInterface.startMuen();
                 this.dismiss();
@@ -280,9 +290,9 @@ public class SettingNewDialog extends Dialog implements View.OnClickListener, Li
             default:
                 break;
         }
-        if (index == -1) {
-            page_index.setText(value);
-        }
+//        if (index == -1) {
+//            page_index.setText(value);
+//        }
         return value;
     }
 

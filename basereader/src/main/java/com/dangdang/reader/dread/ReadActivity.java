@@ -2,6 +2,7 @@ package com.dangdang.reader.dread;
 
 import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -61,11 +62,13 @@ import com.dangdang.reader.dread.core.epub.IGlobalWindow.IOnDisMissCallBack;
 import com.dangdang.reader.dread.core.epub.ReaderAppImpl;
 import com.dangdang.reader.dread.data.BookMark;
 import com.dangdang.reader.dread.data.BookNote;
+import com.dangdang.reader.dread.data.BookNoteDataWrapper;
 import com.dangdang.reader.dread.data.MarkKey;
 import com.dangdang.reader.dread.data.NoteKey;
 import com.dangdang.reader.dread.data.PartReadInfo;
 import com.dangdang.reader.dread.data.ReadInfo;
 import com.dangdang.reader.dread.format.BaseBookManager;
+import com.dangdang.reader.dread.format.BaseReadInfo;
 import com.dangdang.reader.dread.format.Book;
 import com.dangdang.reader.dread.format.Chapter;
 import com.dangdang.reader.dread.format.DDFile.FileType;
@@ -100,6 +103,9 @@ import com.dangdang.reader.moxiUtils.NotificationWhat;
 import com.dangdang.reader.moxiUtils.SaveNoteDialog;
 import com.dangdang.reader.moxiUtils.SettingInterface;
 import com.dangdang.reader.moxiUtils.SettingNewDialog;
+import com.dangdang.reader.moxiUtils.share.ContentBuilderInterface;
+import com.dangdang.reader.moxiUtils.share.ShareCallBack;
+import com.dangdang.reader.moxiUtils.share.YingxiangContent;
 import com.dangdang.reader.personal.DataUtil;
 import com.dangdang.reader.personal.domain.ShelfBook;
 import com.dangdang.reader.personal.utils.PersonalUtils;
@@ -126,6 +132,8 @@ import com.dangdang.zframework.utils.NetUtil;
 import com.dangdang.zframework.utils.UiUtil;
 import com.dangdang.zframework.view.DDImageView;
 import com.mx.mxbase.constant.APPLog;
+import com.mx.mxbase.dialog.HitnDialog;
+import com.mx.mxbase.dialog.ListDialog;
 import com.mx.mxbase.utils.AppUtil;
 import com.mx.mxbase.utils.ScreenShot;
 import com.mx.mxbase.utils.StartActivityUtils;
@@ -393,6 +401,7 @@ public class ReadActivity extends PubReadActivity implements
                 } else {
                     ToastUtils.getInstance().showToastShort("已截取保存");
                 }
+                hideShow();
             }
         });
     }
@@ -474,6 +483,75 @@ public class ReadActivity extends PubReadActivity implements
         }
 
         @Override
+        public void shareBiJi() {
+            List<BookNoteDataWrapper> mBookNoteWrappers = null;
+            try {
+                BaseReadInfo readInfo = getReadInfo();
+                NoteService noteService = ReaderAppImpl.getApp().getServiceManager().getNoteService();
+                mBookNoteWrappers = noteService.getBookNoteWrapperListByBookId(
+                        readInfo.getDefaultPid(), readInfo.isBoughtToInt());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            if (mBookNoteWrappers == null) return;
+            if (mBookNoteWrappers.size() == 0) {
+                ToastUtils.getInstance().showToastShort("暂无笔记内容");
+                return;
+            }
+            final List<BookNoteDataWrapper> finalMBookNoteWrappers = mBookNoteWrappers;
+            ListDialog.getdialog(ReadActivity.this, "请选择分享笔记平台", new ListDialog.ClickListItemListener() {
+                @Override
+                public void onClickItem(final int position) {
+                    ContentBuilderInterface content = null;
+                    //笔记内容拼接
+                    if (position == 0) {//印象笔记
+                        content = new YingxiangContent();
+                    } else {//有道笔记
+                        ToastUtils.getInstance().showToastShort("暂未开发...");
+                    }
+                    if (content == null) return;
+                    showDialog("");
+                    content.getContent(finalMBookNoteWrappers, getBook(), new ShareCallBack() {
+                        @Override
+                        public void shareSavePath(final boolean isSucess, final String path) {
+                            if (isFinishing()) return;
+                            hideShow();
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (!isSucess) {
+                                        ToastUtils.getInstance().showToastShort("笔记转换失败！！");
+                                        return;
+                                    }
+
+                                    ReadInfo readInfo = (ReadInfo) getReadInfo();
+                                    String title = "《" + readInfo.getBookName() + "》的笔记（作者" + readInfo.getAuthorName() + "）";
+
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("title", title);
+                                    bundle.putString("content", path);
+                                    bundle.putString("noteBook", "topsir电子书 网上书城");
+                                    bundle.putInt("shareType", 1);
+                                    bundle.putInt("sdkType", position + 1);
+
+                                    Intent intent = new Intent();
+                                    ComponentName cnInput = new ComponentName("com.moxi.biji", "com.moxi.biji.BijiActivity");
+                                    intent.setComponent(cnInput);
+//                                        Intent intent=new Intent("com.moxi.biji.start");
+                                    intent.putExtras(bundle);
+                                    startActivity(intent);
+                                }
+                            });
+
+
+                        }
+                    });
+
+                }
+            }, "印象笔记", "有道云笔记");
+        }
+
+        @Override
         public void endReader() {
             onBackPressed();
         }
@@ -497,6 +575,18 @@ public class ReadActivity extends PubReadActivity implements
             directoryChange(lastPage);
         }
     };
+    private HitnDialog dialog;
+
+    private void showDialog(String hitn) {
+        dialog = new HitnDialog(ReadActivity.this, com.mx.mxbase.R.style.AlertDialogStyle, hitn, 0, null);
+        dialog.setCancelable(false);// 是否可以关闭dialog
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+    }
+
+    private void hideShow() {
+        if (dialog != null && dialog.isShowing()) dialog.dismiss();
+    }
 
     private String downloadPathSpil(String filName) {
         String str = filName.replaceAll("[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……& amp;*（）——+|{}【】‘；：”“’。，、？|-]", "");
@@ -1740,6 +1830,7 @@ public class ReadActivity extends PubReadActivity implements
 
         }, 200);
     }
+
     /**
      * 目录跳转
      *
@@ -1755,9 +1846,9 @@ public class ReadActivity extends PubReadActivity implements
             }
             if (listPoints.size() <= 0) return;
             int size = listPoints.size();
-            Book.BaseNavPoint basePoint=mToolbar.getNavPoint(currentPage);
+            Book.BaseNavPoint basePoint = mToolbar.getNavPoint(currentPage);
             int index = 0;
-            if (basePoint!=null) {
+            if (basePoint != null) {
                 String curFulls = basePoint.getFullSrc();
                 int pageIndex = basePoint.getPageIndex();
                 String lableText = basePoint.lableText;
@@ -1769,27 +1860,27 @@ public class ReadActivity extends PubReadActivity implements
                         break;
                     }
                 }
-            }else {
+            } else {
                 //base无法获取到页数，采用计算方式获取
-                int total=1;
-                for (int i = 0; i <size; i++) {
-                    int pageindex= listPoints.get(i).getPageIndex();
-                    if (pageindex==0) {
-                        index=i-1;
+                int total = 1;
+                for (int i = 0; i < size; i++) {
+                    int pageindex = listPoints.get(i).getPageIndex();
+                    if (pageindex == 0) {
+                        index = i - 1;
                         break;
                     }
-                    int curt=total+pageindex;
-                    if (currentPage>=total&&currentPage<curt){
-                        index=i;
+                    int curt = total + pageindex;
+                    if (currentPage >= total && currentPage < curt) {
+                        index = i;
                         break;
                     }
-                    total=curt;
+                    total = curt;
                 }
 
             }
-            APPLog.e("index",index);
+            APPLog.e("index", index);
             if (isLast) {
-                if (index<=0) {
+                if (index <= 0) {
                     return;
                 }
                 index--;
@@ -1797,11 +1888,11 @@ public class ReadActivity extends PubReadActivity implements
                 initSettingDialog();
             } else {
                 index++;
-                index=getIndex(index,size);
-                if (index<(size-1)&&listPoints.get(index).getPageIndex()>0){
+                index = getIndex(index, size);
+                if (index < (size - 1) && listPoints.get(index).getPageIndex() > 0) {
                     handleEpubItemClick(listPoints.get(index));
                     initSettingDialog();
-                }else {
+                } else {
                     ToastUtils.getInstance().showToastShort("无更多章节！！");
                 }
             }
@@ -1811,13 +1902,15 @@ public class ReadActivity extends PubReadActivity implements
         }
 
     }
-    private int getIndex(int index,int size){
+
+    private int getIndex(int index, int size) {
         for (int i = index; i < size; i++) {
-            index=i;
-            if (listPoints.get(i).getPageIndex()>0)break;
+            index = i;
+            if (listPoints.get(i).getPageIndex() > 0) break;
         }
         return index;
     }
+
     protected boolean isMenuShow() {
         return mToolbar.isShowing();
     }
@@ -1842,6 +1935,7 @@ public class ReadActivity extends PubReadActivity implements
 
     @Override
     public void onReadPauseImpl() {
+        hideShow();
         try {
 //            UmengStatistics.onPageEnd(getClass().getSimpleName());
 //            printLog(" onPause() ");
@@ -2311,8 +2405,8 @@ public class ReadActivity extends PubReadActivity implements
     }
 
     protected void clearFloatLayer() {
-		/*
-		 * readerWidget.getmFloatingWindow().dismissPopupWindow();
+        /*
+         * readerWidget.getmFloatingWindow().dismissPopupWindow();
 		 * readerWidget.getmNotePopupWindow().dismissPopupWindow();
 		 * readerApps.getController().clearCursorPoint();
 		 */
