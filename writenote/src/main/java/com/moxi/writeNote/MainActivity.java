@@ -1,6 +1,7 @@
 package com.moxi.writeNote;
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.drawable.BitmapDrawable;
@@ -37,6 +38,8 @@ import com.moxi.writeNote.config.ConfigInfor;
 import com.moxi.writeNote.config.ConfigerUtils;
 import com.moxi.writeNote.listener.PasteListener;
 import com.moxi.writeNote.popwin.SortStylePopwin;
+import com.moxi.writeNote.share.ContentBuilderInterface;
+import com.moxi.writeNote.share.ContentUtils;
 import com.moxi.writeNote.sortUtils.SortName;
 import com.moxi.writeNote.utils.MoveFileConfig;
 import com.moxi.writeNote.utils.PDFCreateRunalbe;
@@ -45,6 +48,7 @@ import com.moxi.writeNote.utils.UserInformation;
 import com.mx.mxbase.base.MyApplication;
 import com.mx.mxbase.constant.APPLog;
 import com.mx.mxbase.dialog.InputDialog;
+import com.mx.mxbase.dialog.ListDialog;
 import com.mx.mxbase.interfaces.InsureOrQuitListener;
 import com.mx.mxbase.utils.FileUtils;
 import com.mx.mxbase.utils.StringUtils;
@@ -134,7 +138,7 @@ public class MainActivity extends WriteBaseActivity implements View.OnClickListe
     private HomeKeyBrodcast homeKeyBrodcast = new HomeKeyBrodcast();
     private SortStylePopwin sortStylePopwin;
     private String flag_version_stu;
-    private boolean synchrodata=false;//同步sd卡数据，进入执行一次
+    private boolean synchrodata = false;//同步sd卡数据，进入执行一次
 
     @Override
     protected int getMainContentViewId() {
@@ -338,7 +342,7 @@ public class MainActivity extends WriteBaseActivity implements View.OnClickListe
                                 } else {
                                     adapter.setShowAelect(false, null);
                                 }
-                                share.setCache("noData",true);
+                                share.setCache("noData", true);
                                 initPageInformation();
 //                                ToastUtils.getInstance().showToastShort("删除成功");
                             } else {
@@ -484,13 +488,13 @@ public class MainActivity extends WriteBaseActivity implements View.OnClickListe
             }
             Collections.sort(writPadModels, new SortName());
         }
-        if (writPadModels.size()<=1&&!synchrodata){
+        if (writPadModels.size() <= 1 && !synchrodata) {
             //判断是否需要同步数据进入
             if (!share.getBoolean("noData")) {
                 saveDrawDb(false);
             }
         }
-        synchrodata=true;
+        synchrodata = true;
 
         changePage();
     }
@@ -582,7 +586,7 @@ public class MainActivity extends WriteBaseActivity implements View.OnClickListe
         }
         if (informations == null || informations.size() <= 1) {
 //            android.os.Process.killProcess(android.os.Process.myPid());
-            share.setCache("noData",writPadModels.size()<=1);
+            share.setCache("noData", writPadModels.size() <= 1);
             saveDrawDb(true);
             this.finish();
         } else {
@@ -650,10 +654,11 @@ public class MainActivity extends WriteBaseActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
-        if (isfinish&&this.isFinishing()){
+        if (isfinish && this.isFinishing()) {
             try {
                 EpdController.leaveScribbleMode(silde_layout);
-            }catch (Exception e){}
+            } catch (Exception e) {
+            }
         }
         Device.currentDevice.hideSystemStatusBar(this);
         MoveFileConfig.getInstance().ClearMove();
@@ -722,6 +727,7 @@ public class MainActivity extends WriteBaseActivity implements View.OnClickListe
 
         TextView export_pdf = (TextView) contentView.findViewById(R.id.export_pdf);
         TextView export_photo = (TextView) contentView.findViewById(R.id.export_photo);
+        TextView share_photo = (TextView) contentView.findViewById(R.id.share_photo);
         TextView delete = (TextView) contentView.findViewById(R.id.delete);
         TextView rename = (TextView) contentView.findViewById(R.id.rename);
         TextView setting_page = (TextView) contentView.findViewById(R.id.setting_page);
@@ -745,6 +751,7 @@ public class MainActivity extends WriteBaseActivity implements View.OnClickListe
 
         export_pdf.setTag(position);
         export_photo.setTag(position);
+        share_photo.setTag(position);
         rename.setTag(position);
         delete.setTag(position);
 
@@ -753,6 +760,7 @@ public class MainActivity extends WriteBaseActivity implements View.OnClickListe
         export_pdf.setOnClickListener(onfile);
         export_photo.setOnClickListener(onfile);
         delete.setOnClickListener(onfile);
+        share_photo.setOnClickListener(onfile);
         rename.setOnClickListener(onfile);
         setting_page.setOnClickListener(onfile);
         // 设置好参数之后再show
@@ -777,6 +785,7 @@ public class MainActivity extends WriteBaseActivity implements View.OnClickListe
             int position = (int) v.getTag();
             WritPadModel model = middleModels.get(position);
             switch (v.getId()) {
+                case R.id.share_photo://分享图片到平台
                 case R.id.export_pdf://导出pdf文件
                     if (!StringUtils.haveSD(80)) {
                         String pdfPath = getPDFExportPath();
@@ -786,7 +795,7 @@ public class MainActivity extends WriteBaseActivity implements View.OnClickListe
                         File file = new File(pdfPath);
                         if (file == null) return;
                         String name = getNoName(file.getAbsolutePath(), String.valueOf(System.currentTimeMillis()));
-                        exportFile(file, name, model, true);
+                        exportFile(file, name, model, true, v.getId() == R.id.share_photo);
                     }
                     break;
                 case R.id.export_photo://导出图片
@@ -797,7 +806,7 @@ public class MainActivity extends WriteBaseActivity implements View.OnClickListe
                         }
                         File file = new File(photoPath);
                         if (file == null) return;
-                        exportFile(file, model.name, model, false);
+                        exportFile(file, model.name, model, false, false);
                     }
                     break;
                 case R.id.rename://重命名
@@ -842,7 +851,7 @@ public class MainActivity extends WriteBaseActivity implements View.OnClickListe
         return file1.exists();
     }
 
-    public void exportFile(final File file, String name, final WritPadModel model, final boolean isExportPdf) {
+    public void exportFile(final File file, String name, final WritPadModel model, final boolean isExportPdf, final boolean isShare) {
         boolean is = ConfigerUtils.isFail(name);
         if (isExist(file, name) || is) {
             if (!is)
@@ -855,7 +864,7 @@ public class MainActivity extends WriteBaseActivity implements View.OnClickListe
 
                 @Override
                 public void insure(String name) {
-                    exportFile(file, name, model, isExportPdf);
+                    exportFile(file, name, model, isExportPdf, isShare);
                 }
             });
         } else {
@@ -874,31 +883,36 @@ public class MainActivity extends WriteBaseActivity implements View.OnClickListe
                     }
 
                     if (is && isExportPdf) {
-                        //导出pdf文件
+                        if (isShare) {
+                            dialogShowOrHide(false, "");
+                            selectShare(model.name, filePath);
+                        } else {
+                            //导出pdf文件
 //                        dialogShowOrHide(true, "pdf文件生成中...",15);
-                        new Thread(new PDFCreateRunalbe(filePath, getPdfPath(file, model.name, 0), true, new PDFCreateRunalbe.PDFCreateListener() {
-                            @Override
-                            public void onFinish() {
-                                if (isfinish) return;
-                                dialogShowOrHide(false, "");
-                                String dir = (new File(getPDFExportPath())).getName();
-                                ToastUtils.getInstance().showToastShort("Pdf文件已导入" + dir + "目录");
-                            }
+                            new Thread(new PDFCreateRunalbe(filePath, getPdfPath(file, model.name, 0), true, new PDFCreateRunalbe.PDFCreateListener() {
+                                @Override
+                                public void onFinish() {
+                                    if (isfinish) return;
+                                    dialogShowOrHide(false, "");
+                                    String dir = (new File(getPDFExportPath())).getName();
+                                    ToastUtils.getInstance().showToastShort("Pdf文件已导入" + dir + "目录");
+                                }
 
-                            @Override
-                            public void onFail(String msg) {
-                                if (isfinish) return;
-                                dialogShowOrHide(false, "");
-                                ToastUtils.getInstance().showToastShort(msg);
-                            }
+                                @Override
+                                public void onFail(String msg) {
+                                    if (isfinish) return;
+                                    dialogShowOrHide(false, "");
+                                    ToastUtils.getInstance().showToastShort(msg);
+                                }
 
-                            @Override
-                            public void onProgressHitn(String hitn) {
-                                if (isfinish) return;
-                                dialogText(hitn);
-                            }
-                        })).start();
+                                @Override
+                                public void onProgressHitn(String hitn) {
+                                    if (isfinish) return;
+                                    dialogText(hitn);
+                                }
+                            })).start();
 
+                        }
                     }
                 }
 
@@ -910,6 +924,35 @@ public class MainActivity extends WriteBaseActivity implements View.OnClickListe
         }
     }
 
+
+    private void selectShare(final String title, final String path) {
+
+        ListDialog.getdialog(this, "请选择分享笔记平台", new ListDialog.ClickListItemListener() {
+            @Override
+            public void onClickItem(final int position) {
+                ContentBuilderInterface content = null;
+                //笔记内容拼接
+                if (position == 0) {//印象笔记
+                    Bundle bundle = new Bundle();
+                    bundle.putString("title", title);
+                    bundle.putString("content", path);
+                    bundle.putString("noteBook", ContentUtils.NoteShareDescribe);
+                    bundle.putInt("shareType", 2);
+                    bundle.putInt("sdkType", position + 1);
+
+                    Intent intent = new Intent();
+                    ComponentName cnInput = new ComponentName("com.moxi.biji", "com.moxi.biji.BijiActivity");
+                    intent.setComponent(cnInput);
+//                                Intent intent=new Intent("com.moxi.biji.start");
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                } else {//有道笔记
+                    ToastUtils.getInstance().showToastShort("暂未开发...");
+                }
+
+            }
+        }, "印象笔记", "有道云笔记");
+    }
 
     public String getNoName(String floder, String name) {
         File file = new File(floder, name);
@@ -943,7 +986,7 @@ public class MainActivity extends WriteBaseActivity implements View.OnClickListe
     @Override
     public void handleMessage(Message msg) {
         super.handleMessage(msg);
-        switch (msg.what){
+        switch (msg.what) {
             case 11://重新加载文件
                 initPageInformation();
                 break;
@@ -952,19 +995,20 @@ public class MainActivity extends WriteBaseActivity implements View.OnClickListe
         }
     }
 
-    private boolean isSave=false;
+    private boolean isSave = false;
+
     /**
      * 保存db文件
      *
      * @param save 保存备份为true，获取覆盖本地为false
      */
     private void saveDrawDb(final boolean save) {
-        if (isSave)return;
-        new Thread(){
+        if (isSave) return;
+        new Thread() {
             @Override
             public void run() {
                 super.run();
-                isSave=true;
+                isSave = true;
                 if (save) {
                     String path = getDatabasePath("writeNoteDb.db").getPath();
                     try {
@@ -973,16 +1017,16 @@ public class MainActivity extends WriteBaseActivity implements View.OnClickListe
                         e.printStackTrace();
                     }
                 } else {
-                    String path = StringUtils.getSDPath()+"writeNoteDb";
+                    String path = StringUtils.getSDPath() + "writeNoteDb";
                     try {
-                        FileUtils.getInstance().copyFile(path, "",getDatabasePath("writeNoteDb.db").getPath());
+                        FileUtils.getInstance().copyFile(path, "", getDatabasePath("writeNoteDb.db").getPath());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                     getHandler().sendEmptyMessage(11);
                 }
-                isSave=false;
-                APPLog.e("save="+save,"saveDrawDb");
+                isSave = false;
+                APPLog.e("save=" + save, "saveDrawDb");
             }
         }.start();
 
