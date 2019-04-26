@@ -8,8 +8,8 @@ android {
         applicationId "com.moxi.haierc"
         minSdkVersion 15
         targetSdkVersion 24
-        versionCode 224
-        versionName "MXB970S_B2_V2.2.4"
+        versionCode 225
+        versionName "MXB970S_B2_V2.2.5"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         javaCompileOptions {

@@ -106,6 +106,7 @@ import com.dangdang.reader.moxiUtils.SettingNewDialog;
 import com.dangdang.reader.moxiUtils.share.ContentBuilderInterface;
 import com.dangdang.reader.moxiUtils.share.ShareCallBack;
 import com.dangdang.reader.moxiUtils.share.YingxiangContent;
+import com.dangdang.reader.moxiUtils.share.YouDaoContent;
 import com.dangdang.reader.personal.DataUtil;
 import com.dangdang.reader.personal.domain.ShelfBook;
 import com.dangdang.reader.personal.utils.PersonalUtils;
@@ -504,10 +505,10 @@ public class ReadActivity extends PubReadActivity implements
                 public void onClickItem(final int position) {
                     ContentBuilderInterface content = null;
                     //笔记内容拼接
-                    if (position == 0) {//印象笔记
-                        content = new YingxiangContent();
-                    } else {//有道笔记
-                        ToastUtils.getInstance().showToastShort("暂未开发...");
+                    if (position==0){//印象笔记
+                        content=new YingxiangContent();
+                    }else {//有道笔记
+                        content=new YouDaoContent();
                     }
                     if (content == null) return;
                     showDialog("");
