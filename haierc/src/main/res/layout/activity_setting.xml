@@ -202,7 +202,6 @@
             android:layout_height="10dp"
             android:layout_alignLeft="@+id/yinsi_rel"
             android:layout_alignStart="@+id/yinsi_rel"
-            android:visibility="gone"
             android:layout_below="@+id/tv_state_lock_device"
             android:background="@drawable/oon_line"></View>
 
@@ -210,7 +209,6 @@
             android:id="@+id/tv_control"
             android:layout_width="679dp"
             android:layout_height="65dp"
-            android:visibility="gone"
             android:layout_alignLeft="@+id/yinsi_rel"
             android:layout_alignStart="@+id/yinsi_rel"
             android:layout_below="@+id/line_control"

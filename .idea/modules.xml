@@ -20,6 +20,7 @@
       <module fileurl="file://$PROJECT_DIR$/updateapp/updateapp.iml" filepath="$PROJECT_DIR$/updateapp/updateapp.iml" />
       <module fileurl="file://$PROJECT_DIR$/wechatshare/wechatshare.iml" filepath="$PROJECT_DIR$/wechatshare/wechatshare.iml" />
       <module fileurl="file://$PROJECT_DIR$/writenote/writenote.iml" filepath="$PROJECT_DIR$/writenote/writenote.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yuyinhecheng/yuyinhecheng.iml" filepath="$PROJECT_DIR$/yuyinhecheng/yuyinhecheng.iml" />
     </modules>
   </component>
 </project>

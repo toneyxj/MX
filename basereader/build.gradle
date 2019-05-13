@@ -32,11 +32,13 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-//    compile project(':mxbase')
+    //    compile project(':mxbase')
     compile project(':framework_plugin_uneditable')
     compile(name: 'OnyxAndroidSDK-release', ext: 'aar')
     compile project(':wechatshare')
-    compile 'com.android.support:appcompat-v7:23.4.0'
+    //    compile 'com.android.support:appcompat-v7:23.4.0'
     testCompile 'junit:junit:4.12'
-//    compile 'com.onyx.android.sdk:onyxsdk-base:1.2.4'
+    //    compile files('libs/com.baidu.tts_2.3.2.20180713_6101c2a.jar')
+    //    compile 'com.onyx.android.sdk:onyxsdk-base:1.2.4'
+//    compile project(':yuyinhecheng')
 }

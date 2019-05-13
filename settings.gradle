@@ -1,4 +1,4 @@
-include ':mxbase',
+include ':mxbase', ':yuyinhecheng',
         ':haierc',
         ':calendar',
         ':updateapp',

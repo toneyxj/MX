@@ -272,6 +272,10 @@ public class ReadActivity extends PubReadActivity implements
     private TextView setting_style;
     private MyHandlerRefuresh handlerRefuresh = new MyHandlerRefuresh(this);
     private ScreenShot screenShot;//屏幕截图
+    //语音播报
+//    private YuYinUtils yuYinUtils;
+    //播放状态
+    private boolean speekStaus=false;
 
     private static class MyHandlerRefuresh extends Handler {
         private WeakReference<ReadActivity> reference;
@@ -405,6 +409,25 @@ public class ReadActivity extends PubReadActivity implements
                 hideShow();
             }
         });
+
+//        yuYinUtils=new YuYinUtils(this, new SpeekListener() {
+//            @Override
+//            public void onSpeekOver() {
+//                switchYuyin();
+//            }
+//
+//            @Override
+//            public void onSpeekStart() {
+//                setSpeekStaus(true);
+//            }
+//
+//            @Override
+//            public void onSpeekError(Exception e) {
+//                setSpeekStaus(false);
+//                ToastUtils.getInstance().showToastShort(e.getMessage());
+//                stopYuyin();
+//            }
+//        });
     }
 
     private void addReceiver() {
@@ -480,7 +503,6 @@ public class ReadActivity extends PubReadActivity implements
         @Override
         public void startMuen() {
             showDirMarkNote(DirectoryMarkNoteActivity.DIR);
-
         }
 
         @Override
@@ -575,7 +597,38 @@ public class ReadActivity extends PubReadActivity implements
         public void onChapterJump(boolean lastPage) {
             directoryChange(lastPage);
         }
+
+        @Override
+        public void startYuyin() {
+            setSpeekStaus(!speekStaus);
+            if (speekStaus){
+                stopYuyin();
+            }else {
+                switchYuyin();
+            }
+        }
     };
+
+    public void setSpeekStaus(boolean speekStaus) {
+        this.speekStaus = speekStaus;
+        if (settingNewDialog!=null&&settingNewDialog.isShowing()){
+            settingNewDialog.setYuYinStatus(this.speekStaus);
+        }
+    }
+
+    private void switchYuyin(){
+        EpubReaderController controller = (EpubReaderController) mReaderApps.getReaderController();
+//        yuYinUtils.speak(controller.getParagraphText());
+        if (controller.isFanYe()){
+            mReaderApps.pageTurning(false);
+        }
+    }
+
+    private void stopYuyin(){
+//        yuYinUtils.stop();
+        EpubReaderController controller = (EpubReaderController) mReaderApps.getReaderController();
+        controller.closeYuYin();
+    }
     private HitnDialog dialog;
 
     private void showDialog(String hitn) {
@@ -1601,10 +1654,7 @@ public class ReadActivity extends PubReadActivity implements
                 DDStatisticsService.OPerateTime, System.currentTimeMillis()
                         + "");
     }
-
     protected boolean mKeyDown = false;
-
-
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
 
@@ -1812,6 +1862,7 @@ public class ReadActivity extends PubReadActivity implements
         int totalpage = mReaderApps.getPageSize();
         String mulu = getIntent().getStringExtra(IntentK.BookName);
         settingNewDialog = SettingNewDialog.getdialog(ReadActivity.this, mulu, totalpage, currentPage, anInterface);
+
     }
 
     private void initSettingDialog() {
@@ -2017,6 +2068,7 @@ public class ReadActivity extends PubReadActivity implements
 
     @Override
     public void onReadDestroyImpl() {
+//        yuYinUtils.onDestroy();
         handlerRefuresh.removeCallbacksAndMessages(null);
         printLog("luxutagtag onDestroyImpl() " + this);
         processCloudSyncLogic();

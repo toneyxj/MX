@@ -16,8 +16,8 @@ android {
         applicationId "com.moxi.writeNote"
         minSdkVersion 15
         targetSdkVersion 24
-        versionCode 44
-        versionName "1.4.4"
+        versionCode 46
+        versionName "1.4.6"
         ndk {
             // 设置支持的SO库架构
             abiFilters 'armeabi' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'

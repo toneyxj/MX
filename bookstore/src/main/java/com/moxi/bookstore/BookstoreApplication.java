@@ -51,6 +51,11 @@ public class BookstoreApplication extends DDApplication {
         //return ToolUtils.getIntence().getIMEINo(mApplication);
         //return ToolUtils.getIntence().getDeviceNo(mApplication);
     }
-
-
+//
+//
+//    @Override
+//    protected void attachBaseContext(Context base) {
+//        super.attachBaseContext(base);
+//        MultiDex.install(this);
+//    }
 }

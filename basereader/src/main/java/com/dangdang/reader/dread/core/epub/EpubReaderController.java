@@ -83,6 +83,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static android.R.attr.x;
+import static android.R.attr.y;
+
 /**
  * @author luxu
  */
@@ -1984,6 +1987,42 @@ public class EpubReaderController extends BaseReaderController {
                 maxLen);
     }
 
+    private ParagraphText paragraphText=null;
+    public String getParagraphText(){
+        ReadInfo readInfo = (ReadInfo) getReadInfo();
+        if (paragraphText==null) {
+            paragraphText = getParagraphText(readInfo.getReadChapter(), readInfo.getElementIndex(), true, 1000);
+        }else {
+            paragraphText = getParagraphText(readInfo.getReadChapter(), paragraphText.getEndEmtIndex().getIndex()+1, false, 1000);
+        }
+        //绘制覆盖层
+        highLightParagraphText(readInfo.getReadChapter(),paragraphText);
+
+        return paragraphText.getText();
+    }
+
+    /**
+     * 判断是否进行翻页
+     * @return
+     */
+    public boolean isFanYe(){
+        if (paragraphText==null)return false;
+        ReadInfo readInfo = (ReadInfo) getReadInfo();
+        //获取当前页索引
+        final int pageIndexInChapter = getPageIndexInChapter(readInfo.getReadChapter(),readInfo.getElementIndex());
+        IndexRange range=getPageRange(readInfo.getReadChapter(), pageIndexInChapter);
+        boolean fanye=range.getEndIndex().getIndex()<paragraphText.getEndEmtIndex().getIndex();
+        return fanye;
+    }
+
+    /**
+     * 关闭语音合成功能
+     */
+    public void closeYuYin(){
+        paragraphText=null;
+        drawFinish(DrawingType.ShadowTTS, new Point(x, y), false, false);
+    }
+
     protected void preComposingChapter(Chapter chapter) {
         getEpubBM().preComposingChapter(chapter);
     }
@@ -2608,6 +2647,24 @@ public class EpubReaderController extends BaseReaderController {
             epubPageView.resetVedioViewWithOutOrientation();
             epubPageView.showPlayIcon();
         }
+    }
+    protected void highLightParagraphText(final Chapter chapter,
+                                          final ParagraphText paragText) {
+
+        if (paragText.isIllegality()) {
+            printLog(" light paragText is illegality ");
+            return;
+        }
+        final int pageIndexInChapter = getCurrentPageIndexInChapter();
+        IndexRange pageRange = getCurrentPageRange();
+        ElementIndex startIndex = ElementIndex.max(pageRange.getStartIndex(),
+                paragText.getStartEmtIndex());
+        ElementIndex endIndex = ElementIndex.min(pageRange.getEndIndex(),
+                paragText.getEndEmtIndex());
+        Rect[] rects = getRectsByIndex(chapter, pageIndexInChapter, startIndex,
+                endIndex);
+        doDrawing(DrawingType.ShadowTTS, new Point(), false, new Point(),
+                false, null, rects);
     }
 
     public String getSelectedTextWithPara(int startIndex, int endIndex) {
