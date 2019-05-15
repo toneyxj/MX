@@ -26,11 +26,13 @@ public class YuYinService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        isfirst=true;
         return START_STICKY;
     }
 
     private YuYinUtils yuYinUtils;
     private Toast toast;
+    private boolean isfirst;
     private Handler handler=new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -55,9 +57,13 @@ public class YuYinService extends Service {
 
             @Override
             public void onSpeekError(Exception e) {
-                Intent intent=new Intent(MsgConfig.speek_send_error);
-                intent.putExtra("error",e.getMessage());
-                sendBroadcast(intent);
+                if (isfirst) {
+                    Intent intent = new Intent(MsgConfig.speek_send_error);
+                    intent.putExtra("error", e.getMessage());
+                    sendBroadcast(intent);
+                }else {
+                    isfirst=false;
+                }
             }
 
             @Override

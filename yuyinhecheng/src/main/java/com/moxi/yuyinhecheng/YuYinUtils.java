@@ -3,7 +3,6 @@ package com.moxi.yuyinhecheng;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 
 import com.baidu.tts.chainofresponsibility.logger.LoggerProxy;
 import com.baidu.tts.client.SpeechError;
@@ -15,7 +14,6 @@ import com.moxi.yuyinhecheng.config.MainHandlerConstant;
 import com.moxi.yuyinhecheng.config.MySyntherizer;
 import com.moxi.yuyinhecheng.config.NonBlockSyntherizer;
 import com.moxi.yuyinhecheng.listener.SpeekListener;
-import com.moxi.yuyinhecheng.util.AutoCheck;
 import com.moxi.yuyinhecheng.util.OfflineResource;
 
 import java.io.IOException;
@@ -46,7 +44,7 @@ public class YuYinUtils implements SpeechSynthesizerListener{
     // 离线发音选择，VOICE_FEMALE即为离线女声发音。
     // assets目录下bd_etts_common_speech_m15_mand_eng_high_am-mix_v3.0.0_20170505.dat为离线男声模型；
     // assets目录下bd_etts_common_speech_f7_mand_eng_high_am-mix_v3.0.0_20170512.dat为离线女声模型
-    protected String offlineVoice = OfflineResource.VOICE_MALE;
+    protected String offlineVoice = OfflineResource.VOICE_FEMALE;
     // 主控制类，所有合成控制方法从这个类开始
     protected MySyntherizer synthesizer;
     private SpeekListener listener;
@@ -61,6 +59,8 @@ public class YuYinUtils implements SpeechSynthesizerListener{
                        listener.onSpeekError(new Exception(obj));
                        listener.reStartYuYin();
                    }
+               }else if (obj.equals("语音引擎启动成功")){
+//                   loadModel();
                }
 
            }
@@ -95,20 +95,21 @@ public class YuYinUtils implements SpeechSynthesizerListener{
 
         // 如果您集成中出错，请将下面一段代码放在和demo中相同的位置，并复制InitConfig 和 AutoCheck到您的项目中
         // 上线时请删除AutoCheck的调用
-        AutoCheck.getInstance(context).check(initConfig, new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                if (msg.what == 100) {
-                    AutoCheck autoCheck = (AutoCheck) msg.obj;
-                    synchronized (autoCheck) {
-                        String message = autoCheck.obtainDebugMessage();
-                        Log.e("AutoCheck-message",message);
-                    }
-                }
-            }
-
-        });
+//        AutoCheck.getInstance(context).check(initConfig, new Handler() {
+//            @Override
+//            public void handleMessage(Message msg) {
+//                if (msg.what == 100) {
+//                    AutoCheck autoCheck = (AutoCheck) msg.obj;
+//                    synchronized (autoCheck) {
+//                        String message = autoCheck.obtainDebugMessage();
+//                        Log.e("AutoCheck-message",message);
+//                    }
+//                }
+//            }
+//
+//        });
         synthesizer = new NonBlockSyntherizer(context, initConfig, mainHandler); // 此处可以改为MySyntherizer 了解调用过程
+
     }
 
     /**
@@ -145,6 +146,15 @@ public class YuYinUtils implements SpeechSynthesizerListener{
         return params;
     }
 
+    /**
+     * 切换离线发音。注意需要添加额外的判断：引擎在合成时该方法不能调用
+     */
+    private void loadModel(String mode) {
+        offlineVoice = mode;
+        OfflineResource offlineResource = createOfflineResource(offlineVoice);
+        int result = synthesizer.loadModel(offlineResource.getModelFilename(), offlineResource.getTextFilename());
+        checkResult(result);
+    }
 
     protected OfflineResource createOfflineResource(String voiceType) {
         OfflineResource offlineResource = null;

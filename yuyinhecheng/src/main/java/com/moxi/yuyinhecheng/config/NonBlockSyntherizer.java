@@ -44,7 +44,7 @@ public class NonBlockSyntherizer extends MySyntherizer {
                         boolean isSuccess = init(config);
                         if (isSuccess) {
                             // speak("初始化成功");
-                            sendToUiThread("NonBlockSyntherizer 初始化成功");
+                            sendToUiThread("语音引擎启动成功");
                         } else {
                             sendToUiThread("合成引擎初始化失败, 请查看日志");
                         }
