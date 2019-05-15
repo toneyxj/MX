@@ -99,6 +99,7 @@ import com.dangdang.reader.dread.view.toolbar.ReaderToolbar;
 import com.dangdang.reader.handle.DownloadBookHandle;
 import com.dangdang.reader.moxiUtils.BrodcastData;
 import com.dangdang.reader.moxiUtils.BrodcastUtils;
+import com.dangdang.reader.moxiUtils.LodingSucess;
 import com.dangdang.reader.moxiUtils.NotificationWhat;
 import com.dangdang.reader.moxiUtils.SaveNoteDialog;
 import com.dangdang.reader.moxiUtils.SettingInterface;
@@ -132,6 +133,8 @@ import com.dangdang.zframework.utils.DRUiUtility;
 import com.dangdang.zframework.utils.NetUtil;
 import com.dangdang.zframework.utils.UiUtil;
 import com.dangdang.zframework.view.DDImageView;
+import com.mx.mxbase.YuYinmanager.YuYinCallBack;
+import com.mx.mxbase.YuYinmanager.YuYinManager;
 import com.mx.mxbase.constant.APPLog;
 import com.mx.mxbase.dialog.HitnDialog;
 import com.mx.mxbase.dialog.ListDialog;
@@ -273,9 +276,7 @@ public class ReadActivity extends PubReadActivity implements
     private MyHandlerRefuresh handlerRefuresh = new MyHandlerRefuresh(this);
     private ScreenShot screenShot;//屏幕截图
     //语音播报
-//    private YuYinUtils yuYinUtils;
-    //播放状态
-    private boolean speekStaus=false;
+    private YuYinManager yuYinManager;
 
     private static class MyHandlerRefuresh extends Handler {
         private WeakReference<ReadActivity> reference;
@@ -409,25 +410,26 @@ public class ReadActivity extends PubReadActivity implements
                 hideShow();
             }
         });
+        yuYinManager =new YuYinManager(getReadMain(),new YuYinCallBack(){
 
-//        yuYinUtils=new YuYinUtils(this, new SpeekListener() {
-//            @Override
-//            public void onSpeekOver() {
-//                switchYuyin();
-//            }
-//
-//            @Override
-//            public void onSpeekStart() {
-//                setSpeekStaus(true);
-//            }
-//
-//            @Override
-//            public void onSpeekError(Exception e) {
-//                setSpeekStaus(false);
-//                ToastUtils.getInstance().showToastShort(e.getMessage());
-//                stopYuyin();
-//            }
-//        });
+            @Override
+            public void onYuYinFail(String e) {
+                setSpeekStaus(false);
+                ToastUtils.getInstance().showToastShort(e);
+                stopYuyin();
+            }
+
+            @Override
+            public void onYuYinOver() {
+                switchYuyin();
+            }
+
+            @Override
+            public void onYuYinStart() {
+                setSpeekStaus(true);
+            }
+        });
+        yuYinManager.bindServiceInvoked();
     }
 
     private void addReceiver() {
@@ -600,32 +602,53 @@ public class ReadActivity extends PubReadActivity implements
 
         @Override
         public void startYuyin() {
-            setSpeekStaus(!speekStaus);
-            if (speekStaus){
-                stopYuyin();
-            }else {
+            setSpeekStaus(!getReadInfo().isSpeekStaus());
+            if (getReadInfo().isSpeekStaus()){
                 switchYuyin();
+            }else {
+                stopYuyin();
             }
         }
     };
 
     public void setSpeekStaus(boolean speekStaus) {
-        this.speekStaus = speekStaus;
+        this.getReadInfo().setSpeekStaus(speekStaus);
         if (settingNewDialog!=null&&settingNewDialog.isShowing()){
-            settingNewDialog.setYuYinStatus(this.speekStaus);
+            settingNewDialog.setYuYinStatus(getReadInfo().isSpeekStaus());
         }
     }
-
+    private   int nextPage=0;
     private void switchYuyin(){
         EpubReaderController controller = (EpubReaderController) mReaderApps.getReaderController();
-//        yuYinUtils.speak(controller.getParagraphText());
-        if (controller.isFanYe()){
+        controller.setLodingListener(lodingSucess);
+        //已经到达最后一页
+        if (controller.isLastPageInBook()){
+            APPLog.e("switchYuyin--已经到达最后一页");
+            stopYuyin();
+            return;
+        }
+
+        String value=controller.getParagraphText();
+        if (value.equals("nextPage")||controller.isFanYe()){
             mReaderApps.pageTurning(false);
+            controller.closeYuYin();
+        }else {
+            yuYinManager.SendYuYinMsg(value);
+//            if (controller.isFanYe()) {
+//                mReaderApps.pageTurning(false);
+//
+//            }
         }
     }
-
+    private LodingSucess lodingSucess=new LodingSucess() {
+        @Override
+        public void onLodingSucess() {
+            switchYuyin();
+        }
+    };
     private void stopYuyin(){
-//        yuYinUtils.stop();
+        setSpeekStaus(false);
+        yuYinManager.stopYuYinMsg();
         EpubReaderController controller = (EpubReaderController) mReaderApps.getReaderController();
         controller.closeYuYin();
     }
@@ -1686,6 +1709,10 @@ public class ReadActivity extends PubReadActivity implements
                 }
                 break;
             case KeyEvent.KEYCODE_BACK:
+                if (getReadInfo().isSpeekStaus()) {
+                    stopYuyin();
+                    return true;
+                }
                 mKeyDown = true;
                 if (isDelayOperation()) {
                     break;
@@ -1728,9 +1755,11 @@ public class ReadActivity extends PubReadActivity implements
                 attemptExit(hasExit);
                 break;
             case KeyEvent.KEYCODE_PAGE_UP:
+                if (getReadInfo().isSpeekStaus())return true;
                 mReaderApps.pageTurning(true);
                 return true;
             case KeyEvent.KEYCODE_PAGE_DOWN:
+                if (getReadInfo().isSpeekStaus())return true;
                 mReaderApps.pageTurning(false);
                 return true;
         }
@@ -2068,7 +2097,7 @@ public class ReadActivity extends PubReadActivity implements
 
     @Override
     public void onReadDestroyImpl() {
-//        yuYinUtils.onDestroy();
+        yuYinManager.onDestroy();
         handlerRefuresh.removeCallbacksAndMessages(null);
         printLog("luxutagtag onDestroyImpl() " + this);
         processCloudSyncLogic();

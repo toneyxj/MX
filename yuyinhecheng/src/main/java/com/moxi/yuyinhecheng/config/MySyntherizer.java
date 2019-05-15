@@ -205,7 +205,7 @@ public class MySyntherizer implements MainHandlerConstant {
         }
         Message msg = Message.obtain();
         msg.what = action;
-        msg.obj = message + "\n";
+        msg.obj = message ;
         mainHandler.sendMessage(msg);
     }
 }

@@ -66,6 +66,7 @@ import com.dangdang.reader.dread.holder.PromptResource;
 import com.dangdang.reader.dread.holder.SearchDataHolder;
 import com.dangdang.reader.dread.jni.BaseJniWarp;
 import com.dangdang.reader.dread.jni.BaseJniWarp.ElementIndex;
+import com.dangdang.reader.moxiUtils.LodingSucess;
 import com.dangdang.reader.moxiUtils.NotificationWhat;
 import com.dangdang.reader.moxiUtils.ToCheckDirctoryUtils;
 import com.dangdang.reader.personal.domain.ShelfBook;
@@ -76,15 +77,13 @@ import com.dangdang.zframework.log.LogM;
 import com.dangdang.zframework.utils.DRUiUtility;
 import com.moxi.wechatshare.ShareDialog;
 import com.mx.mxbase.constant.APPLog;
+import com.mx.mxbase.utils.ToastUtils;
 import com.mx.mxbase.view.AlertDialog;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import static android.R.attr.x;
-import static android.R.attr.y;
 
 /**
  * @author luxu
@@ -132,6 +131,11 @@ public class EpubReaderController extends BaseReaderController {
     protected Context mContext;
 
     private int mNoteDrawLineColor = BookNote.NOTE_DRAWLINE_COLOR_RED;
+    private LodingSucess lodingListener;
+
+    public void setLodingListener(LodingSucess lodingListener) {
+        this.lodingListener = lodingListener;
+    }
 
     public EpubReaderController(Context context) {
         super();
@@ -322,7 +326,11 @@ public class EpubReaderController extends BaseReaderController {
         }
         exitMediaMode(false);
         printLog("lxu <-- onScrollingEnd last ");
-
+        if (lodingListener != null) {
+            if (getReadInfo().isSpeekStaus() && paragraphText == null) {
+                lodingListener.onLodingSucess();
+            }
+        }
     }
 
     protected Chapter mPrevGetRangeChapter;
@@ -421,7 +429,7 @@ public class EpubReaderController extends BaseReaderController {
 
             if (isShowingWindow()) {
                 /*
-				 * repaintSync(true, true); hideWindow();
+                 * repaintSync(true, true); hideWindow();
 				 */
             } else {
                 startScrolling(x, y);
@@ -741,8 +749,11 @@ public class EpubReaderController extends BaseReaderController {
 
     @Override
     public boolean onFingerSingleTap(int x, int y, long time) {
-
-        APPLog.e("点击图片哟！！！！进行了隐藏修改" + isShowingWindow());
+        //语音阅读模式下
+        if (getReadInfo().isSpeekStaus()) {//弹出语音窗口
+            ToastUtils.getInstance().showToastShort("语音阅读模式下不可操作，可点击返回按钮退出语音阅读");
+            return true;
+        }
 //         clickZoneToTurnPage(x, y);
         if (isShowingWindow()) {
             SearchDataHolder.getHolder().resetCurrent();
@@ -760,7 +771,7 @@ public class EpubReaderController extends BaseReaderController {
             return;
         }
         try {
-            APPLog.e("clickEvent","进入了这里");
+            APPLog.e("clickEvent", "进入了这里");
             ClickResult cResult = clickEvent(x, y);
 
             if (cResult.isClick()) {
@@ -849,7 +860,7 @@ public class EpubReaderController extends BaseReaderController {
                 exitMediaMode(false);
             }
         } catch (NoSuchMethodError e) {
-            APPLog.e("NoSuchMethodError",e.getMessage());
+            APPLog.e("NoSuchMethodError", e.getMessage());
             if (time - lastSingleTapTime < DOUBLE_TAP_TIMEOUT) {
                 return;
             }
@@ -1987,40 +1998,55 @@ public class EpubReaderController extends BaseReaderController {
                 maxLen);
     }
 
-    private ParagraphText paragraphText=null;
-    public String getParagraphText(){
+    private ParagraphText paragraphText = null;
+
+    public String getParagraphText() {
         ReadInfo readInfo = (ReadInfo) getReadInfo();
-        if (paragraphText==null) {
+        if (paragraphText == null) {
             paragraphText = getParagraphText(readInfo.getReadChapter(), readInfo.getElementIndex(), true, 1000);
-        }else {
-            paragraphText = getParagraphText(readInfo.getReadChapter(), paragraphText.getEndEmtIndex().getIndex()+1, false, 1000);
+        } else {
+            paragraphText = getParagraphText(readInfo.getReadChapter(), paragraphText.getEndEmtIndex().getIndex() + 1, false, 300);
         }
         //绘制覆盖层
-        highLightParagraphText(readInfo.getReadChapter(),paragraphText);
+        highLightParagraphText(readInfo.getReadChapter(), paragraphText);
 
+        if (paragraphText.getText().trim().equals("")) {
+            final int pageIndexInChapter = getPageIndexInChapter(readInfo.getReadChapter(), readInfo.getElementIndex());
+            IndexRange range = getPageRange(readInfo.getReadChapter(), pageIndexInChapter);
+            APPLog.e("显示的问题-rang", range);
+            int end = range.getEndIndexToInt();
+            if (end > 0) {
+                return getParagraphText();
+            } else {
+                return "nextPage";
+            }
+        }
+        APPLog.e("显示的问题", paragraphText);
         return paragraphText.getText();
     }
 
     /**
      * 判断是否进行翻页
+     *
      * @return
      */
-    public boolean isFanYe(){
-        if (paragraphText==null)return false;
+    public boolean isFanYe() {
+        if (paragraphText == null) return false;
         ReadInfo readInfo = (ReadInfo) getReadInfo();
         //获取当前页索引
-        final int pageIndexInChapter = getPageIndexInChapter(readInfo.getReadChapter(),readInfo.getElementIndex());
-        IndexRange range=getPageRange(readInfo.getReadChapter(), pageIndexInChapter);
-        boolean fanye=range.getEndIndex().getIndex()<paragraphText.getEndEmtIndex().getIndex();
+        final int pageIndexInChapter = getPageIndexInChapter(readInfo.getReadChapter(), readInfo.getElementIndex());
+        IndexRange range = getPageRange(readInfo.getReadChapter(), pageIndexInChapter);
+        boolean fanye = range.getEndIndex().getIndex() <= paragraphText.getEndEmtIndex().getIndex();
         return fanye;
     }
 
     /**
      * 关闭语音合成功能
      */
-    public void closeYuYin(){
-        paragraphText=null;
-        drawFinish(DrawingType.ShadowTTS, new Point(x, y), false, false);
+    public void closeYuYin() {
+        paragraphText = null;
+        doDrawing(DrawingType.ShadowTTS, new Point(), false, new Point(),
+                false, null, new Rect[]{});
     }
 
     protected void preComposingChapter(Chapter chapter) {
@@ -2236,7 +2262,7 @@ public class EpubReaderController extends BaseReaderController {
     };
 
     protected void onNoteInner(boolean isAdd) {
-        if (mSelectedText==null)return;
+        if (mSelectedText == null) return;
         String content = "";
         String source = "";
         String chaptername = "";
@@ -2255,7 +2281,7 @@ public class EpubReaderController extends BaseReaderController {
         long noteTime = 0;
 
         BookNote note = getCurrentOptionNote();
-        if ( null==note ||! mSelectedText.equals(note.getSourceText())) {
+        if (null == note || !mSelectedText.equals(note.getSourceText())) {
 //            source = note.getSourceText();
 //            chaptername = note.getChapterName();
 //            chapterIndex = note.getChapterIndex();
@@ -2288,7 +2314,7 @@ public class EpubReaderController extends BaseReaderController {
             note.isBought = isBought;
             note.status = String.valueOf(Status.COLUMN_NEW);
             note.cloudStatus = String.valueOf(Status.CLOUD_NO);
-            note.noteTime=noteTime;
+            note.noteTime = noteTime;
             note.bookModVersion = version;
             note.drawLineColor = drawLineColor;
         }
@@ -2648,6 +2674,7 @@ public class EpubReaderController extends BaseReaderController {
             epubPageView.showPlayIcon();
         }
     }
+
     protected void highLightParagraphText(final Chapter chapter,
                                           final ParagraphText paragText) {
 

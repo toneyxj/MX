@@ -16,7 +16,7 @@
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.moxi.yuyinhecheng.YuYinService"/>
+                <action android:name="com.baidu.yuyinhecheng.YuYinService"/>
             </intent-filter>
         </service>
 

@@ -31,6 +31,13 @@ public class YuYinService extends Service {
 
     private YuYinUtils yuYinUtils;
     private Toast toast;
+    private Handler handler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            yuYinUtils.initialTts();
+        }
+    };
 
     @Override
     public void onCreate() {
@@ -51,6 +58,12 @@ public class YuYinService extends Service {
                 Intent intent=new Intent(MsgConfig.speek_send_error);
                 intent.putExtra("error",e.getMessage());
                 sendBroadcast(intent);
+            }
+
+            @Override
+            public void reStartYuYin() {
+                //语音初始化失败重新配置语音
+                handler.sendEmptyMessageDelayed(1,2000);
             }
         });
         toast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
@@ -82,5 +95,6 @@ public class YuYinService extends Service {
     public void onDestroy() {
         super.onDestroy();
         yuYinUtils.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 }

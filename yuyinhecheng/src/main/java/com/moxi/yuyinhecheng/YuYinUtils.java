@@ -11,6 +11,7 @@ import com.baidu.tts.client.SpeechSynthesizer;
 import com.baidu.tts.client.SpeechSynthesizerListener;
 import com.baidu.tts.client.TtsMode;
 import com.moxi.yuyinhecheng.config.InitConfig;
+import com.moxi.yuyinhecheng.config.MainHandlerConstant;
 import com.moxi.yuyinhecheng.config.MySyntherizer;
 import com.moxi.yuyinhecheng.config.NonBlockSyntherizer;
 import com.moxi.yuyinhecheng.listener.SpeekListener;
@@ -33,11 +34,11 @@ import java.util.Map;
 
 public class YuYinUtils implements SpeechSynthesizerListener{
     private Context context;
-    private String appId = "16199042";
+    private String appId = "16234853";
 
-    private String appKey = "bVkS7M3bhShWysdfonirAWPK";
+    private String appKey = "hLf1zaojwn9HgATsqpcfaRYM";
 
-    private String secretKey = "jkVl74yejeVWz5GHeqHKsK3AuxFp500W";
+    private String secretKey = "x5fjrqvRCLkvTdf7feaVL8qcQUeeHKKv";
 
     // TtsMode.MIX; 离在线融合，在线优先； TtsMode.ONLINE 纯在线； 没有纯离线
     protected TtsMode ttsMode = TtsMode.MIX;
@@ -50,7 +51,21 @@ public class YuYinUtils implements SpeechSynthesizerListener{
     protected MySyntherizer synthesizer;
     private SpeekListener listener;
 
-    private Handler mainHandler=new Handler();
+    private Handler mainHandler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+           if (msg.what== MainHandlerConstant.PRINT){
+               String obj=msg.obj.toString();
+               if (obj.contains("失败")){
+                   if (listener!=null) {
+                       listener.onSpeekError(new Exception(obj));
+                       listener.reStartYuYin();
+                   }
+               }
+
+           }
+        }
+    };
 
     /**
      * 初始化语音控制器
@@ -71,7 +86,7 @@ public class YuYinUtils implements SpeechSynthesizerListener{
      * UiMessageListener 在MessageListener的基础上，对handler发送消息，实现UI的文字更新
      * FileSaveListener 在UiMessageListener的基础上，使用 onSynthesizeDataArrived回调，获取音频流
      */
-    protected void initialTts() {
+    public void initialTts() {
         LoggerProxy.printable(true); // 日志打印在logcat中
         // 设置初始化参数
         Map<String, String> params = getParams();
