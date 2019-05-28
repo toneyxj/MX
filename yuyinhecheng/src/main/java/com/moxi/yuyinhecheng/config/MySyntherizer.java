@@ -160,7 +160,9 @@ public class MySyntherizer implements MainHandlerConstant {
     }
 
     public int stop() {
+        if (mSpeechSynthesizer!=null)
         return mSpeechSynthesizer.stop();
+        return -100;
     }
 
     /**
@@ -187,10 +189,14 @@ public class MySyntherizer implements MainHandlerConstant {
     }
 
     public void release() {
-        mSpeechSynthesizer.stop();
-        mSpeechSynthesizer.release();
-        mSpeechSynthesizer = null;
-        isInitied = false;
+        try {
+            isInitied = false;
+            mSpeechSynthesizer.stop();
+            mSpeechSynthesizer.release();
+            mSpeechSynthesizer = null;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 

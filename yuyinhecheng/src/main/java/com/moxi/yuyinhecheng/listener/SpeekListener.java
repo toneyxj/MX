@@ -25,4 +25,5 @@ public interface SpeekListener {
      * 初始化失败重新进入时需要重新初始化
      */
     void reStartYuYin();
+    void onStartSucess();
 }

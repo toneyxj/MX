@@ -1,6 +1,7 @@
 package com.moxi.yuyinhecheng;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 
@@ -22,15 +23,15 @@ import java.util.Map;
 
 /**
  * Error:java.lang.OutOfMemoryError: Java heap space
- .
- Please assign more memory to Gradle in the project's gradle.properties file.
- For example, the following line, in the gradle.properties file, sets the maximum Java heap size to 1,024 MB:
- <em>org.gradle.jvmargs=-Xmx1024m</em>
- <a href="http://www.gradle.org/docs/current/userguide/build_environment.html">Read Gradle's configuration guide</a><br><a href="http://docs.oracle.com/javase/7/docs/technotes/guides/vm/gc-ergonomics.html">Read about Java's heap size</a>
+ * .
+ * Please assign more memory to Gradle in the project's gradle.properties file.
+ * For example, the following line, in the gradle.properties file, sets the maximum Java heap size to 1,024 MB:
+ * <em>org.gradle.jvmargs=-Xmx1024m</em>
+ * <a href="http://www.gradle.org/docs/current/userguide/build_environment.html">Read Gradle's configuration guide</a><br><a href="http://docs.oracle.com/javase/7/docs/technotes/guides/vm/gc-ergonomics.html">Read about Java's heap size</a>
  * Created by xiajun on 2019/5/8.
  */
 
-public class YuYinUtils implements SpeechSynthesizerListener{
+public class YuYinUtils implements SpeechSynthesizerListener {
     private Context context;
     private String appId = "16234853";
 
@@ -39,7 +40,8 @@ public class YuYinUtils implements SpeechSynthesizerListener{
     private String secretKey = "x5fjrqvRCLkvTdf7feaVL8qcQUeeHKKv";
 
     // TtsMode.MIX; 离在线融合，在线优先； TtsMode.ONLINE 纯在线； 没有纯离线
-    protected TtsMode ttsMode = TtsMode.MIX;
+    //H9采用混合模式 6.8采用在线模式
+    public TtsMode ttsMode = TtsMode.MIX;
 
     // 离线发音选择，VOICE_FEMALE即为离线女声发音。
     // assets目录下bd_etts_common_speech_m15_mand_eng_high_am-mix_v3.0.0_20170505.dat为离线男声模型；
@@ -48,36 +50,37 @@ public class YuYinUtils implements SpeechSynthesizerListener{
     // 主控制类，所有合成控制方法从这个类开始
     protected MySyntherizer synthesizer;
     private SpeekListener listener;
+    private boolean startEnd = false;
 
-    private Handler mainHandler=new Handler(){
+    private Handler mainHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-           if (msg.what== MainHandlerConstant.PRINT){
-               String obj=msg.obj.toString();
-               if (obj.contains("失败")){
-                   if (listener!=null) {
-                       listener.onSpeekError(new Exception(obj));
-                       listener.reStartYuYin();
-                   }
-               }else if (obj.equals("语音引擎启动成功")){
-//                   loadModel();
-               }
-
-           }
+            if (msg.what == MainHandlerConstant.INIT_SUCCESS) {//初始化成功
+                startEnd = true;
+            }
         }
     };
 
+
+    public boolean isStartEnd() {
+        return startEnd;
+    }
+
     /**
      * 初始化语音控制器
-     * @param context 上下文
+     *
+     * @param context  上下文
      * @param listener 语音播放监听
      */
-    public YuYinUtils(Context context,SpeekListener listener){
-        this.context=context.getApplicationContext();
-        this.listener=listener;
+    public YuYinUtils(Context context, SpeekListener listener) {
+        this.context = context.getApplicationContext();
+        this.listener = listener;
+        boolean code = android.os.Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT;
+        if (code) ttsMode = TtsMode.ONLINE;
         //业务启初始化语音设备
         initialTts();
     }
+
     /**
      * 初始化引擎，需要的参数均在InitConfig类里
      * <p>
@@ -87,6 +90,7 @@ public class YuYinUtils implements SpeechSynthesizerListener{
      * FileSaveListener 在UiMessageListener的基础上，使用 onSynthesizeDataArrived回调，获取音频流
      */
     public void initialTts() {
+        startEnd = false;
         LoggerProxy.printable(true); // 日志打印在logcat中
         // 设置初始化参数
         Map<String, String> params = getParams();
@@ -115,7 +119,8 @@ public class YuYinUtils implements SpeechSynthesizerListener{
     /**
      * 合成的参数，可以初始化时填写，也可以在合成前设置。
      * Error:Execution failed for task ':bookstore:transformClassesWithDexForDebug'.
-     > com.android.build.api.transform.TransformException: com.android.ide.common.process.ProcessException: java.util.concurrent.ExecutionException: java.lang.UnsupportedOperationException
+     * > com.android.build.api.transform.TransformException: com.android.ide.common.process.ProcessException: java.util.concurrent.ExecutionException: java.lang.UnsupportedOperationException
+     *
      * @return
      */
     protected Map<String, String> getParams() {
@@ -185,8 +190,10 @@ public class YuYinUtils implements SpeechSynthesizerListener{
      */
     public void stop() {
         int result = synthesizer.stop();
+        if (result == -100) return;
         checkResult(result);
     }
+
     /**
      * 销毁语音
      */
@@ -197,14 +204,16 @@ public class YuYinUtils implements SpeechSynthesizerListener{
 
     /**
      * 检查返回
+     *
      * @param result
      */
-    private void checkResult(int result){
+    private void checkResult(int result) {
         if (result != 0) {
-            if (listener!=null)
-            listener.onSpeekError(new Exception("语音阅读出错"));
+            if (listener != null)
+                listener.onSpeekError(new Exception("语音阅读出错"));
         }
     }
+
     /**
      * 播放开始，每句播放开始都会回调
      *
@@ -213,7 +222,7 @@ public class YuYinUtils implements SpeechSynthesizerListener{
     @Override
     public void onSynthesizeStart(String utteranceId) {
 //        sendMessage("准备开始合成,序列号:" + utteranceId);
-        if (listener!=null)listener.onSpeekStart();
+        if (listener != null) listener.onSpeekStart();
     }
 
     /**
@@ -262,7 +271,7 @@ public class YuYinUtils implements SpeechSynthesizerListener{
     @Override
     public void onSpeechFinish(String utteranceId) {
 //        sendMessage("播放结束回调, 序列号:" + utteranceId);
-        if (listener!=null)listener.onSpeekOver();
+        if (listener != null) listener.onSpeekOver();
     }
 
     /**
@@ -273,7 +282,8 @@ public class YuYinUtils implements SpeechSynthesizerListener{
      */
     @Override
     public void onError(String utteranceId, SpeechError speechError) {
-        if (listener!=null)listener.onSpeekError(new Exception("错误发生：" + speechError.description + "，错误编码："
-                + speechError.code + "，序列号:" + utteranceId));
+        if (listener != null)
+            listener.onSpeekError(new Exception("错误发生：" + speechError.description + "，错误编码："
+                    + speechError.code + "，序列号:" + utteranceId));
     }
 }
