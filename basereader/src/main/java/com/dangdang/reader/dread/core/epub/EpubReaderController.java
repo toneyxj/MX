@@ -327,7 +327,7 @@ public class EpubReaderController extends BaseReaderController {
         exitMediaMode(false);
         printLog("lxu <-- onScrollingEnd last ");
         if (lodingListener != null) {
-            if (getReadInfo().isSpeekStaus() && paragraphText == null) {
+            if (getReadInfo().isSpeekStaus()) {
                 lodingListener.onLodingSucess();
             }
         }
@@ -1999,30 +1999,65 @@ public class EpubReaderController extends BaseReaderController {
     }
 
     private ParagraphText paragraphText = null;
-
+    private boolean isopenBewChart = false;
+    private boolean isnextPage=false;
     public String getParagraphText() {
-        ReadInfo readInfo = (ReadInfo) getReadInfo();
-        if (paragraphText == null) {
-            paragraphText = getParagraphText(readInfo.getReadChapter(), readInfo.getElementIndex(), true, 1000);
-        } else {
-            paragraphText = getParagraphText(readInfo.getReadChapter(), paragraphText.getEndEmtIndex().getIndex() + 1, false, 300);
+        if (isEueals()){
+            isopenBewChart = false;
+            return "nextPage";
         }
-        //绘制覆盖层
-        highLightParagraphText(readInfo.getReadChapter(), paragraphText);
+        ReadInfo readInfo = (ReadInfo) getReadInfo();
 
+        final int pageIndexInChapter = getPageIndexInChapter(readInfo.getReadChapter(), readInfo.getElementIndex());
+        IndexRange range = getPageRange(readInfo.getReadChapter(), pageIndexInChapter);
+        APPLog.e("isopenBewChart",isopenBewChart);
+        //新的一章节的开始
+        if (range.getStartIndexToInt() == 0) {
+            if (!isopenBewChart) {
+                isopenBewChart = true;
+                closeYuYin();
+            }
+        } else {
+            isopenBewChart = false;
+        }
+        if (paragraphText == null) {
+            paragraphText = getParagraphText(readInfo.getReadChapter(), readInfo.getElementIndex(), true, 150);
+        } else {
+            paragraphText = getParagraphText(readInfo.getReadChapter(), paragraphText.getEndEmtIndex().getIndex() + 1, false, 150);
+//            paragraphText = getParagraphText(readInfo.getReadChapter(), paragraphText.getEndEmtIndex().getIndex() + 1, false, 150);
+        }
         if (paragraphText.getText().trim().equals("")) {
-            final int pageIndexInChapter = getPageIndexInChapter(readInfo.getReadChapter(), readInfo.getElementIndex());
-            IndexRange range = getPageRange(readInfo.getReadChapter(), pageIndexInChapter);
             APPLog.e("显示的问题-rang", range);
             int end = range.getEndIndexToInt();
             if (end > 0) {
-                return getParagraphText();
+                if (paragraphText.getEndIndexToInt() == end) {
+                    isopenBewChart = false;
+                    return "nextPage";
+                } else {
+                    return getParagraphText();
+                }
             } else {
+                isopenBewChart = false;
                 return "nextPage";
             }
         }
+        if (!isFanYe()) {
+            isnextPage=false;
+            highLightParagraphText();
+        }else {
+            isnextPage=true;
+            isopenBewChart = false;
+            doCloseDrawing();
+        }
         APPLog.e("显示的问题", paragraphText);
         return paragraphText.getText();
+    }
+
+    public void highLightParagraphText() {
+        if (paragraphText != null&&!isnextPage) {
+            //绘制覆盖层
+            highLightParagraphText(getReadInfo().getReadChapter(), paragraphText);
+        }
     }
 
     /**
@@ -2036,19 +2071,35 @@ public class EpubReaderController extends BaseReaderController {
         //获取当前页索引
         final int pageIndexInChapter = getPageIndexInChapter(readInfo.getReadChapter(), readInfo.getElementIndex());
         IndexRange range = getPageRange(readInfo.getReadChapter(), pageIndexInChapter);
-        boolean fanye = range.getEndIndex().getIndex() <= paragraphText.getEndEmtIndex().getIndex();
+        APPLog.e("IndexRange", range);
+        boolean fanye = range.getEndIndex().getIndex() < paragraphText.getEndEmtIndex().getIndex();
+//        if (fanye){
+//            textIndex=range.getEndIndex().getIndex()-paragraphText.getEndEmtIndex().getIndex();
+//        }
         return fanye;
     }
-
+    private boolean isEueals(){
+        if (paragraphText == null) return false;
+        ReadInfo readInfo = (ReadInfo) getReadInfo();
+        //获取当前页索引
+        final int pageIndexInChapter = getPageIndexInChapter(readInfo.getReadChapter(), readInfo.getElementIndex());
+        IndexRange range = getPageRange(readInfo.getReadChapter(), pageIndexInChapter);
+        boolean fanye = range.getEndIndex().getIndex() == paragraphText.getEndEmtIndex().getIndex();
+        return fanye;
+    }
     /**
      * 关闭语音合成功能
      */
     public void closeYuYin() {
         paragraphText = null;
+        doCloseDrawing();
+
+    }
+
+    public void doCloseDrawing() {
         doDrawing(DrawingType.ShadowTTS, new Point(), false, new Point(),
                 false, null, new Rect[]{});
     }
-
     protected void preComposingChapter(Chapter chapter) {
         getEpubBM().preComposingChapter(chapter);
     }

@@ -53,6 +53,7 @@ import com.dangdang.reader.dread.core.base.IEpubReaderController;
 import com.dangdang.reader.dread.core.base.IFunctionManager;
 import com.dangdang.reader.dread.core.base.IMediaInterface;
 import com.dangdang.reader.dread.core.base.IReaderApplication.IAbortParserListener;
+import com.dangdang.reader.dread.core.base.IReaderController;
 import com.dangdang.reader.dread.core.base.IVideoInterface;
 import com.dangdang.reader.dread.core.epub.EpubReaderController;
 import com.dangdang.reader.dread.core.epub.EpubReaderWidget;
@@ -430,6 +431,7 @@ public class ReadActivity extends PubReadActivity implements
             }
         });
         yuYinManager.bindServiceInvoked();
+
     }
 
     private void addReceiver() {
@@ -610,14 +612,13 @@ public class ReadActivity extends PubReadActivity implements
             }
         }
     };
-
     public void setSpeekStaus(boolean speekStaus) {
         this.getReadInfo().setSpeekStaus(speekStaus);
         if (settingNewDialog!=null&&settingNewDialog.isShowing()){
             settingNewDialog.setYuYinStatus(getReadInfo().isSpeekStaus());
         }
     }
-    private   int nextPage=0;
+    private boolean nextpage=false;
     private void switchYuyin(){
         EpubReaderController controller = (EpubReaderController) mReaderApps.getReaderController();
         controller.setLodingListener(lodingSucess);
@@ -629,28 +630,39 @@ public class ReadActivity extends PubReadActivity implements
         }
 
         String value=controller.getParagraphText();
-        if (value.equals("nextPage")||controller.isFanYe()){
-            mReaderApps.pageTurning(false);
-            controller.closeYuYin();
+        APPLog.e("翻页与否",value);
+        if (value.equals("nextPage")){
+            nextpage=true;
+            turnPageByVolumeKey(false);
+//            mReaderApps.pageTurning(false);
         }else {
+            nextpage=false;
             yuYinManager.SendYuYinMsg(value);
-//            if (controller.isFanYe()) {
+            if (controller.isFanYe()) {
 //                mReaderApps.pageTurning(false);
-//
-//            }
+                turnPageByVolumeKey(false);
+            }
         }
     }
     private LodingSucess lodingSucess=new LodingSucess() {
         @Override
         public void onLodingSucess() {
-            switchYuyin();
+            APPLog.e("onLodingSucess",nextpage);
+            if (nextpage){
+                switchYuyin();
+            }else {
+                EpubReaderController controller = (EpubReaderController) mReaderApps.getReaderController();
+                controller.highLightParagraphText();
+            }
         }
     };
     private void stopYuyin(){
-        setSpeekStaus(false);
-        yuYinManager.stopYuYinMsg();
+        if (this.getReadInfo().isSpeekStaus()) {
+            setSpeekStaus(false);
+        }
         EpubReaderController controller = (EpubReaderController) mReaderApps.getReaderController();
         controller.closeYuYin();
+        yuYinManager.stopYuYinMsg();
     }
     private HitnDialog dialog;
 
@@ -1756,11 +1768,13 @@ public class ReadActivity extends PubReadActivity implements
                 break;
             case KeyEvent.KEYCODE_PAGE_UP:
                 if (getReadInfo().isSpeekStaus())return true;
-                mReaderApps.pageTurning(true);
+//                mReaderApps.pageTurning(true);
+                turnPageByVolumeKey(true);
                 return true;
             case KeyEvent.KEYCODE_PAGE_DOWN:
                 if (getReadInfo().isSpeekStaus())return true;
-                mReaderApps.pageTurning(false);
+//                mReaderApps.pageTurning(false);
+                turnPageByVolumeKey(false);
                 return true;
         }
         mKeyDown = false;
@@ -1797,22 +1811,27 @@ public class ReadActivity extends PubReadActivity implements
     }
 
     protected boolean turnPageByVolumeKey(boolean up) {
-        if (!ReadConfig.getConfig().isVolKeyFlip()) {
-            return false;
+//        if (!ReadConfig.getConfig().isVolKeyFlip()) {
+//            return false;
+//        }
+//        if (isVideoLandscape())
+//            return false;
+//        if (isVideoShow())
+//            return false;
+//        if (!processSelectedOption()) {
+//            return true;
+//        }
+//        if (isMenuShow()) {
+//            needHideMenu();
+//            return true;
+//        }
+        if (getReadInfo().isOnpause() && getReadInfo().isSpeekStaus()) {
+            EpubReaderController controller = (EpubReaderController) mReaderApps.getReaderController();
+            controller.onScrollingEnd(IReaderController.DPageIndex.Next);
+        }else {
+            mReaderApps.doFunction(up ? FunctionCode.FCODE_TURNPAGE_BACK
+                    : FunctionCode.FCODE_TURNPAGE_FORWARD);
         }
-        if (isVideoLandscape())
-            return false;
-        if (isVideoShow())
-            return false;
-        if (!processSelectedOption()) {
-            return true;
-        }
-        if (isMenuShow()) {
-            needHideMenu();
-            return true;
-        }
-        mReaderApps.doFunction(up ? FunctionCode.FCODE_TURNPAGE_BACK
-                : FunctionCode.FCODE_TURNPAGE_FORWARD);
         return true;
     }
 
@@ -2018,6 +2037,7 @@ public class ReadActivity extends PubReadActivity implements
     public void onReadPauseImpl() {
         hideShow();
         try {
+            getReadInfo().setOnpause(true);
 //            UmengStatistics.onPageEnd(getClass().getSimpleName());
 //            printLog(" onPause() ");
             switchWakeLock(false);
@@ -2068,6 +2088,12 @@ public class ReadActivity extends PubReadActivity implements
 
     @Override
     public void onReadResumeImpl() {
+        if (getReadInfo().isOnpause() && getReadInfo().isSpeekStaus()) {
+//        //刷新界面
+            resetView();
+        }
+        getReadInfo().setOnpause(false);
+
         setttingScreenOrientaton(-1, false, isfirst);
         isfirst = false;
 

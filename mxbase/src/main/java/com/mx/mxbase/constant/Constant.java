@@ -16,8 +16,8 @@ public class Constant {
     public static boolean isMoXi=false;
     //是否是海尔端用于接收验证码前缀
     public static String CLENT_APP = Constant.isMoXi?"moxi":"haier";//haier  moxi
-    //本地虚拟底层版本号
-    public static int LOCAL_VIR_VERSION = 13;
+    //本地虚拟底层版本号13
+    public static int LOCAL_VIR_VERSION = 14;
     //网络请求HOST
 //    public static String HTTP_HOST = "http://10.79.10.102:8088";
     public static String HTTP_HOST = "http://120.25.193.163";

@@ -85,7 +85,7 @@ public class BaseReadInfo {
 	private boolean isSupportTTS=true;
 	private boolean isSupportConvert=true;
 	private boolean speekStaus=false;
-
+	private  boolean onpause=false;
 	/**
 	 * 语音播报状态
 	 * @return
@@ -99,6 +99,14 @@ public class BaseReadInfo {
 	}
 	public boolean isSupportTTS() {
 		return isSupportTTS;
+	}
+
+	public  boolean isOnpause() {
+		return onpause;
+	}
+
+	public void setOnpause(boolean onpause) {
+		this.onpause = onpause;
 	}
 
 	public void setIsSupportTTS(boolean isSupportTTS) {

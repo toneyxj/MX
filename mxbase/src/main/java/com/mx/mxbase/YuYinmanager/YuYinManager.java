@@ -42,6 +42,7 @@ public class YuYinManager {
         if (!mBond){
             if (callBack!=null)callBack.onYuYinFail("语音服务绑定失败");
             return;
+
         }else if (msg==null||msg.trim().equals("")){
             if (callBack!=null)callBack.onYuYinFail("无可阅读内容");
             return;
@@ -118,11 +119,16 @@ public class YuYinManager {
     };
 
     public void bindServiceInvoked() {
-        APPLog.e("bindServiceInvoked");
-        Intent intent = new Intent();
-        intent.setAction("com.baidu.yuyinhecheng.YuYinService");
-        context.startService(intent);
-        context.bindService(intent, conn, Context.BIND_AUTO_CREATE);
+        try {
+            APPLog.e("bindServiceInvoked");
+            Intent intent = new Intent();
+            intent.setAction("com.baidu.yuyinhecheng.YuYinService");
+            context.startService(intent);
+            context.bindService(intent, conn, Context.BIND_AUTO_CREATE);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     public void onDestroy() {
