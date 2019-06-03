@@ -7,7 +7,6 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.baidu.tts.client.TtsMode;
@@ -60,13 +59,11 @@ public class YuYinService extends Service {
     private SpeekListener speekListener=new SpeekListener() {
         @Override
         public void onSpeekOver() {
-            Log.e("sendmsg","MsgConfig.onSpeekOver");
             sendBroadcast(new Intent(MsgConfig.speek_send_over));
         }
 
         @Override
         public void onSpeekStart() {
-            Log.e("sendmsg","MsgConfig.onSpeekStart");
             sendBroadcast(new Intent(MsgConfig.speek_send_start));
         }
 
@@ -104,7 +101,6 @@ public class YuYinService extends Service {
                         startTTS();
                         return;
                     }
-                    Log.e("sendmsg",msgfromClient.getData().getString("data"));
                     if (!yuYinUtils.isStartEnd()){
                         sendErrorMsg("语音系统初始化中");
                     }else {
@@ -117,7 +113,6 @@ public class YuYinService extends Service {
                         startTTS();
                         return;
                     }
-                    Log.e("sendmsg","speekStop");
                     if (!yuYinUtils.isStartEnd()){
                         sendErrorMsg("语音系统初始化中");
                     }else {
