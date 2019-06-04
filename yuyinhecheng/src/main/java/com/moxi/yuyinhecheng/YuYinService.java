@@ -110,7 +110,7 @@ public class YuYinService extends Service {
                 case MsgConfig.speekStop:
                     if (yuYinUtils==null){
                         sendErrorMsg("语音系统初始化中");
-                        startTTS();
+//                        startTTS();
                         return;
                     }
                     if (!yuYinUtils.isStartEnd()){
@@ -132,7 +132,7 @@ public class YuYinService extends Service {
         }
         intent.putExtra("error", msg);
         sendBroadcast(intent);
-        if (yuYinUtils.ttsMode== TtsMode.MIX){
+        if (yuYinUtils.ttsMode==TtsMode.MIX){
             yuYinUtils.onDestroy();
             yuYinUtils=null;
         }

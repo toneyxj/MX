@@ -33,11 +33,11 @@ import java.util.Map;
 
 public class YuYinUtils implements SpeechSynthesizerListener {
     private Context context;
-    private String appId = "16234853";
+    private String appId = "16429361";
 
-    private String appKey = "hLf1zaojwn9HgATsqpcfaRYM";
+    private String appKey = "9ou5E2XvemKuk76bzeEjpXqY";
 
-    private String secretKey = "x5fjrqvRCLkvTdf7feaVL8qcQUeeHKKv";
+    private String secretKey = "G9W71kpkVtqXjeELpTYUrL1tCBZTT2nj";
 
     // TtsMode.MIX; 离在线融合，在线优先； TtsMode.ONLINE 纯在线； 没有纯离线
     //H9采用混合模式 6.8采用在线模式
