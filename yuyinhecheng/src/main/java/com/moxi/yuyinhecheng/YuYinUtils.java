@@ -91,7 +91,7 @@ public class YuYinUtils implements SpeechSynthesizerListener {
      */
     public void initialTts() {
         startEnd = false;
-        LoggerProxy.printable(true); // 日志打印在logcat中
+        LoggerProxy.printable(false); // 日志打印在logcat中
         // 设置初始化参数
         Map<String, String> params = getParams();
         // appId appKey secretKey 网站上您申请的应用获取。注意使用离线合成功能的话，需要应用中填写您app的包名。包名在build.gradle中获取。

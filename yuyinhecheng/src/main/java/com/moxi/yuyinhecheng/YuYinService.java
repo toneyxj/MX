@@ -125,13 +125,13 @@ public class YuYinService extends Service {
         }
     });
     private synchronized void sendErrorMsg(String msg){
-        if (yuYinUtils==null)return;
         Intent intent = new Intent(MsgConfig.speek_send_error);
         if (!NetWorkUtil.isNetworkConnected(this)) {
             msg = "请检查网络连接";
         }
         intent.putExtra("error", msg);
         sendBroadcast(intent);
+        if (yuYinUtils==null)return;
         if (yuYinUtils.ttsMode==TtsMode.MIX){
             yuYinUtils.onDestroy();
             yuYinUtils=null;
