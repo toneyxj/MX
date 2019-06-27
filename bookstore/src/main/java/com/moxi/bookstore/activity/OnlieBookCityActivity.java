@@ -23,6 +23,7 @@ import com.dangdang.reader.utils.UpdateCss;
 import com.moxi.bookstore.BookstoreApplication;
 import com.moxi.bookstore.R;
 import com.moxi.bookstore.adapter.bookManager.NetBookPageRecyclerAdapter;
+import com.moxi.bookstore.asy.LogoDataManager;
 import com.moxi.bookstore.base.BookStoreBaseActivity;
 import com.moxi.bookstore.bean.Media;
 import com.moxi.bookstore.bean.Message.RecommendData;
@@ -120,6 +121,7 @@ public class OnlieBookCityActivity extends BookStoreBaseActivity implements View
         getRecommData();
         checkCss();
 
+        LogoDataManager.getInstance().saveData();
     }
 
     /**

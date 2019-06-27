@@ -169,8 +169,6 @@ public interface HttpService {
                                                            @Field("returnType") String returnType,@Field("deviceType") String deviceType,
                                                            @Field("token") String token);
 
-
-
     /**
      * 购物列表
      * @param paramMap
@@ -178,7 +176,13 @@ public interface HttpService {
      */
     @GET("/media/api2.go?action=listShoppingCart")
     Observable<BaseEntity<Cart>> listShoppingCart(@QueryMap HashMap<String,Object> paramMap);
-
+//    购物车接口更新开始
+    /**
+     * 添加书籍到购物车
+     */
+    @GET("/shoppingcart/third/cart_append_products")
+    Observable<BaseEntity<Cart>> addShoppingCart(@QueryMap HashMap<String,Object> paramMap);
+    //    购物车接口更新结束
     /**
      * 删除购物车
      * @param paramMap

@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.view.KeyEvent;
 
 import com.moxi.bookstore.R;
+import com.moxi.bookstore.asy.LogoDataManager;
 import com.moxi.bookstore.db.EbookDB;
 import com.moxi.bookstore.db.SacnReadFileUtils;
 import com.moxi.bookstore.db.TableConfig;
@@ -44,6 +45,7 @@ public class RecentlyActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recently);
+        LogoDataManager.getInstance().saveData();
         if (savedInstanceState!=null||!isfirst){
             isfirst=false;
 //            isfirst=savedInstanceState.getBoolean("isfirst");

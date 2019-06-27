@@ -19,9 +19,9 @@ android {
 
     signingConfigs {
         release {
-            storeFile file('D:/Android/Moxi/mx/Key.jks')
             keyAlias 'archer'
             keyPassword '111111'
+            storeFile file('F:/MX/Key.jks')
             storePassword '111111'
         }
     }

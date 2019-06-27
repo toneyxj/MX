@@ -38,8 +38,8 @@ import com.moxi.bookstore.db.TableConfig;
 import com.moxi.bookstore.db.TableOperate;
 import com.moxi.bookstore.http.HttpManager;
 import com.moxi.bookstore.http.HttpService;
+import com.moxi.bookstore.http.NewCartWorkManager;
 import com.moxi.bookstore.http.deal.CancelStoreDeal;
-import com.moxi.bookstore.http.deal.CartListDeal;
 import com.moxi.bookstore.http.deal.Certificatedeal;
 import com.moxi.bookstore.http.deal.DoStoreDeal;
 import com.moxi.bookstore.http.deal.FreeObtenMedia;
@@ -47,6 +47,7 @@ import com.moxi.bookstore.http.deal.MakeOrderDeal;
 import com.moxi.bookstore.http.deal.ParamsMap;
 import com.moxi.bookstore.http.deal.SubEbookDetailData;
 import com.moxi.bookstore.http.entity.BaseDeal;
+import com.moxi.bookstore.http.listener.BackMassage;
 import com.moxi.bookstore.http.listener.HttpOnNextListener;
 import com.moxi.bookstore.http.subscribers.ProgressSubscriber;
 import com.moxi.bookstore.modle.BookStoreFile;
@@ -862,15 +863,43 @@ public class EbookDetailActivity extends BookStoreBaseActivity {
     }
 
     private void getCartId() {
-        HashMap<String, Object> pramers = new ParamsMap(this);
-        //pramers.put("action", "listShoppingCart");
-        pramers.put("deviceType", "Android");
-        pramers.put("token", token);
-        CartListDeal IdDeal = new CartListDeal(new ProgressSubscriber(CartIdListener, this), pramers);
-        HttpManager manager = HttpManager.getInstance();
-        manager.doHttpDeal(IdDeal);
+//        HashMap<String, Object> pramers = new ParamsMap(this);
+//        //pramers.put("action", "listShoppingCart");
+//        pramers.put("deviceType", "Android");
+//        pramers.put("token", token);
+//        CartListDeal IdDeal = new CartListDeal(new ProgressSubscriber(CartIdListener, this), pramers);
+//        HttpManager manager = HttpManager.getInstance();
+//        manager.doHttpDeal(IdDeal);
+//        showDialog("加载中...");
+//
+//        HashMap<String, Object> pramers = new ParamsMap(this);
+//        pramers.put("ct", "android");
+//        pramers.put("session_id", token);
+//        APPLog.e("session_id",token);
+//        pramers.put("same_ebook_tip", "1");
+//        pramers.put("product_ids", saleId+".1");
+//        AddShopingCart IdDeal = new AddShopingCart(new ProgressSubscriber(CartIdListener, this), pramers);
+//        HttpManagerShopingCart manager = HttpManagerShopingCart.getInstance();
+//        manager.doHttpDeal(IdDeal);
+        NewCartWorkManager.addCart(token, saleId+"", new BackMassage() {
+            @Override
+            public void onSucess(Object obj) {
+                if (isFinishing())return;
+                hideDialog();
+                ToastUtil("加入购物车完成");
+                addcarlist_tv.setClickable(false);
+            }
+
+            @Override
+            public void onFail(Exception e) {
+                if (isFinishing())return;
+                hideDialog();
+                ToastUtil(e.getMessage());
+            }
+        });
         showDialog("加载中...");
     }
+    //http://api.dangdang.com/shoppingcart/third/cart_append_products?ct=android&session_id=e_8772117e1a0ed3dea8cc133dd354eecce8a69c5385ced257f60d82c88e213782&product_ids=1900574082.1
 
     String cartId;
     private HttpOnNextListener CartIdListener = new HttpOnNextListener<Cart>() {

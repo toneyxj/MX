@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 
+import com.mx.mxbase.constant.APPLog;
 import com.mx.mxbase.constant.Constant;
 
 /**
@@ -103,13 +104,13 @@ public class MXUamManager {
         String[] back = {"username", "appsession", "usertoken"};
         Cursor cursor = context.getContentResolver().query(USER_CONTENT_URI, back, "username=?", new String[]{Constant.MAIN_PACKAGE}, null);
         if (cursor == null) {
-            Log.e("---", "cursor为空");
+            APPLog.e("---", "cursor为空");
             return ddToken;
         }
         if (cursor.moveToFirst()) {
             do {
                 ddToken = cursor.getString(cursor.getColumnIndex(USER_TOKEN));
-                Log.e("ddToken", ddToken);
+                APPLog.e("ddToken", ddToken);
             } while (cursor.moveToNext());
             return ddToken;
         }

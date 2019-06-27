@@ -11,10 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.moxi.bookstore.R;
-import com.moxi.bookstore.bean.Cart;
 import com.moxi.bookstore.interfacess.ClickPosition;
+import com.moxi.bookstore.modle.vo.MProductVO;
 import com.mx.mxbase.utils.GlideUtils;
-import com.moxi.bookstore.utils.ToolUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,14 +24,14 @@ import java.util.List;
  */
 public class CartAdapter extends BaseAdapter {
     private Context cxt;
-    private List<Cart.ProductsBean> data;
+    private List<MProductVO> data;
     ClickPosition listener;
     public CartAdapter(Context context,ClickPosition listener) {
         this.cxt = context;
         this.listener=listener;
     }
 
-    public void setData(List<Cart.ProductsBean> list) {
+    public void setData(List<MProductVO> list) {
         this.data = list;
         notifyDataSetChanged();
     }
@@ -42,17 +41,28 @@ public class CartAdapter extends BaseAdapter {
 
         if (null==data||data.size()==0)
             return 0;
-        else if (data.size()>3)
-            return 3;
+        else if (data.size()>4)
+            return 4;
         else
             return data.size();
     }
 
-    public List<Cart.ProductsBean> getChickItems() {
-        List<Cart.ProductsBean> items = new ArrayList<>();
+    public List<MProductVO> getChickItems() {
+        List<MProductVO> items = new ArrayList<>();
         if (null != data && data.size() > 0) {
-            for (Cart.ProductsBean bean : data) {
-                if (bean.isChecked()) {
+            for (MProductVO bean : data) {
+                if (bean.getIs_checked()==1) {
+                    items.add(bean);
+                }
+            }
+        }
+        return items;
+    }
+    public List<MProductVO> getNoChickItems() {
+        List<MProductVO> items = new ArrayList<>();
+        if (null != data && data.size() > 0) {
+            for (MProductVO bean : data) {
+                if (bean.getIs_checked()!=1) {
                     items.add(bean);
                 }
             }
@@ -87,32 +97,33 @@ public class CartAdapter extends BaseAdapter {
         } else
             holder = (ViewHolder) convertView.getTag();
         holder.orgprice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-        Cart.ProductsBean item = data.get(position);
+        MProductVO item = data.get(position);
         //加载图片
-        GlideUtils.getInstance().loadGreyImage(cxt, holder.bookico, item.getCoverPic());
+        GlideUtils.getInstance().loadGreyImage(cxt, holder.bookico, item.getProduct_image());
         String title;
-        if (TextUtils.isEmpty(item.getTitle())) {
+        if (TextUtils.isEmpty(item.getProduct_name())) {
             title = "不详";
         } else
-            title = item.getTitle();
+            title = item.getProduct_name();
         holder.title.setText(title);
-        holder.author.setText(item.getAuthorPenname());
+        holder.author.setText("");
       //  holder.descs.setText("   " + item.getCategorys());
-        double price= Double.parseDouble(item.getPrice())/100;
-        holder.proprice.setText("￥" +ToolUtils.getIntence().formatPrice(price));
-        holder.checkBox.setChecked(item.isChecked());
-        holder.checkBox.setTag(item);
-         holder.orgprice.setText("￥" +ToolUtils.getIntence().formatPrice(price));
+//        double price= Double.parseDouble(item.getPrice())/100;
+        holder.proprice.setText("￥" +item.getPrice().getDangdang_price());
+        holder.checkBox.setChecked(item.getIs_checked()==1);
+        holder.checkBox.setTag(position);
+         holder.orgprice.setText("￥" +item.getPrice().getOriginal_price());
         return convertView;
     }
 
     View.OnClickListener checkBoxClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Cart.ProductsBean item = (Cart.ProductsBean) view.getTag();
-            CheckBox checkBox = (CheckBox) view;
-            item.setChecked(checkBox.isChecked());
-            listener.click(0);
+            int position= (int) view.getTag();
+//            MProductVO item = (MProductVO) view.getTag();
+//            CheckBox checkBox = (CheckBox) view;
+//            item.setIs_checked(checkBox.isChecked()?1:0);
+            listener.click(position);
         }
     };
 

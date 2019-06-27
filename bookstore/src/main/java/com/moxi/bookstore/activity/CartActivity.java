@@ -15,32 +15,29 @@ import com.moxi.bookstore.R;
 import com.moxi.bookstore.adapter.CartAdapter;
 import com.moxi.bookstore.base.BookStoreBaseActivity;
 import com.moxi.bookstore.bean.Cart;
-import com.moxi.bookstore.bean.DeleteShoppingCart;
 import com.moxi.bookstore.bean.MakeOrderData;
 import com.moxi.bookstore.http.HttpManager;
-import com.moxi.bookstore.http.HttpService;
-import com.moxi.bookstore.http.deal.CartListDeal;
+import com.moxi.bookstore.http.NewCartWorkManager;
 import com.moxi.bookstore.http.deal.DoStoreDeal;
 import com.moxi.bookstore.http.deal.MakeOrderDeal;
-import com.moxi.bookstore.http.deal.ParamsMap;
-import com.moxi.bookstore.http.entity.BaseDeal;
+import com.moxi.bookstore.http.listener.BackMassage;
 import com.moxi.bookstore.http.listener.HttpOnNextListener;
 import com.moxi.bookstore.http.subscribers.ProgressSubscriber;
 import com.moxi.bookstore.interfacess.ClickPosition;
 import com.moxi.bookstore.interfacess.OnFlingListener;
 import com.moxi.bookstore.modle.getEbookOrderFlowV2_Data;
+import com.moxi.bookstore.modle.vo.MCartListResponseVO;
+import com.moxi.bookstore.modle.vo.MCollectionVO;
+import com.moxi.bookstore.modle.vo.MProductVO;
+import com.moxi.bookstore.modle.vo.MShopVO;
 import com.moxi.bookstore.utils.ToolUtils;
 import com.moxi.bookstore.view.HSlidableListView;
 import com.mx.mxbase.constant.APPLog;
-import com.mx.mxbase.utils.StringUtils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import butterknife.Bind;
-import rx.Observable;
-import rx.Subscriber;
 
 public class CartActivity extends BookStoreBaseActivity implements OnFlingListener, ClickPosition {
 
@@ -57,10 +54,12 @@ public class CartActivity extends BookStoreBaseActivity implements OnFlingListen
     @Bind(R.id.sumbit_tv)
     TextView sumbit_tv;
     CartAdapter booksadapter;
-    List<Cart.ProductsBean> data, pageData;
+    //    List<Cart.ProductsBean> data, pageData;
+    List<MProductVO> data, pageData;
+    private MCartListResponseVO cartList;
     String type, group, chanelname;
     String cartId, token, deviceNo;
-    int currentPage, pageCunt, resultCount;
+    int currentPage=1, pageCunt, resultCount;
     String productIds, selectTitles;
 
     @Override
@@ -80,10 +79,9 @@ public class CartActivity extends BookStoreBaseActivity implements OnFlingListen
         initView(null);
     }
 
-    private void initView(List<Cart.ProductsBean> data) {
-        currentPage = 1;
+    private void initView(List<MProductVO> data) {
         if (data == null) {
-
+            currentPage=1;
             bookslv.setDivider(null);
             booksadapter = new CartAdapter(this, this);
             bookslv.setAdapter(booksadapter);
@@ -100,10 +98,38 @@ public class CartActivity extends BookStoreBaseActivity implements OnFlingListen
 
             resultCount = data.size();
             getpageCunt();
-            booksadapter.setData(data);
+            if (currentPage>pageCunt)
+                currentPage=pageCunt;
+            pageData.clear();
+            int size=(currentPage * 4)>resultCount?resultCount:(currentPage * 4);
+            for (int i = (currentPage - 1) * 4; i < size; i++) {
+                pageData.add(data.get(i));
+            }
+
+            booksadapter.setData(pageData);
+
+            if (isAllCheck())
+                checkBox.setChecked(true);
+
+            totalPrice.setText("￥：" + cartList.getPrice().getEbook_total());
             catetory_title.setText("购物车（ " + data.size() + " ）" + "共" + currentPage + "/" + pageCunt + " 页");
         }
 
+    }
+
+    public List<MProductVO> getProducts(MCartListResponseVO cartData) {
+        List<MProductVO> list = new ArrayList<>();
+        if (cartData != null) {
+            for (MShopVO shopVo : cartData.getShop_vos()) {
+                for (MCollectionVO cliction : shopVo.getCollections()) {
+                    for (MProductVO pvos : cliction.getProducts()) {
+                        list.add(pvos);
+                    }
+                }
+            }
+        }
+        APPLog.e("list",list.size());
+        return list;
     }
 
     private void getSelectPrice() {
@@ -143,7 +169,7 @@ public class CartActivity extends BookStoreBaseActivity implements OnFlingListen
 
     private void getToken() {
         if (ToolUtils.getIntence().hasLogin(this)) {
-            if (token==null||!ToolUtils.getIntence().getToken(this).getToken().equals(token)) {
+            if (token == null || !ToolUtils.getIntence().getToken(this).getToken().equals(token)) {
                 token = ToolUtils.getIntence().getToken(this).getToken();
                 getCartId();
             }
@@ -152,13 +178,14 @@ public class CartActivity extends BookStoreBaseActivity implements OnFlingListen
     }
 
     private void getCartId() {
-        HashMap<String, Object> pramers = new ParamsMap(this);
-        //pramers.put("action", "listShoppingCart");
-        pramers.put("deviceType", "Android");
-        pramers.put("token", token);
-        CartListDeal IdDeal = new CartListDeal(new ProgressSubscriber(CartIdListener, this), pramers);
-        HttpManager manager = HttpManager.getInstance();
-        manager.doHttpDeal(IdDeal);
+//        HashMap<String, Object> pramers = new ParamsMap(this);
+//        //pramers.put("action", "listShoppingCart");
+//        pramers.put("deviceType", "Android");
+//        pramers.put("token", token);
+//        CartListDeal IdDeal = new CartListDeal(new ProgressSubscriber(CartIdListener, this), pramers);
+//        HttpManager manager = HttpManager.getInstance();
+//        manager.doHttpDeal(IdDeal);
+        getSaleData();
         showDialog("加载中...");
     }
 
@@ -180,94 +207,116 @@ public class CartActivity extends BookStoreBaseActivity implements OnFlingListen
     };
 
     public void delFromCart(View v) {
-
-        List<Cart.ProductsBean> checkBeens = booksadapter.getChickItems();
-        String productIds = "";
-        for (Cart.ProductsBean checkBeen : data) {
-            if (checkBeen.isChecked())
-                productIds += "," + checkBeen.getMediaId();
+        List<MProductVO> checkBeens = booksadapter.getChickItems();
+        StringBuilder productIds = new StringBuilder();
+        for (int i = 0; i < checkBeens.size(); i++) {
+            if (i > 0) {
+                productIds.append(",");
+            }
+            productIds.append(checkBeens.get(i).getCart_product_item_id());
         }
         if (TextUtils.isEmpty(productIds)) {
-            ToastUtil("未添加书籍");
-            totalPrice.setText("￥：0.00");
+            ToastUtil("未选中书籍");
+//            totalPrice.setText("￥：0.00");
             return;
         }
-        productIds = productIds.substring(1);
-
-        final HashMap<String, Object> params = new ParamsMap(this);
-        //params.put("action", "deleteShoppingCart");
-        //params.put("cartId", "1609271123042346");
-        APPLog.e("cartId:" + cartId);
-        APPLog.e("productIds:" + productIds);
-        APPLog.e("token:" + token);
-        params.put("cartId", cartId);
-        params.put("productIds", productIds);
-        params.put("token", token);
-        HttpManager manager = HttpManager.getInstance();
-        manager.doHttpDeal(new BaseDeal() {
-            @Override
-            public Observable getObservable(HttpService methods) {
-                return methods.deleteShoppingCart(params);
-            }
-
-            @Override
-            public Subscriber getSubscirber() {
-                return new ProgressSubscriber(
-                        new HttpOnNextListener<DeleteShoppingCart>() {
-                            @Override
-                            public void onError() {
-                                hideDialog();
-                            }
-
-                            @Override
-                            public void onNext(DeleteShoppingCart o) {
-                                hideDialog();
-                                APPLog.e("deletcartlist result:" + o.getResult());
-                                List<Cart.ProductsBean> checkBeens = booksadapter.getChickItems();
-                                List<Cart.ProductsBean> newBeans = new ArrayList<Cart.ProductsBean>();
-
-                                for (Cart.ProductsBean bean : data) {
-                                   /* boolean isDel = false;
-                                    for (Cart.ProductsBean delBean : checkBeens) {
-                                        if (bean.getMediaId() == delBean.getMediaId()) {
-                                            isDel = true;
-                                            break;
-                                        }
-                                    }
-                                    if (!isDel) {
-                                        newBeans.add(bean);
-                                    }*/
-                                    if (!bean.isChecked())
-                                        newBeans.add(bean);
-                                }
-                                data = newBeans;
-                                initView(data);
-                                totalPrice.setText("￥：0.00");
-                                checkBox.setChecked(false);
-                                edit_end_tv.setText("完成");
-                            }
-                        }, CartActivity.this);
-            }
-
-        });
+        NewCartWorkManager.deleteData(token, productIds.toString(), getList);
+//        productIds = productIds.substring(1);
+//
+//        final HashMap<String, Object> params = new ParamsMap(this);
+//        //params.put("action", "deleteShoppingCart");
+//        //params.put("cartId", "1609271123042346");
+//        APPLog.e("cartId:" + cartId);
+//        APPLog.e("productIds:" + productIds);
+//        APPLog.e("token:" + token);
+//        params.put("cartId", cartId);
+//        params.put("productIds", productIds);
+//        params.put("token", token);
+//        HttpManager manager = HttpManager.getInstance();
+//        manager.doHttpDeal(new BaseDeal() {
+//            @Override
+//            public Observable getObservable(HttpService methods) {
+//                return methods.deleteShoppingCart(params);
+//            }
+//
+//            @Override
+//            public Subscriber getSubscirber() {
+//                return new ProgressSubscriber(
+//                        new HttpOnNextListener<DeleteShoppingCart>() {
+//                            @Override
+//                            public void onError() {
+//                                hideDialog();
+//                            }
+//
+//                            @Override
+//                            public void onNext(DeleteShoppingCart o) {
+//                                hideDialog();
+//                                APPLog.e("deletcartlist result:" + o.getResult());
+//                                List<Cart.ProductsBean> checkBeens = booksadapter.getChickItems();
+//                                List<Cart.ProductsBean> newBeans = new ArrayList<Cart.ProductsBean>();
+//
+//                                for (Cart.ProductsBean bean : data) {
+//                                   /* boolean isDel = false;
+//                                    for (Cart.ProductsBean delBean : checkBeens) {
+//                                        if (bean.getMediaId() == delBean.getMediaId()) {
+//                                            isDel = true;
+//                                            break;
+//                                        }
+//                                    }
+//                                    if (!isDel) {
+//                                        newBeans.add(bean);
+//                                    }*/
+//                                    if (!bean.isChecked())
+//                                        newBeans.add(bean);
+//                                }
+//                                data = newBeans;
+//                                initView(data);
+//                                totalPrice.setText("￥：0.00");
+//                                checkBox.setChecked(false);
+//                                edit_end_tv.setText("完成");
+//                            }
+//                        }, CartActivity.this);
+//            }
+//
+//        });
         showDialog("加载中...");
     }
 
     public void allCheck(View v) {//全选
         if (isfinish || data == null) return;
         CheckBox checkBox = (CheckBox) v;
-        for (Cart.ProductsBean bean : data) {
-            bean.setChecked(checkBox.isChecked());
+        boolean ischeck = checkBox.isChecked();
+        APPLog.e("取消那算=" + ischeck);
+        StringBuilder productIds = new StringBuilder();
+        List<MProductVO> checkBeens = new ArrayList<>();
+        for (MProductVO mp : data) {
+            if ((ischeck && mp.getIs_checked() != 1)||(!ischeck&&mp.getIs_checked() == 1)) {
+                checkBeens.add(mp);
+            }
         }
-        booksadapter.setData(data);
-        currentPage = 1;
-        catetory_title.setText("购物车（ " + data.size() + " ）" + "共" + currentPage + "/" + pageCunt + " 页");
-        getSelectPrice();
+        if (checkBeens.size()<=0)return;
+        for (int i = 0; i < checkBeens.size(); i++) {
+            if (i > 0) {
+                productIds.append(",");
+            }
+            productIds.append(checkBeens.get(i).getCart_product_item_id());
+        }
+        APPLog.e(productIds.toString());
+        if (ischeck) {
+            NewCartWorkManager.gouxuan(token, productIds.toString(), getList);
+        } else {
+            NewCartWorkManager.quxiaoGouxuan(token, productIds.toString(), getList);
+        }
+        showDialog("");
+//        booksadapter.setData(data);
+//        currentPage = 1;
+//        catetory_title.setText("购物车（ " + data.size() + " ）" + "共" + currentPage + "/" + pageCunt + " 页");
+//        getSelectPrice();
     }
 
     private boolean isAllCheck() {
-        for (Cart.ProductsBean bean : data) {
-            if (!bean.isChecked()) {
+        for (MProductVO bean : data) {
+            if (bean.getIs_checked() != 1) {
                 checkBox.setChecked(false);
                 return false;
             }
@@ -288,14 +337,13 @@ public class CartActivity extends BookStoreBaseActivity implements OnFlingListen
     }
 
     private boolean getSelectData() {
-        List<Cart.ProductsBean> beens = new ArrayList<>();
-        for (Cart.ProductsBean bean : data) {
-            if (bean!=null&&bean.isChecked())
+        List<MProductVO> beens = new ArrayList<>();
+        for (MProductVO bean : data) {
+            if (bean != null && bean.getIs_checked() == 1)
                 beens.add(bean);
         }
         if (null == beens || 0 == beens.size()) {
             ToastUtil("未添加书籍!");
-            totalPrice.setText("￥：0.00");
             return false;
         } else {
             StringBuilder sbName = new StringBuilder();
@@ -304,17 +352,17 @@ public class CartActivity extends BookStoreBaseActivity implements OnFlingListen
 //            sb.append("\"");
             arraysb.append("[");
             for (int i = 0; i < beens.size(); i++) {
-                Cart.ProductsBean bean = beens.get(i);
-                String item = "{\"productId\":\"" + bean.getMediaId() + "\",\"saleId\":\"" + bean.getSaleId() + "\",\"cId\":\"\"}";
+                MProductVO bean = beens.get(i);
+                String item = "{\"productId\":\"" + bean.getProduct_id() + "\",\"saleId\":\"" + bean.getProduct_id() + "\",\"cId\":\"\"}";
                 arraysb.append(item);
                 if (i < beens.size() - 1)
                     arraysb.append(",");
                 if (i > 0) {
-                    sb.append("," + bean.getSaleId());
-                    sbName.append("+" + bean.getTitle());
+                    sb.append("," + bean.getProduct_id());
+                    sbName.append("+" + bean.getProduct_name());
                 } else {
-                    sb.append(bean.getSaleId());
-                    sbName.append(bean.getTitle());
+                    sb.append(bean.getProduct_id());
+                    sbName.append(bean.getProduct_id());
                 }
             }
 //            sb.append("\"");
@@ -362,43 +410,62 @@ public class CartActivity extends BookStoreBaseActivity implements OnFlingListen
 
     }
 
+    private BackMassage getList = new BackMassage() {
+        @Override
+        public void onSucess(Object obj) {
+            if (isFinishing()) return;
+            hideDialog();
+            cartList = (MCartListResponseVO) obj;
+            data = getProducts(cartList);
+            initView(data);
+            hideDialog();
+        }
+
+        @Override
+        public void onFail(Exception e) {
+            if (isFinishing()) return;
+            hideDialog();
+        }
+    };
+
     /**
      * 请求购物车列表
      */
     private void getSaleData() {
-        final HashMap<String, Object> params = new ParamsMap(this);
-        //params.put("action", "listShoppingCart");
-        if (StringUtils.isNull(cartId))return;
-        params.put("cartId", cartId);
-        params.put("token", token);
-        HttpManager manager = HttpManager.getInstance();
-        manager.doHttpDeal(new BaseDeal() {
-            @Override
-            public Observable getObservable(HttpService methods) {
-                return methods.listShoppingCart(params);
-            }
-
-            @Override
-            public Subscriber getSubscirber() {
-                return new ProgressSubscriber(
-                        new HttpOnNextListener<Cart>() {
-                            @Override
-                            public void onError() {
-                                if (isfinish) return;
-                                hideDialog();
-                            }
-
-                            @Override
-                            public void onNext(Cart o) {
-                                if (isfinish) return;
-                                hideDialog();
-                                data = o.getProducts();
-                                initView(data);
-                            }
-                        }, CartActivity.this);
-            }
-
-        });
+        NewCartWorkManager.cartList(token, getList);
+//        final HashMap<String, Object> params = new ParamsMap(this);
+//        //params.put("action", "listShoppingCart");
+//        if (StringUtils.isNull(cartId))return;
+//        params.put("cartId", cartId);
+//        params.put("token", token);
+//        HttpManager manager = HttpManager.getInstance();
+//        manager.doHttpDeal(new BaseDeal() {
+//            @Override
+//            public Observable getObservable(HttpService methods) {
+//                return methods.listShoppingCart(params);
+//            }
+//
+//            @Override
+//            public Subscriber getSubscirber() {
+//                return new ProgressSubscriber(
+//                        new HttpOnNextListener<Cart>() {
+//                            @Override
+//                            public void onError() {
+//                                if (isfinish) return;
+//                                hideDialog();
+//                            }
+//
+//                            @Override
+//                            public void onNext(Cart o) {
+//                                if (isfinish) return;
+//                                hideDialog();
+//                                data = o.getProducts();
+//                                initView(data);
+//                            }
+//                        }, CartActivity.this);
+//            }
+//
+//        });
         showDialog("加载购物车...");
     }
 
@@ -455,8 +522,8 @@ public class CartActivity extends BookStoreBaseActivity implements OnFlingListen
             if (pageData.size() != 0) {
                 pageData.clear();
             }
-            for (int i = (currentPage - 1) * 3; i < (currentPage * 3 > resultCount ?
-                    resultCount : currentPage * 3); i++) {
+            for (int i = (currentPage - 1) * 4; i < (currentPage * 4 > resultCount ?
+                    resultCount : currentPage * 4); i++) {
                 APPLog.e("i" + currentPage);
                 pageData.add(data.get(i));
             }
@@ -477,7 +544,7 @@ public class CartActivity extends BookStoreBaseActivity implements OnFlingListen
             if (pageData.size() != 0) {
                 pageData.clear();
             }
-            for (int i = (currentPage - 1) * 3; i < currentPage * 3; i++) {
+            for (int i = (currentPage - 1) * 4; i < currentPage * 4; i++) {
                 pageData.add(data.get(i));
             }
             booksadapter.setData(pageData);
@@ -491,20 +558,26 @@ public class CartActivity extends BookStoreBaseActivity implements OnFlingListen
         if (0 == data.size()) {
             pageCunt = 1;
         } else {
-            int n = data.size() % 3;
+            int n = data.size() % 4;
             if (n == 0)
-                pageCunt = data.size() / 3;
+                pageCunt = data.size() / 4;
             else
-                pageCunt = data.size() / 3 + 1;
+                pageCunt = data.size() / 4 + 1;
             APPLog.e("pagecunt:" + pageCunt);
         }
     }
 
     @Override
     public void click(int position) {
-        getSelectPrice();
-        if (isAllCheck())
-            checkBox.setChecked(true);
+        APPLog.e("勾选选中");
+//        getSelectPrice();
+        MProductVO item = (MProductVO) booksadapter.getItem(position);
+        if (item.getIs_checked() == 1) {
+            NewCartWorkManager.quxiaoGouxuan(token, item.getCart_product_item_id() + "", getList);
+        } else {
+            NewCartWorkManager.gouxuan(token, item.getCart_product_item_id() + "", getList);
+        }
+        showDialog("");
     }
 
     private boolean isMathPrice = false;
@@ -540,9 +613,9 @@ public class CartActivity extends BookStoreBaseActivity implements OnFlingListen
                 APPLog.e("makeOrder success: " + orderId);
                 if (visibale) {
                     if (isMathPrice) {
-                        String money="总计￥：" + ToolUtils.getIntence().formatPrice(payableprice / 100.0);
+                        String money = "总计￥：" + ToolUtils.getIntence().formatPrice(payableprice / 100.0);
                         if (totalPrice > payableprice) {
-                            money+="    已优惠￥："+ToolUtils.getIntence().formatPrice((totalPrice-payableprice)/ 100.0);
+                            money += "    已优惠￥：" + ToolUtils.getIntence().formatPrice((totalPrice - payableprice) / 100.0);
                         }
                         CartActivity.this.totalPrice.setText(money);
                     } else {

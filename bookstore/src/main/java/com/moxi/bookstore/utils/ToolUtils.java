@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.moxi.bookstore.BookstoreApplication;
 import com.moxi.bookstore.bean.LoginUserData;
 import com.moxi.bookstore.bean.Message.LoginUserMsg;
+import com.moxi.bookstore.modle.LogoData;
 import com.moxi.bookstore.request.NetUtil;
 import com.mx.mxbase.constant.APPLog;
 import com.mx.mxbase.utils.GsonTools;
@@ -49,6 +50,7 @@ public class ToolUtils {
     }
     public void clearLoginUserData(){
         intence=null;
+        LogoData.getInstance().clear();
     }
 
     private ToolUtils(){}
@@ -161,6 +163,15 @@ public class ToolUtils {
         }
         if (data!=null){
             return data.getToken();
+        }
+        return null;
+    }
+    public String getuserId(Context context){
+        if (data==null){
+            getLoginData(context);
+        }
+        if (data!=null){
+            return data.getUniqueKey();
         }
         return null;
     }

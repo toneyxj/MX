@@ -19,7 +19,7 @@
             For example:
         <version value="1" ></version>
     -->
-    <version value="159"></version>
+    <version value="160"></version>
 
     <!--
         Define your models in the list with mapping tag, LitePal will
@@ -32,6 +32,7 @@
         </list>
     -->
     <list>
+        <mapping class="com.moxi.bookstore.modle.LogoDataDb"></mapping>
         <mapping class="com.moxi.bookstore.modle.SearchBookModel"></mapping>
         <mapping class="com.moxi.bookstore.modle.SearchHistory"></mapping>
         <mapping class="com.moxi.bookstore.modle.BookRack"></mapping>
